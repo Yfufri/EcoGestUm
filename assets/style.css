@@ -1,3 +1,8 @@
+.body{
+    background-color: white;
+}
+
+
 footer {
     margin: 0;
     padding: 0;
@@ -7,7 +12,7 @@ footer {
     flex-direction: column;
     background-color: #040823;
     padding: 3%;
-}
+}   
 
 .footer-logo {
     display: block;
