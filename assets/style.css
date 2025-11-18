@@ -1,3 +1,85 @@
+/* styles  image sous header  */
+/* Section bannière */
+.banner-recycler {
+    background: #1a1a1a;
+    min-height: 190px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+}
+
+.banner-overlay {
+    background: rgba(230, 230, 230, 0.8);
+    color: #2c2c2c;
+    font-weight: bold;
+    font-size: 2em;
+    padding: 1.6em 1em;
+    margin-left: 2em;
+    border-radius: 12px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+}
+
+/* Section engagement */
+.engagement-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2em 0;
+    background: #fff;
+}
+
+.engagement-box {
+    width: 95%;
+    max-width: 700px;
+    background: #eafdff;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(34, 70, 99, 0.07);
+    border: 7px solid #bfe3ef;
+    padding: 2em 2em 1.5em 2em;
+    text-align: center;
+}
+
+.engagement-box h2 {
+    color: #283a58;
+    font-size: 1.35em;
+    font-family: 'Roboto', Arial, sans-serif;
+    margin-top: 0;
+    margin-bottom: 1em;
+    font-weight: bold;
+}
+
+.engagement-box p {
+    color: #27313a;
+    font-size: 1.02em;
+    margin-bottom: 1em;
+}
+
+/* Bouton */
+.policy-btn {
+    display: inline-block;
+    padding: 0.7em 2em;
+    background: #f1f9fb;
+    color: #d96c00;
+    border-radius: 18px;
+    font-size: 1em;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    box-shadow: 0 2px 5px rgba(34,70,99,0.06);
+    margin-top: 1em;
+    transition: background 0.15s;
+}
+
+.policy-btn:hover {
+    background: #cfe2ea;
+}
+
+
+
 /* styles  headers */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap');
 body {
