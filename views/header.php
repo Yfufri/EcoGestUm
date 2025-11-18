@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>ÉcoGestUM - Accueil</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?> assets/style.css">
 </head>
 <body>
 <header>
