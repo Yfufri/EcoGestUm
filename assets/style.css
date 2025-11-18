@@ -1,3 +1,27 @@
+.body{
+    font-family: 'Luciole', Arial, sans-serif;
+}
+
+/* Connection */
+
+.container {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* Section gauche - Formulaire */
+.login-section {
+    flex: 1;
+    background-color: #F5F5F5;
+    padding: 60px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 527px;
+}
+
+
 /* styles  headers */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap');
 body {
@@ -114,7 +138,7 @@ footer {
     flex-direction: column;
     background-color: #040823;
     padding: 3%;
-}
+}   
 
 .footer-logo {
     display: block;
