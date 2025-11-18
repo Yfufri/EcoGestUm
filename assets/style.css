@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* styles  image sous header  */
 /* Section bannière */
 .banner-recycler {
@@ -96,6 +97,32 @@
 
 
 
+=======
+.body{
+    font-family: 'Luciole', Arial, sans-serif;
+}
+
+/* Connection */
+
+.container {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* Section gauche - Formulaire */
+.login-section {
+    flex: 1;
+    background-color: #F5F5F5;
+    padding: 60px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 527px;
+}
+
+
+>>>>>>> 09cf82bae8b42561b063d1eab7d7f3fb4877d505
 /* styles  headers */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap');
 body {
@@ -212,7 +239,7 @@ footer {
     flex-direction: column;
     background-color: #040823;
     padding: 3%;
-}
+}   
 
 .footer-logo {
     display: block;
@@ -377,4 +404,95 @@ footer {
 @media (max-width: 950px) {
     .stats-cards-wrapper { flex-direction: column; align-items: center; gap: 25px;}
     .stats-card    { min-width: 0; width: 100%; }
+}
+/* styles  conseilEco  */.conseils-eco-bg {
+    background: #2d386d url("assets/images/pattern-bg.png") repeat;
+    min-height: 100vh;
+    padding: 58px 24px 48px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.conseils-title {
+    text-align: center;
+    color: #fff;
+    font-size: 2.65rem;
+    margin-bottom: 52px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.08;
+    font-family: 'Montserrat', Arial, sans-serif;
+}
+
+.conseils-cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    width: 100%;
+    max-width: 620px;
+}
+
+.conseil-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(44,54,110,0.14);
+    transition: transform 0.18s, box-shadow 0.18s;
+}
+
+.conseil-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 28px rgba(44,54,110,0.20);
+}
+
+.conseil-card-img {
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+    background: #eaeef5;
+}
+
+.conseil-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.conseil-card-content {
+    padding: 24px 28px 26px 28px;
+    text-align: center;
+}
+
+.conseil-card-title {
+    font-size: 1.60rem;
+    font-weight: 700;
+    color: #1f1f1f;
+    margin: 0 0 8px 0;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+}
+
+.conseil-card-text {
+    font-size: 1.08rem;
+    font-weight: 500;
+    color: #4a4a4a;
+    margin: 0;
+    line-height: 1.36;
+}
+
+@media (max-width: 700px) {
+    .conseils-title {
+        font-size: 1.85rem;
+        margin-bottom: 34px;
+    }
+    .conseil-card-img {
+        height: 180px;
+    }
+    .conseil-card-title {
+        font-size: 1.28rem;
+    }
+    .conseil-card-text {
+        font-size: 0.97rem;
+    }
 }
