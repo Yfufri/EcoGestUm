@@ -1,3 +1,103 @@
+<<<<<<< HEAD
+/* styles  image sous header  */
+/* Section bannière */
+.banner-recycler {
+    background-image: url('../assets/Accueil/PhotoAccueil1.png');
+    min-height: 190px;
+    height: 409px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+}
+
+.banner-overlay {
+    background: rgba(230, 230, 230, 0.8);
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 3em;
+    padding: 24px 35px 24px 10px;
+    margin-top: 150px;
+    border-radius: 12px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+}
+
+/* Section engagement */
+.engagement-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2em 0;
+    background: #fff;
+}
+
+.engagement-Greenbox {
+    width: 95%;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;   /* empile les enfants verticalement */
+    justify-content: center;  /* centre verticalement */
+    align-items: center;
+    background: #eafdff;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(34, 70, 99, 0.07);
+    border: 7px solid #bfe3ef;
+    padding: 2.3em 2.3em 2.3em 2.3em;
+    text-align: center;
+}
+
+.engagement-Whitebox {
+    width: 95%;
+    max-width: 700px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(34, 70, 99, 0.07);
+    padding: 2.3em 2.3em 1.8em 2.3em;
+    text-align: center;
+}
+
+.engagement-box h2 {
+    color: #283a58;
+    font-size: 1.35em;
+    font-family: 'Poppins', Arial, sans-serif;
+    margin-top: 0;
+    margin-bottom: 1em;
+    font-weight: bold;
+}
+
+.engagement-box p {
+    color: #27313a;
+    font-size: 1.02em;
+    margin-bottom: 1em;
+    font-family: 'Luciole', Arial, sans-serif;
+}
+
+/* Bouton */
+.policy-btn {
+    display: inline-block;
+    padding: 0.7em 2em;
+    background: #ffffff;
+    color: #d4451b;
+    border-radius: 18px;
+    font-size: 1em;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    box-shadow: 0 2px 5px rgba(34,70,99,0.06);
+    margin-top: 1em;
+    transition: background 0.15s;
+}
+
+.policy-btn:hover {
+    background: #cfe2ea;
+}
+
+
+
+=======
 .body{
     font-family: 'Luciole', Arial, sans-serif;
 }
@@ -22,6 +122,7 @@
 }
 
 
+>>>>>>> 09cf82bae8b42561b063d1eab7d7f3fb4877d505
 /* styles  headers */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap');
 body {
