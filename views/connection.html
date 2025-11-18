@@ -1,3 +1,40 @@
 <body>
-    
+    <div class="container">
+        <!-- Section gauche - Formulaire de connexion -->
+        <div class="login-section">
+            <div class="logo">
+                <img href="../assets/Logo/BlancComplet.png" alt="Le Mans Université Logo">
+            </div>
+
+            <form class="form-container" method="post" action="#">
+                <div class="form-group">
+                    <label for="identifiant">Identifiant :*</label>
+                    <input type="text" id="identifiant" name="identifiant" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Mot de passe : *</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <div class="remember-me">
+                    <input type="checkbox" id="remember" name="remember">
+                    <label for="remember">Se souvenir de moi</label>
+                </div>
+
+                <button type="submit" class="btn-primary">Se connecter</button>
+                
+                <button type="button" class="btn-secondary">1ère connexion</button>
+
+                <a href="#" class="forgot-password">Mot de passe oublié ?</a>
+
+                <p class="security-notice">
+                    Pour des raisons de sécurité, veuillez vous déconnecter et fermer votre navigateur lorsque vous avez fini d'accéder aux services authentifiés.
+                </p>
+            </form>
+        </div>
+
+        <!-- Section droite - Image -->
+        <div class="image-section"></div>
+    </div>
 </body>
