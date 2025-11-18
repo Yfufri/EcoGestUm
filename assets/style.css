@@ -196,3 +196,87 @@ footer {
         max-width: 250px;
     }
 }
+/* styles  statistiquesEnv  */
+.stats-theme-bg {
+    background: #2d386d url("assets/backgrounddark2.png") repeat; /* Adapté pour motif, sinon laisse uni */
+    min-height: 98vh;
+    padding: 76px 0 44px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.stats-title {
+    text-align: center;
+    color: #fff;
+    font-size: 2.55rem;
+    margin-bottom: 48px;
+    font-weight: bold;
+    letter-spacing: -0.01em;
+    line-height: 1.08;
+    font-family: 'Montserrat', Arial, sans-serif;
+}
+.stats-cards-wrapper {
+    background: #fff;
+    display: flex;
+    gap: 28px;
+    border-radius: 12px;
+    box-shadow: 0 4px 32px rgba(44,54,110,0.10);
+    padding: 44px 34px;
+    justify-content: center;
+    align-items: stretch;
+}
+.stats-card {
+    background: #eeeef2;
+    padding: 28px 36px 18px 36px;
+    border-radius: 12px;
+    text-align: center;
+    min-width: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 2px 7px rgba(44,54,110,0.08);
+}
+.stats-card-icon {
+    margin-bottom: 13px;
+}
+.stats-card-nb {
+    font-size: 2.00rem;
+    font-weight: 700;
+    color: #E6531D;
+    letter-spacing: 0.02em;
+    margin-bottom: 2px;
+}
+.stats-card-label {
+    color: #25327a;
+    font-size: 1.05rem;
+    font-weight: 500;
+    margin-bottom: 0;
+    line-height: 1.23;
+}
+
+.stats-btn-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 34px;
+}
+.stats-btn-main {
+    background: #fff;
+    border-radius: 32px;
+    color: #E6531D;
+    font-size: 1.25rem;
+    font-weight: 600;
+    padding: 12px 48px;
+    border: 2px solid #eee;
+    box-shadow: 0 2px 10px rgba(60,60,80,0.13);
+    text-decoration: none;
+    transition: background 0.14s, color 0.12s;
+}
+.stats-btn-main:hover {
+    background: #ffe7df;
+    color: #2d386d;
+    border: 2px solid #f47952;
+}
+@media (max-width: 950px) {
+    .stats-cards-wrapper { flex-direction: column; align-items: center; gap: 25px;}
+    .stats-card    { min-width: 0; width: 100%; }
+}
