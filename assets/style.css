@@ -395,3 +395,175 @@ footer {
         font-size: 0.97rem;
     }
 }
+/* politique de recyclage */
+.politique-page {
+    font-family: 'Montserrat', Arial, sans-serif;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Première section - gradient bleu pleine largeur */
+.politique-header {
+    background: linear-gradient(135deg, #a8d5e2 0%, #d9f2f7 100%);
+    padding: 48px 0;
+    width: 100%;
+}
+
+.politique-header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px;
+    display: flex;
+    gap: 32px;
+    align-items: center;
+}
+
+.politique-schema {
+    width: 45%;
+    max-width: 420px;
+}
+
+.politique-intro h2 {
+    font-size: 1.85rem;
+    color: #25327a;
+    margin-bottom: 14px;
+    font-weight: 700;
+}
+
+.politique-intro p {
+    font-size: 1.05rem;
+    color: #2a2a2a;
+    line-height: 1.52;
+    margin-bottom: 12px;
+}
+
+/* Toutes les sections suivantes */
+.politique-section {
+    padding: 48px 0;
+    width: 100%;
+}
+
+/* Contenu centré avec max-width */
+.politique-section > h3,
+.politique-section > h4,
+.politique-section > .objectifs-list,
+.politique-section > .faciliter-grid,
+.politique-section > .sensibilisation-grid,
+.politique-section > .suivi-grid,
+.politique-section > .participer-grid,
+.politique-section > .conclusion-text {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 48px;
+    padding-right: 48px;
+}
+
+.bg-light { 
+    background: #fff; 
+}
+
+.bg-dark { 
+    background: #2d386d; 
+    color: #fff; 
+}
+
+.section-title {
+    font-size: 1.95rem;
+    color: #25327a;
+    font-weight: 700;
+    margin-bottom: 18px;
+    text-align: center;
+}
+
+.section-title-white {
+    font-size: 1.95rem;
+    color: #fff;
+    font-weight: 700;
+    margin-bottom: 18px;
+    text-align: center;
+}
+
+.section-subtitle {
+    font-size: 1.35rem;
+    color: #25327a;
+    font-weight: 600;
+    margin: 24px 0 12px 0;
+}
+
+.objectifs-list {
+    list-style: disc;
+    margin-left: 28px;
+    font-size: 1.08rem;
+    line-height: 1.68;
+}
+
+.faciliter-grid, .sensibilisation-grid, .suivi-grid, .participer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 28px;
+    margin-top: 28px;
+}
+
+.faciliter-card, .sensi-card, .suivi-card, .participer-card {
+    background: #fff;
+    padding: 22px;
+    border-radius: 12px;
+    box-shadow: 0 3px 18px rgba(44,54,110,0.10);
+}
+
+.faciliter-card h4, .sensi-card h4, .suivi-card h4, .participer-card h4 {
+    font-size: 1.28rem;
+    color: #25327a;
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+.faciliter-card img, .sensi-card img, .suivi-card img, .participer-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.faciliter-card p, .sensi-card p, .suivi-card p, .participer-card p {
+    font-size: 1.02rem;
+    color: #4a4a4a;
+    line-height: 1.52;
+}
+
+.participer-card ul {
+    list-style: disc;
+    margin-left: 22px;
+    font-size: 1.02rem;
+    line-height: 1.68;
+    color: #4a4a4a;
+}
+
+.conclusion-text {
+    font-size: 1.15rem;
+    color: #fff;
+    line-height: 1.68;
+    text-align: center;
+}
+
+@media (max-width: 800px) {
+    .politique-header-content { 
+        flex-direction: column; 
+        padding: 0 24px;
+    }
+    .politique-schema { 
+        width: 100%; 
+    }
+    .section-title, .section-title-white { 
+        font-size: 1.48rem; 
+    }
+    .politique-section > * {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+}
+
+/* Fin politique de recyclage */
