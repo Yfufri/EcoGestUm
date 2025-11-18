@@ -1,5 +1,5 @@
 <?php
-require_once "views/header.html";
-require_once "views/statistiquesEnv.html";
-require_once "views/footer.html";
-?>
+include "views/header.html";
+include "views/connection.html";
+include "views/footer.html";
+?>  
