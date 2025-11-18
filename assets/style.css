@@ -1,5 +1,24 @@
 .body{
-    background-color: #fff;
+    font-family: 'Luciole', Arial, sans-serif;
+}
+
+/* Connection */
+
+.container {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* Section gauche - Formulaire */
+.login-section {
+    flex: 1;
+    background-color: #F5F5F5;
+    padding: 60px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 527px;
 }
 
 
