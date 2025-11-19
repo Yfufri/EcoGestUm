@@ -1,4 +1,5 @@
-<link rel="stylesheet" href="../assets/styletest.css">
+<!-- accueil_etudiant.php -->
+<link rel="stylesheet" href="assets/style.css">
 
 <div class="banner">
   <img src="../assets/etudiant/image1.png" alt="Bannière" class="banner-img">

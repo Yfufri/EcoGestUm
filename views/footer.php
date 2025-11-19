@@ -1,5 +1,5 @@
  <footer class="footer">
-       <img src="../assets/Logo/BlancComplet.png" alt="EcoGestUM Logo" class="footer-logo" />
+       <img src="assets/Logo/BlancComplet.png" alt="EcoGestUM Logo" class="footer-logo" />
         
         <div class="acess">
             <p>Accès rapides</p>
@@ -18,3 +18,5 @@
             <a href="#">Plan du site</a>
         </div>
     </footer>
+    </body>
+</html>
