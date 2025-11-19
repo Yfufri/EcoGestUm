@@ -37,7 +37,7 @@
     </div>
     <!-- Statistics Section -->
     <?php
-    include('views/statistiquesEnv.html');
+    include('views/statistiquesEnv.php');
     ?>
     <!-- Visite Guidée Section -->
     <div class="visite-section">
