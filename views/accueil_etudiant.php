@@ -1,5 +1,5 @@
 <!-- accueil_etudiant.php -->
-<link rel="stylesheet" href="public/css/style.css">
+<link rel="stylesheet" href="assets/style.css">
 
 <div class="banniere">
   <div class="texte-banniere">
