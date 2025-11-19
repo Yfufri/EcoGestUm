@@ -1,4 +1,6 @@
 <section class="politique-page">
+    <link rel="stylesheet" href="assets/style.css">
+
     <!-- Section 1 : Header politique -->
     <div class="politique-header">
         <div class="politique-header-content">
@@ -50,7 +52,7 @@
             </div>
             <div class="sensi-card">
                 <h4>Campagnes de Sensibilisation</h4>
-                <img src="assets/images/campagne.jpg" alt="Campagne">
+                <img src="assets/PolitiqueDeRecyclage/images 1.png" alt="Campagne">
                 <p>Des affiches, vidéos explicatives et notifications via EcoGestUM pour sensibiliser la communauté au recyclage.</p>
             </div>
         </div>
@@ -79,7 +81,7 @@
         <div class="participer-grid">
             <div class="participer-card">
                 <h4>Pour les Étudiants et le Personnel</h4>
-                <img src="assets/PolitiqueDeRecyclage/image 5.png" alt="Étudiants">
+                <img src="assets/PolitiqueDeRecyclage/Capture d’écran 2025-11-19 à 10.13.23.png" alt="Étudiants">
                 <ul>
                     <li>Déposez vos objets inutiles dans les points de collecte spécifiques.</li>
                     <li>Participez aux événements et ateliers organisés par EcoGestUM et les associations étudiantes.</li>
