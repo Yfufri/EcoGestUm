@@ -15,7 +15,7 @@
             <a href="index.php?action=politique">Politique de recyclage</a>
             <a href="index.php?action=statistiques">Statistiques</a>
             <a href="index.php?action=evenements">Événements</a>
-            <a href="views/connection.html">Se connecter</a>
+            <a href="views/connection.php">Se connecter</a>
         </nav>
     </div>
     <div class="ecogestum-bar">ÉcoGestUM</div>
