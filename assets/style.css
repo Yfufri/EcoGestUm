@@ -1,6 +1,6 @@
-/*  Style de L'Accueil Visiteur */
+/*-----Style de L'Accueil Visiteur-----*/
 /* styles  image sous header  */
-/* Section bannière */
+/*--Section bannière--*/
 .banner-recycler {
     background-image: url('../assets/Accueil/PhotoAccueil1.png');
     min-height: 190px;
@@ -24,7 +24,7 @@
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
 }
 
-/* Section engagement */
+/*--Section engagement - Acceuil Visiteur--*/
 .engagement-section {
     width: 100%;
     display: flex;
@@ -103,9 +103,9 @@
     font-family: 'Luciole', Arial, sans-serif;
 }
 
-/*Section evenement  */
-.event-container {
-    width: 100vw;
+/*--Section evenement - Accueil Visiteur--*/
+.event-section {
+    width: 100%;
     /* prend toute la largeur de la fenêtre */
     max-width: 1400px;
     /* limite la largeur max si tu veux */
@@ -147,7 +147,7 @@
     box-shadow: 0 4px 16px rgba(34, 70, 99, 0.07);
 }
 
-/* Bloc orange superposé */
+/* Bloc orange superposé evenement*/
 .event-overlay {
     position: absolute;
     bottom: 80px;
@@ -165,7 +165,7 @@
     z-index: 10;
 }
 
-/* Texte dans le bloc orange */
+/* Texte dans le bloc orange evenement*/
 .event-desc {
     font-size: 3em;
     line-height: 1.2;
@@ -173,7 +173,7 @@
     font-weight: 400;
 }
 
-/* Bouton dans la section evenement */
+/* Bouton dans la section evenement et visite guidée */
 .policy-btn {
     display: inline-block;
     padding: 0.7em 2em;
@@ -191,7 +191,7 @@
 .policy-btn:hover {
     background: #ffe7df;
     color: #2d386d;
-    border: 2px solid #f47952;
+    border: 0px solid #f47952;
 }
 
 /* Légende sous l'image de la section evenement */
@@ -205,11 +205,57 @@
     text-align: center;
 }
 
+/*--Section Visite Guidée  - Accueil Visiteur--*/
+.visite-section {
+   width: 100%;
+    /* prend toute la largeur de la fenêtre */
+    max-width: 1400px;
+    /* limite la largeur max si tu veux */
+    margin: 0 auto;
+    /* centre horizontalement quand largeur max atteinte */
+    box-sizing: border-box;
+    /* pour inclure paddings dans la largeur */
+    background-color: #2d386d;
+    padding: 0;
+    padding-bottom: 3em;
+    overflow: hidden;
+}
 
+/* Titre de la section Visite Guidée  */
+.visite-title {
+    font-size: 2.5em;
+    color: #ffffff;
+    margin: 1em;
+    font-weight: 700;
+    padding: 0.5em 0 0 0;
+    text-align: center;
+}
 
+/* Texte dans le bloc orange evenement*/
+.visite-desc {
+    font-size: 3em;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    font-weight: 400;
+}
 
-
-
+/* Bloc orange superposé visite guidée*/
+.visite-overlay {
+    position: absolute;
+    bottom: 80px;
+    /* distance du bloc orange par rapport au bas de l'image */
+    left: 0px;
+    /* distance du bloc orange par rapport à la droite */
+    background: rgba(212, 68, 28, 0.7);
+    /* couleur orange semi-transparente */
+    padding: 2rem 2.5rem ;
+    border-radius: 16px;
+    color: white;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
+    max-width: 420px;
+    text-align: left;
+    z-index: 10;
+}
 
 /* Style de la page Connection */
 
