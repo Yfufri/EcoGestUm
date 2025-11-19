@@ -1,4 +1,4 @@
-/*  Style de L'Accueil Visiteur */
+<<<<<<< HEAD
 /* styles  image sous header  */
 /* Section bannière */
 .banner-recycler {
@@ -99,7 +99,9 @@
     border: 2px solid #f47952;
 }
 
-.body {
+
+
+.body{
     font-family: 'Luciole', Arial, sans-serif;
 }
 
@@ -229,7 +231,6 @@
     justify-content: center;
     max-width: 527px;
 }
-
 
 
 /* styles  headers */
