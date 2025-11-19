@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="../assets/css/styleBanner.css">
+<link rel="stylesheet" href="../assets/css/style.css">
 <link rel="stylesheet" href="../assets/css/styleAll.css">
 
 <div class="banner">

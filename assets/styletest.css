@@ -105,7 +105,7 @@ body {
 
 /* Statistiques */
 .stats {
-    background: url('../backgrounddark2.jpg') center/cover repeat;
+    background: url('backgrounddark2.png') center/cover repeat;
     color: #fff;
     padding: 50px 0 70px 0;
     margin: 55px 0 0 0;
@@ -156,7 +156,7 @@ body {
 
 /* Point de collecte */
 .point-collecte {
-    background: url('../backgroundlight.jpg') center/cover repeat;
+    background: url('backgroundlight.png') center/cover repeat;
     border-radius: 18px;
     margin: 35px auto;
     padding: 40px 0 30px 0;
