@@ -18,3 +18,5 @@
             <a href="#">Plan du site</a>
         </div>
     </footer>
+    </body>
+</html>

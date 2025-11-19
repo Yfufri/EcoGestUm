@@ -40,7 +40,7 @@
     include('views/statistiquesEnv.html');
     ?>
     <!--Evenements Section -->
-    <div class="event-container">
+    <div class="event-section">
         <h1 class="event-title">Événements</h1>
 
         <div class="photo-wrapper">
@@ -58,7 +58,21 @@
             Le Mans : des étudiants mobilisés pour ramasser des déchets
         </div>
     </div>
+    <!-- Visite Guidée Section -->
+    <div class="visite-section">
+        <h1 class="visite-title">Visite Guidée</h1>
 
+        <div class="photo-wrapper">
+            <img src="assets/Accueil/PhotoAccueil3.png" alt="Groupe d'étudiants ramassant des déchets" />
+
+            <div class="visite-overlay">
+                <div class="visite-desc">
+                    Des événements<br><strong>À NE PAS RATER!</strong>
+                </div>
+                <a href="#" class="policy-btn">S’inscrire à un événement</a>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
