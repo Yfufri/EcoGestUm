@@ -1,0 +1,9 @@
+@font-face{
+    font-family: 'Luciole';
+    src: url('../fonts/Luciole-Regular.ttf');
+}
+
+*{
+    margin: 0;
+    font-family: 'Luciole','Montserrat', 'Arial';
+}

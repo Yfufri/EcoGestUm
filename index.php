@@ -17,4 +17,3 @@ define('ASSETS_URL', BASE_URL . 'assets/');
 //}
 
 ?>
-
