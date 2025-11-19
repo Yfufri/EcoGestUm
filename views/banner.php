@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="../assets/css/style.css">
-<link rel="stylesheet" href="../assets/css/styleAll.css">
+<link rel="stylesheet" href="../assets/css/styleBanner.css">
 
 <div class="banner">
   <img src="../assets/etudiant/image1.png" alt="Bannière" class="banner-img">
