@@ -6,10 +6,11 @@
     <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
+    <div class="container">
         <!-- Section gauche - Formulaire de connexion -->
         <div class="login-section">
             <div class="logo">
-                <img src="assets/Logo/logo-LeMansUniversite.png" alt="Le Mans Université">
+                <img src="../assets/Logo/logo-LeMansUniversite.png" alt="Le Mans Université">
             </div>
 
             <form class="form-container" method="POST" action="">
