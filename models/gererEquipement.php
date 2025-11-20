@@ -32,20 +32,66 @@ function getNbObjectDisponible($conn) {
     return $row['total_disponibles'];
 }
 
-function addObject($conn, $nom_objet, $desc_objet, $id_categorie_objet, $id_point_de_collecte, $id_utilisateur, $id_statut) {
-    $stmt = $conn->prepare("INSERT INTO Objet (Nom_objet, 
-                                                Desc_objet, 
-                                                Id_categorie_objet, 
-                                                Id_point_de_collecte, 
-                                                Id_utilisateur, 
-                                                Id_statut) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssiiii", $nom_objet, $desc_objet, $id_categorie_objet, $id_point_de_collecte, $id_utilisateur, $id_statut);
-    
-    if ($stmt->execute()) {
-        return true;
-    } else {
-        return false;
+function chercherObjets(mysqli $conn, $mot_clef = null, $categorie = null, $point_collecte = null) {
+    $sql = "SELECT 
+                Nom_objet,
+                Desc_objet,
+                Nom_categorie_objet,
+                Nom_point_de_collecte,
+                Nom_statut,
+                Nom_utilisateur,
+                Url_photo
+            FROM OBJET
+            INNER JOIN CATEGORIE_OBJET ON OBJET.Id_categorie_objet = CATEGORIE_OBJET.Id_categorie_objet
+            INNER JOIN POINT_DE_COLLECTE ON OBJET.Id_point_collecte = POINT_DE_COLLECTE.Id_point_collecte
+            INNER JOIN STATUT ON OBJET.Id_statut = STATUT.Id_statut
+            INNER JOIN UTILISATEUR ON OBJET.Id_utilisateur = UTILISATEUR.Id_utilisateur
+            LEFT JOIN PHOTO ON PHOTO.Id_objet = OBJET.Id_objet
+            WHERE Nom_statut = 'Disponible'";
+
+    $params = [];
+    $types = '';
+
+    if (!empty($mot_clef)) {
+        $sql .= " AND (Nom_objet LIKE ? OR Desc_objet LIKE ?)";
+        $mot_clef_param = "%$mot_clef%";
+        $params[] = $mot_clef_param;
+        $params[] = $mot_clef_param;
+        $types .= 'ss';
     }
+    if (!empty($categorie)) {
+        $sql .= " AND Nom_categorie_objet LIKE ?";
+        $params[] = "%$categorie%";
+        $types .= 's';
+    }
+    if (!empty($point_collecte)) {
+        $sql .= " AND Nom_point_de_collecte LIKE ?";
+        $params[] = "%$point_collecte%";
+        $types .= 's';
+    }
+
+    $stmt = $conn->prepare($sql);
+    if (!$stmt) {
+        die("Erreur de préparation : " . $conn->error);
+    }
+    $bind_names = [];
+    if (!empty($params)) {
+        $bind_names[] = $types; // le premier argument est la chaîne de types
+            for ($i=0; $i < count($params); $i++) {
+                $bind_name = 'bind' . $i;
+                $$bind_name = $params[$i];
+                $bind_names[] = &$$bind_name; // référence
+            }
+        call_user_func_array([$stmt, 'bind_param'], $bind_names);
+    }
+
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
+
+    $stmt->close();
+
+    return $rows;
 }
 
 
