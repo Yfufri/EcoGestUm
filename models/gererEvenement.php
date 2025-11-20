@@ -1,12 +1,14 @@
 <?php
-function getNbPastEvent($conn) {
+function getNbPastEvent($conn)
+{
     $sql = "SELECT COUNT(*) FROM Vue_Evenement_Passé";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
     return $row['COUNT(*)'];
 }
 
-function getAllEventId($conn) {
+function getAllEventId($conn)
+{
     $sql = "SELECT Id_evenement FROM Evenement";
     $result = $conn->query($sql);
     $ids = [];
@@ -16,7 +18,8 @@ function getAllEventId($conn) {
     return $ids;
 }
 
-function getInfoEvent($conn,$id_event){
+function getInfoEvent($conn, $id_event)
+{
     $sql = "SELECT evenement.Nom_evenement,evenement.Description,image_evenement.Url_image FROM evenement
             INNER JOIN image_evenement 
                 ON image_evenement.Id_evenement=evenement.Id_evenement
@@ -27,5 +30,3 @@ function getInfoEvent($conn,$id_event){
     $result = $stmt->get_result();
     return $result->fetch_assoc();
 }
-
-?>
