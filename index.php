@@ -7,6 +7,11 @@ include "models/gererBaseDeDonnees.php";
 
 $conn = OpenCon();
 
+include "models/gererEvenement.php";
+
+var_dump(GetNbPastEvent($conn));
+
+
 
 define('BASE_URL', '/EcoGestUM/'); // à deplacer dans .env ou à supp
 define('ASSETS_URL', BASE_URL . 'assets/');
