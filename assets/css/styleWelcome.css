@@ -1,0 +1,9 @@
+.welcome{
+    background: url('../backgroundlight.png') center/cover repeat;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    padding-left: 40px;
+    font-size: 24px;
+    font-family: 'Poppins', sans-serif;
+}
