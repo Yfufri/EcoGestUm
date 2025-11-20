@@ -1,0 +1,108 @@
+.container-objets {
+    max-width: 1200px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 32px;
+}
+.titre-objets {
+    background: url('../backgroundlight.png') center/cover repeat;
+    text-align: center;
+    color: #23245b;
+    margin-bottom: 0em;
+    font-size: 2em;
+    letter-spacing: 2px;
+    padding: 1em;
+    font-weight: bold;
+}
+.barre-recherche {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 32px;
+}
+.barre-recherche input[type="text"] {
+    width: 300px;
+    padding: 9px 15px;
+    border: 1px solid #bbb;
+    border-radius: 8px;
+    outline: none;
+    font-size: 1rem;
+}
+.barre-recherche .clear-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-left: -32px;
+    font-size: 1.3em;
+    color: #2680eb;
+}
+.liste-objets {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+.carte-objet {
+    background: #B9Dee2;
+    border-radius: 12px;
+    width: 180px;
+    box-shadow: 0 1px 4px #b0d1f4;
+    padding: 20px 12px 16px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.carte-objet img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    background: #fff;
+}
+.objet-nom {
+    font-size: 1.08rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+.carte-objet button {
+    margin-top: 10px;
+    text-align: center;
+    padding: 7px 0;
+    width: 100%;
+    background: #c24121;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+.carte-objet button:hover {
+    background: #a83210;
+}
+.aucun-objet {
+    padding: 64px 0 0 0;
+    text-align: center;
+}
+.aucun-objet .aucun-msg {
+    font-size: 1.35rem;
+    color: #454a57;
+    margin-bottom: 28px;
+}
+.signaler-besoin-btn {
+    background: #e75724;
+    color: #fff;
+    padding: 13px 34px;
+    font-size: 1.08rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.18s;
+}
+.signaler-besoin-btn:hover {
+    background: #be3409;
+}
