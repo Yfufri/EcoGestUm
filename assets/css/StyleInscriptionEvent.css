@@ -1,0 +1,106 @@
+.evenements-conteneur {
+  background: #d8eef6;
+  border-radius: 18px;
+  box-shadow: 0 3px 16px #93abc8a0;
+  max-width: 800px;
+  margin: 20px 250px;
+  padding: 60px 72px;
+}
+
+.evenement-ligne {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.evenement-gauche {
+  display: flex;
+  justify-content: center;   /* Centre l'image horizontalement */
+  align-items: flex-start;
+}
+
+.evenement-gauche img {
+  width: 400px;              /* Agrandit l'image, adapte selon ce que tu veux */
+  border-radius: 14px;
+  background: #f3fcff;
+  box-shadow: 0 1px 7px #c4d9e0;
+  margin-top: 30px;  
+  margin-left: 0;        /* Descend un peu l'image pour qu'elle soit moins collée au header */
+}
+
+
+.evenement-details {
+  flex: 1;
+  min-width: 210px;
+}
+.evenement-details h2 {
+  text-align: left;
+  font-size: 2.1rem;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  color: #22316a;
+  margin: 0 0 9px 0;
+}
+.evenement-details p {
+  margin-bottom: 20px;
+  color: #142638;
+  font-size: 1.12rem;
+}
+
+.formulaire-inscription {
+  background: #f8fbff;
+  padding: 16px 18px;
+  border-radius: 14px;
+  box-shadow: 0 1px 4px #bdd5e8a6;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-top: 15px;
+}
+.formulaire-inscription input[type="text"],
+.formulaire-inscription input[type="email"] {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  border-radius: 8px;
+  border: 1.5px solid #b5cfdc;
+  padding: 9px;
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+
+.formulaire-inscription button {
+  display: block;             /* Le bouton prend toute la largeur disponible */
+  width: 100%;                /* Largeur maximale du conteneur, centre le texte automatiquement */
+  margin: 12px auto 0 auto;   /* Un peu d’espace en haut, pas en bas, centré horizontalement */
+  background: #18377d;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.13rem;
+  border: none;
+  border-radius: 10px;
+  padding: 13px 0;
+  cursor: pointer;
+  box-shadow: 0 1px 6px #b4c6de78;
+  transition: background 0.2s;
+  letter-spacing: 0.5px;
+}
+.formulaire-inscription button:hover {
+  background: #3554a4;
+}
+
+/* Pour le responsive */
+@media (max-width: 800px) {
+  .evenement-ligne {
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+  .evenement-gauche img {
+    width: 130px;
+  }
+  .evenements-conteneur {
+    padding: 12px;
+  }
+}

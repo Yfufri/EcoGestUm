@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="../assets/css/style.css">
-<link rel="stylesheet" href="../assets/css/styleStatitics.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/styleStatitics.css">
 
 <section class="stats">
   <h2>Statistiques Environnementales</h2>
