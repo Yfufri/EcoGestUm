@@ -5,7 +5,7 @@
   <h2>Evénements</h2>
 </div>
 <div class="events">
-  <img src="../assets/accueil/image2.png" alt="Evenement" class="event-img">
+  <img src="assets/accueil/image2.png" alt="Evenement" class="event-img">
   <div class="event-text">
     Des événements<br>
     <strong>à ne pas rater !</strong>

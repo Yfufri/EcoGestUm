@@ -8,7 +8,7 @@ include "models/gererBaseDeDonnees.php";
 
 $conn = OpenCon();
 
-include "models/gererEvenement.php";
+
 
 var_dump(getInfoEvent($conn, 1));
 
@@ -18,7 +18,7 @@ define('BASE_URL', '/EcoGestUM/'); // à deplacer dans .env ou à supp
 define('ASSETS_URL', BASE_URL . 'assets/');
 
 require 'views/Header.php';
-require 'views/politiqueDeRecylage.php';
+require 'views/ObjectBrowser.php';
 require 'views/Footer.php';
 
 //if (isset($_GET['action']) && $_GET['action'] === 'ACTION') {
