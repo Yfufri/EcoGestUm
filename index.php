@@ -10,7 +10,7 @@ $conn = OpenCon();
 
 include "models/gererEvenement.php";
 
-var_dump(getAllEventId($conn));
+var_dump(getInfoEvent($conn, 1));
 
 
 
