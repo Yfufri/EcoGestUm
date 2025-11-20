@@ -1,0 +1,21 @@
+@font-face{
+    font-family: 'Luciole';
+    src: url('../fonts/Luciole-Regular.ttf');
+    font-weight : normal,
+}
+
+@font-face{
+    font-family: 'Luciole';
+    src: url('../fonts/Luciole-Bold.ttf');
+    font-weight : bold,
+}
+
+@font-face{
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins-Medium.ttf');
+}
+
+*{
+    margin: 0;
+    font-family: 'Luciole','Montserrat', 'Arial';
+}

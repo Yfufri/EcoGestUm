@@ -1,0 +1,66 @@
+.stats {
+    background: url('../backgrounddark2.png') center/cover repeat;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.stats h2 {
+    margin: 56px;
+    font-size: 2.6rem;
+    color: #fff;
+    font-weight: 600;
+}
+.stats-cards {
+    background-color: #ffffff ;
+    display: flex;
+    justify-content: center;
+    gap: 90px;
+    margin-bottom: 36px;
+    width: max-content;
+    padding: 15px 30px 15px 30px;
+    border-radius: 12px;
+}
+.stat {
+    background: #E5E5E5;
+    color: #263258;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 170px;
+    padding : 20px;
+}
+.stat img {
+    height: 52px;
+    margin-bottom: 13px;
+}
+.stat-nombre {
+    font-size: 2.3rem;
+    color: #f06723;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.7em 2em;
+    background: #ffffff;
+    color: #d4451b;
+    text-decoration: none;
+    border-radius: 22px;
+    box-shadow: 0 2px 5px rgba(34, 70, 99, 0.06);
+    margin-top: 1em;
+    border: 2px solid #ffffff;
+    transition: background 0.5s, color 0.5s, border 0.5s;
+    margin-bottom: 100px;
+}
+
+.btn:hover {
+    background: #f7cabc;
+    color: #2d386d;
+    border: 2px solid #f47952;
+}

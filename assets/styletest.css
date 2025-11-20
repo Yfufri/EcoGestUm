@@ -1,0 +1,195 @@
+body {
+    margin: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    color: #263258;
+    background: #edf6f9;
+}
+
+/* Banner */
+.banner {
+    position: relative;
+    height: 600px;
+    width: 100%;
+    overflow: hidden;
+    background: #dbeafe;
+}
+.banner-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    filter: brightness(0.5);
+}
+.banner-text {
+    position: relative;
+    background: rgba(255,255,255,0.52);
+    padding: 32px 45px;
+    border-radius: 10px;
+    width: 40%;
+    top: 60px;
+    left: 60px;
+    display: inline-block;
+    font-size: 2.5rem;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+/* Welcome block */
+.welcome {
+    background: url('backgroundlight.png') center/cover repeat;
+    padding: 30px 0px 30px 180px;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 50px;
+}
+
+/* Recycler une objet */
+.recycler-objet {
+    margin: 0 auto;
+    margin-top: 40px;
+    padding: 38px 0;
+    max-width: 1100px;
+    border-radius: 22px;
+    background: url('backgroundlight.png') center/cover repeat;
+    box-shadow: 0 6px 32px rgba(19,97,184,0.05);
+}
+.recycler-objet h2 {
+    color: #263258;
+    margin-left: 40px;
+}
+.recycler-content {
+    display: flex;
+    align-items: center;
+    gap: 46px;
+    padding: 20px 40px;
+}
+.recycler-content img {
+    max-width: 260px;
+    border-radius: 18px;
+    box-shadow: 0 4px 20px rgba(38,50,88,0.10);
+}
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+.btn {
+    padding: 15px 36px;
+    font-size: 1.09rem;
+    font-weight: 600;
+    border-radius: 25px;
+    border: none;
+    text-decoration: none;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(19,97,184,0.04);
+    transition: background 0.25s, color 0.25s;
+    outline: none;
+    cursor: pointer;
+}
+.btn.principal {
+    background: #f06723;
+    color: #fff;
+}
+.btn.principal:hover {
+    background: #db550f;
+}
+.btn.secondaire {
+    background: #fff;
+    border: 2px solid #f06723;
+    color: #f06723;
+}
+.btn.secondaire:hover {
+    background: #f06723;
+    color: #fff;
+}
+
+/* Statistiques */
+.stats {
+    background: url('backgrounddark2.png') center/cover repeat;
+    color: #fff;
+    padding: 50px 0 70px 0;
+    margin: 55px 0 0 0;
+    text-align: center;
+    border-radius: 20px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    box-shadow: 0 4px 22px rgba(38,50,88,0.09);
+}
+.stats h2 {
+    margin-bottom: 36px;
+    font-size: 2.1rem;
+    color: #fff;
+    font-weight: 600;
+}
+.stats-cards {
+    display: flex;
+    justify-content: center;
+    gap: 90px;
+    margin-bottom: 36px;
+}
+.stat {
+    background: #fff;
+    color: #263258;
+    border-radius: 12px;
+    padding: 22px 37px 30px 37px;
+    box-shadow: 0 2px 16px rgba(19,97,184,0.06);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 170px;
+}
+.stat img {
+    height: 52px;
+    margin-bottom: 13px;
+}
+.stat-nombre {
+    font-size: 2.3rem;
+    color: #f06723;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+.stat-libelle {
+    font-size: 1.01rem;
+}
+
+/* Point de collecte */
+.point-collecte {
+    background: url('backgroundlight.png') center/cover repeat;
+    border-radius: 18px;
+    margin: 35px auto;
+    padding: 40px 0 30px 0;
+    max-width: 1100px;
+    text-align: left;
+}
+.point-collecte h2 {
+    margin-left: 40px;
+    color: #263258;
+    font-size: 2rem;
+}
+.point-collecte .carte {
+    display: block;
+    margin: 22px auto 0 auto;
+    border-radius: 14px;
+    max-width: 95%;
+    box-shadow: 0 4px 18px rgba(19,97,184,0.06);
+}
+
+@media (max-width: 900px) {
+    .recycler-content, .stats-cards {
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+    }
+    .stats-cards { gap: 32px; }
+    .recycler-objet, .point-collecte, .stats {
+        max-width: 98vw;
+    }
+    .banner-text {
+        font-size: 1.4rem;
+        padding: 16px 14px;
+        left: 18px;
+        top: 18px;
+    }
+}

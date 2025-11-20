@@ -1,0 +1,59 @@
+.engagement-section {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.engagement-Greenbox {
+    width: 60%;
+    max-width: 100%;
+    padding: 1.5em;
+    background-color: #b9dee2;
+    box-sizing: border-box;
+    margin: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.engagement-Whitebox {
+    width: 100%;
+    margin : 2em ;
+    background-color: #ffffff;
+}
+
+.engagement-Whitebox h2 {
+    color: #283a58;
+    font-size: 1.35em;
+    font-family: 'Poppins', Arial, sans-serif;
+    margin: 1em;
+    text-align: center;
+}
+
+.engagement-Whitebox p {
+    color: #040823;
+    margin: 1em;
+    text-align: center;
+}
+
+
+.policy-btn {
+    display: inline-block;
+    padding: 0.7em 2em;
+    background: #ffffff;
+    color: #d4451b;
+    text-decoration: none;
+    border-radius: 22px;
+    box-shadow: 0 2px 5px rgba(34, 70, 99, 0.06);
+    margin-top: 1em;
+    border: 2px solid #ffffff;
+    transition: background 0.5s, color 0.5s, border 0.5s;
+}
+
+.policy-btn:hover {
+    background: #f7cabc;
+    color: #2d386d;
+    border: 2px solid #f47952;
+}

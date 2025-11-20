@@ -1,51 +1,51 @@
 <!-- accueil_etudiant.php -->
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="../assets/styletest.css">
 
-<div class="banniere">
-  <div class="texte-banniere">
+<div class="banner">
+  <img src="../assets/etudiant/image1.png" alt="Bannière" class="banner-img">
+  <div class="banner-text">
     <h1>RECYCLER<br>N'A JAMAIS ÉTÉ SI FACILE</h1>
   </div>
-  <img src="assets/etudiant/image1.jpg" alt="Bannière recyclage">
 </div>
 
 <section class="welcome">
-  <p>Bonjour Kenan</p>
+  Bonjour Kenan
 </section>
 
-<section class="recylcer-objet">
+<section class="recycler-objet">
   <h2>Recycler un Objet</h2>
-  <div class="contenu-recycler-objet">
-        <img src="assets/etudiant/image2.jpg" alt="Icône recyclage">
-        <div class="actions-recycler">
-            <a class="btn principal" href="#">Chercher un objet</a>
-            <a class="btn secondaire" href="#">Ajouter un objet</a>
-        </div>
+  <div class="recycler-content">
+    <img src="../assets/etudiant/image2.png" alt="Recycler">
+    <div class="actions">
+      <a class="btn principal" href="#">Chercher un objet</a>
+      <a class="btn secondaire" href="#">Ajouter un objet</a>
+    </div>
   </div>
 </section>
 
-<section class="statistiques">
+<section class="stats">
   <h2>Statistiques Environnementales</h2>
-  <div class="statistiques-contenu">
-      <div class="stat">
-          <img src="assets/etudiant/image5.jpg" alt="Recyclage">
-          <span class="stat-nombre">5 342</span>
-          <span class="stat-libelle">objets recyclés</span>
-      </div>
-      <div class="stat">
-          <img src="assets/etudiant/image3.jpg" alt="Distributions">
-          <span class="stat-nombre">42</span>
-          <span class="stat-libelle">distributions organisées</span>
-      </div>
-      <div class="stat">
-          <img src="assets/etudiant/image4.jpg" alt="Collectés">
-          <span class="stat-nombre">789</span>
-          <span class="stat-libelle">objets collectés</span>
-      </div>
+  <div class="stats-cards">
+    <div class="stat">
+      <img src="../assets/etudiant/image5.png" alt="Objets recyclés">
+      <span class="stat-nombre">5 342</span>
+      <span class="stat-libelle">objets recyclés</span>
+    </div>
+    <div class="stat">
+      <img src="../assets/etudiant/image3.png" alt="Distributions">
+      <span class="stat-nombre">42</span>
+      <span class="stat-libelle">distributions organisées</span>
+    </div>
+    <div class="stat">
+      <img src="../assets/etudiant/image4.png" alt="Objets collectés">
+      <span class="stat-nombre">789</span>
+      <span class="stat-libelle">objets collectés</span>
+    </div>
   </div>
   <a class="btn principal" href="#">En savoir plus</a>
 </section>
 
 <section class="point-collecte">
   <h2>Point de collecte</h2>
-  <img src="assets/etudiant/image6.jpg" alt="Carte des points de collecte">
+  <img class="carte" src="../assets/etudiant/image6.png" alt="Carte de collecte">
 </section>
