@@ -1,5 +1,4 @@
 <?php
-
 require_once __DIR__ . '/vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
@@ -8,24 +7,25 @@ include "models/gererBaseDeDonnees.php";
 
 $conn = OpenCon();
 
-include "models/gererEvenement.php";
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
 
-var_dump(getInfoEvent($conn, 1));
+$action = $_GET['action'] ?? null;
+var_dump($action);
+
+switch($action){
+    case 'politique':
+        include "views/politiqueDeRecylage.php";
+        break;
+    case 'logout':
+        include "logout.php";
+        break;
+    default:
+        include "views/header.php";
+        include "views/home.php";
+        include "views/footer.php";
+}
 
 
-
-define('BASE_URL', '/EcoGestUM/'); // à deplacer dans .env ou à supp
-define('ASSETS_URL', BASE_URL . 'assets/');
-
-require 'views/Header.php';
-require 'views/politiqueDeRecylage.php';
-require 'views/Footer.php';
-
-//if (isset($_GET['action']) && $_GET['action'] === 'ACTION') {
-//	header('Location:assets/views/PAGE');
-//	exit;
-//}
-require_once 'views/header.php';
-require_once 'views/InscriptionEvent/inscription.php';
-require_once 'views/footer.php';
 ?>

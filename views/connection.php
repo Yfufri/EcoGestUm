@@ -13,7 +13,7 @@
                 <img src="../assets/Logo/logo-LeMansUniversite.png" alt="Le Mans Université">
             </div>
 
-            <form class="form-container" method="POST" action="../gererConnexion.php">
+            <form class="form-container" method="POST" action="../connect.php">
                 <div class="form-group">
                     <label for="identifiant">Identifiant :*</label>
                     <input type="text" id="identifiant" name="identifiant" required>
@@ -29,6 +29,11 @@
                     <label for="remember">Se souvenir de moi</label>
                 </div>
 
+                <?php if (isset($_GET['error'])){
+                    echo "<div class='error'>Identifiant ou mot de passe incorrect.</div>";
+                }
+                ?>
+
                 <button type="submit" class="btn-primary">Se connecter</button>
                 
                 <a href="" class="btn-secondary">1ère connexion</a>
@@ -36,7 +41,7 @@
                 <a href="" class="forgot-password">Mot de passe oublié ?</a>
 
                 <p class="security-notice">
-                    Pour des raisons de sécurité, veuillez vous <a href="">déconnecter</a> et fermer votre navigateur lorsque vous avez fini d'accéder aux services authentifiés.
+                    Pour des raisons de sécurité, veuillez vous <a href="../logout.php">déconnecter</a> et fermer votre navigateur lorsque vous avez fini d'accéder aux services authentifiés.
                 </p>
             </form>
         </div>
