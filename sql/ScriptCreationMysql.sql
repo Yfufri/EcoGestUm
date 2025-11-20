@@ -441,3 +441,13 @@ COMMIT;
 ALTER TABLE `EVENEMENT`
 ADD COLUMN `Description` varchar(255) DEFAULT NULL;
 
+CREATE TABLE `IMAGE_EVENEMENT` (
+  `Id_Image` int NOT NULL,
+  `Url_image` varchar(255) DEFAULT NULL,
+  `Id_evenement` int NOT NULL
+) ;
+
+ALTER TABLE `Image_Evenement`
+  ADD PRIMARY KEY (`Id_Image`),
+  ADD KEY `fk_evenement_objet` (`Id_evenement`);
+
