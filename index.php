@@ -1,4 +1,5 @@
 <?php
+
 require_once __DIR__ . '/vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
@@ -7,10 +8,9 @@ include "models/gererBaseDeDonnees.php";
 
 $conn = OpenCon();
 
-include "models/gererUtilisateur.php";
+include "models/gererEvenement.php";
 
-var_dump(getRole($conn, 25));
-var_dump(isTeacher($conn, 25));
+var_dump(getAllEventId($conn));
 
 
 

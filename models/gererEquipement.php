@@ -1,6 +1,6 @@
 <?php
 
-function getAvailableEquipments($conn) { // NON DEMANDEE pour le moment
+function getAvailableEquipments($conn) { 
     $sql = "SELECT Nom_objet,
                     Desc_objet,
                     Nom_categorie_objet,
@@ -9,6 +9,7 @@ function getAvailableEquipments($conn) { // NON DEMANDEE pour le moment
                     Nom_utilisateur,Nom_statut
                  FROM vue_objets_disponibles";
     $result = $conn->query($sql);
+
 
     return $result->fetch_all(MYSQLI_ASSOC);
 }
