@@ -1,34 +1,31 @@
-.event-title {
+.visite-title {
     text-align: center;
-    background: url('../backgroundlight.png') center/cover repeat;
+    background: url('../backgrounddark2.png') center/cover repeat;
 }
 h2{
     font-family: 'Poppins', 'Montserrat', 'Arial';
     font-size: 3rem;
-    color: #2d386d;
+    color: #ffffff;
 }
-.events {
+.visites {
     position: relative;
     width: 100%;
     background: #dbeafe;
     display: flex;
-    align-items: right;
-    justify-content: right;
 }
-.event-img {
+.visite-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     position: absolute;
     filter: brightness(0.7);
 }
-.event-text {
+.visite-text {
     position: relative;
     background: rgba(212,69,27,0.6);
     border-radius: 10px;
-    width: 40%;
+    width: 450px;
     top: 60px;
-    left: 60px;
     font-size: 2.6rem;
     color: #ffffff;
     margin-bottom: 100px;
@@ -36,7 +33,7 @@ h2{
     padding: 32px 45px;
 
 }
-.event-text strong {
+.visite-text strong {
     font-weight: bold;
     text-transform: uppercase;
 }
