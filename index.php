@@ -7,9 +7,10 @@ include "models/gererBaseDeDonnees.php";
 
 $conn = OpenCon();
 
-include "models/gererEvenement.php";
+include "models/gererUtilisateur.php";
 
-var_dump(GetNbPastEvent($conn));
+var_dump(getRole($conn, 25));
+var_dump(isTeacher($conn, 25));
 
 
 
