@@ -6,7 +6,7 @@ function getAvailableEquipments($conn) {
                     Nom_categorie_objet,
                     Nom_point_de_collecte,
                     Localisation_point_de_collecte,
-                    Nom_utilisateur,Nom_statut
+                    Nom_utilisateur,Nom_statut,Url_photo
                  FROM vue_objets_disponibles";
     $result = $conn->query($sql);
 
