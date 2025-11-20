@@ -10,7 +10,7 @@ $conn = OpenCon();
 
 
 
-//var_dump(getAvailableEquipments($conn));
+var_dump(getInfoEvent($conn, 1));
 
 
 
@@ -25,5 +25,7 @@ require 'views/Footer.php';
 //	header('Location:assets/views/PAGE');
 //	exit;
 //}
-
+require_once 'views/header.php';
+require_once 'views/InscriptionEvent/inscription.php';
+require_once 'views/footer.php';
 ?>
