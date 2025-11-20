@@ -10,10 +10,10 @@
         </div>
         <div class="stats-card">
             <div class="stats-card-icon">
-                <img src="assets/StatistiquesEnv/ic_round-collections-bookmark.png" alt="EcoGestUM distribution" />
+                <img src="assets/etudiant/image4.png" alt="EcoGestUM distribution" />
             </div>
             <div class="stats-card-nb" style="color: #E6531D;">42</div>
-            <div class="stats-card-label">distributions<br>organisée</div>
+            <div class="stats-card-label">distributions<br>organisée</div>  
         </div>
         <div class="stats-card">
             <div class="stats-card-icon">
