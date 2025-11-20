@@ -1,5 +1,5 @@
 <?php
-function OpenCon() {
+function openCon() {
     
 $conn = new mysqli($_ENV["DB_HOST"], $_ENV["DB_USER"],$_ENV["DB_PASSWORD"], $_ENV["DB_NAME"]);
 
@@ -12,7 +12,6 @@ die("Connection failed: " . $conn->connect_error);
 }
 return $conn;
 }
-
 
 
 ?>

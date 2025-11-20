@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="../assets/css/styleAll.css">
-<link rel="stylesheet" href="../assets/css/styleDiscoverPolitique.css">
+<link rel="stylesheet" href="assets/css/styleAll.css">
+<link rel="stylesheet" href="assets/css/styleDiscoverPolitique.css">
 
 
 <div class="engagement-section">

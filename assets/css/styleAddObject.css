@@ -1,0 +1,76 @@
+.page-add-object {
+    background: url('../AddObject/imageFondAddObject.png') center/cover repeat;
+    padding: 2em;
+}
+.add-object-container {
+    background: #cde4e4;
+    max-width: 550px;
+    margin: 0em auto;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(34,36,91,0.08);
+    padding: 2em;
+}
+
+h2 {
+    background: url('../backgroundlight.png') center/cover repeat;
+    text-align: center;
+    color: #23245b;
+    margin-bottom: 0em;
+    font-size: 2em;
+    letter-spacing: 2px;
+    padding: 1em;
+}
+
+.add-object-form input,
+.add-object-form select,
+.add-object-form textarea {
+    width: 100%;
+    padding: 0.8em;
+    margin-bottom: 1.2em;
+    border: none;
+    border-radius: 7px;
+    font-size: 1em;
+    background: #fff;
+    box-sizing: border-box;
+}
+
+.add-object-form textarea {
+    height: 90px;
+    resize: vertical;
+}
+
+.file-drop-area {
+    background: #e0ecee;
+    border: 2px dashed #23245b;
+    border-radius: 9px;
+    padding: 1.3em;
+    text-align: center;
+    margin-bottom: 1.2em;
+}
+
+.fake-btn {
+    color: #23245b;
+    font-size: 1em;
+}
+
+.file-input {
+    display: block;
+    margin: 8px auto 0 auto;
+}
+
+.submit-btn {
+    width: 100%;
+    background: #23245b;
+    color: #fff;
+    padding: 1em;
+    border: none;
+    border-radius: 7px;
+    font-size: 1.15em;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.submit-btn:hover {
+    background: #3446a2;
+}
