@@ -32,7 +32,7 @@ function getNbObjectDisponible($conn) {
     return $row['total_disponibles'];
 }
 
-function chercherObjets(mysqli $conn, $mot_clef = null, $categorie = null, $point_collecte = null) {
+function consulterObjets(mysqli $conn, $mot_clef = null, $categorie = null, $point_collecte = null) {
     $sql = "SELECT 
                 Nom_objet,
                 Desc_objet,
