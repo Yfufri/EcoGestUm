@@ -12,11 +12,10 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 }
 
 $action = $_GET['action'] ?? null;
-var_dump($action);
 
 switch($action){
-    case 'politique':
-        include "views/politiqueDeRecylage.php";
+    case 'login':
+        include "views/Connection.php";
         break;
     case 'logout':
         include "logout.php";
