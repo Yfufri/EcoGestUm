@@ -2,7 +2,6 @@
 <link rel="stylesheet" href="assets/css/styleObjectBrowser.css">
 
 <div class="titre-objets">OBJETS DISPONIBLES</div>
-<!-- ObjetsDisponibles.html -->
 <div class="container-objets">
     <div class="barre-recherche">
         <form method="get" action="" class="search-form">

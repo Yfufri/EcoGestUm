@@ -1,5 +1,4 @@
 <?php
-
 require_once __DIR__ . '/vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
@@ -8,16 +7,24 @@ include "models/gererBaseDeDonnees.php";
 
 $conn = OpenCon();
 
-define('BASE_URL', '/EcoGestUM/'); // à deplacer dans .env ou à supp
-define('ASSETS_URL', BASE_URL . 'assets/');
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
 
-require 'views/Header.php';
-require 'controllers/ObjectBrowser.php';
-require 'views/Footer.php';
+$action = $_GET['action'] ?? null;
 
-//if (isset($_GET['action']) && $_GET['action'] === 'ACTION') {
-//	header('Location:assets/views/PAGE');
-//	exit;
-//}
+switch($action){
+    case 'login':
+        include "views/Connection.php";
+        break;
+    case 'logout':
+        include "logout.php";
+        break;
+    default:
+        include "views/header.php";
+        include "controllers/Home.php";
+        include "views/footer.php";
+}
+
 
 ?>
