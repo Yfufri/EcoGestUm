@@ -24,7 +24,7 @@ switch($action){
         include "views/header.php";
         include "views/banner.php";
         include "views/DiscoverPolitique.php";
-        include "views/Statistics.php";
+        include "controllers/Statistics.php";
         include "views/Events.php";
         include "views/Visits.php";
         include "views/footer.php";
