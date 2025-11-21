@@ -7,38 +7,28 @@ include "models/gererBaseDeDonnees.php";
 
 $conn = OpenCon();
 
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
 
+$action = $_GET['action'] ?? null;
 
+switch($action){
+    case 'login':
+        include "views/Connection.php";
+        break;
+    case 'logout':
+        include "logout.php";
+        break;
+    default:
+        include "views/header.php";
+        include "views/banner.php";
+        include "views/DiscoverPolitique.php";
+        include "controllers/Statistics.php";
+        include "views/Events.php";
+        include "views/Visits.php";
+        include "views/footer.php";
+}
 
-
-define('BASE_URL', '/EcoGestUM/'); // à deplacer dans .env ou à supp
-define('ASSETS_URL', BASE_URL . 'assets/');
-
-require 'views/Header.php';
-require 'views/ObjectBrowser.php';
-require 'views/Footer.php';
-
-//if (isset($_GET['action']) && $_GET['action'] === 'ACTION') {
-//	header('Location:assets/views/PAGE');
-//	exit;
-//}
 
 ?>
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <title>ÉcoGestUM</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-
-<body>
-    <?php
-    require_once 'views/header.php';
-    require_once 'views/InscriptionEvent/inscription.php';
-    require_once 'views/footer.php';
-    ?>
-</body>
-
-</html>
