@@ -83,6 +83,123 @@
     display: block;
 }
 
+/* Bouton Filtrer avec image uniquement */
+button .filter-btn {
+    width: 48px;          /* bouton plus large */
+    height: 48px;         /* bouton plus haut */
+    padding: 4px;         /* espace interne */;
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;    /* inclut bordure/padding dans la taille */
+}
+/* Taille et ajustement de l'image dans le bouton */
+.filter-btn img {
+  width: 95%;
+  height: 95%;
+  object-fit: contain;  /* préserve les proportions */
+  display: block;
+}
+/* Optionnel : effet au survol */
+.filter-btn:hover{
+  background: #eaf6ff;
+}
+
+/* Fond assombri pour la modale */
+.modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.08); /* léger assombrissement du fond */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Boîte de la modale */
+.modal-content {
+  position: absolute;
+  top: 200px;  /* ajuste selon la hauteur du bouton Filtrer */
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 2px 4px 12px rgba(0,0,0,0.18);
+  padding: 32px 24px 24px 24px;
+  max-width: 470px;
+  width: 95vw;
+  border: 2px solid #54547718;
+  font-family: 'Poppins', 'Arial', 'sans-serif';
+  position: relative;
+}
+
+/* Titre */
+.modal-content h2 {
+  margin-top: 0;
+  color: #222c4f;
+  font-size: 2rem;
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+
+/* Zone de texte */
+.modal-content textarea {
+  width: 100%;
+  min-height: 100px;
+  border: none;
+  outline: none;
+  resize: none;
+  background: #e8e8e8;
+  border-radius: 14px;
+  margin: 16px 0;
+  font-size: 1.1rem;
+  padding: 16px;
+  color: #222c4f;
+  box-sizing: border-box;
+}
+
+/* Zone boutons */
+.modal-buttons {
+  margin-top: 4px;
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+}
+
+/* Bouton Envoyer */
+.reset-btn, .apply-btn {
+  padding: 7px 32px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 0 1px;
+}
+
+/* Bouton Envoyer style orange */
+.reset-btn {
+  background: #c24121;
+  color: #fff;
+}
+
+/* Bouton Annuler style bleu foncé */
+.apply-btn {
+  background: #21275e;
+  color: #fff;
+}
+
+.close {
+  position: absolute;
+  right: 18px;
+  top: 10px;
+  font-size: 2rem;
+  color: #222c4f;
+  cursor: pointer;   /* Affiche la main au survol */
+}
 
 .liste-objets {
     display: flex;
@@ -114,7 +231,7 @@
     margin-bottom: 8px;
 }
 .carte-objet button {
-    margin-top: 10px;
+    margin-top: auto;
     text-align: center;
     padding: 7px 0;
     width: 100%;
