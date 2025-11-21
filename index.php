@@ -7,21 +7,24 @@ include "models/gererBaseDeDonnees.php";
 
 $conn = OpenCon();
 
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
 
+$action = $_GET['action'] ?? null;
 
+switch($action){
+    case 'login':
+        include "views/Connection.php";
+        break;
+    case 'logout':
+        include "logout.php";
+        break;
+    default:
+        include "views/header.php";
+        include "controllers/Home.php";
+        include "views/footer.php";
+}
 
-
-define('BASE_URL', '/EcoGestUM/'); // à deplacer dans .env ou à supp
-define('ASSETS_URL', BASE_URL . 'assets/');
-
-require 'views/Header.php';
-require 'views/ObjectBrowser.php';
-require 'views/Footer.php';
-
-//if (isset($_GET['action']) && $_GET['action'] === 'ACTION') {
-//	header('Location:assets/views/PAGE');
-//	exit;
-//}
 
 ?>
-</html>

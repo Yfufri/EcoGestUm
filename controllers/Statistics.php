@@ -9,4 +9,4 @@ $nbObjetDisponible=getNbObjectDisponible($conn);
 
 include "views/Statistics.php";
 
-?>
+?>x 
