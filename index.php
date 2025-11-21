@@ -22,11 +22,7 @@ switch($action){
         break;
     default:
         include "views/header.php";
-        include "views/banner.php";
-        include "views/DiscoverPolitique.php";
-        include "controllers/Statistics.php";
-        include "views/Events.php";
-        include "views/Visits.php";
+        include "controllers/Home.php";
         include "views/footer.php";
 }
 
