@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="assets/css/styleEvents.css">
 
 <div class="event-title">
-  <h2>Evénements</h2>
+Evénements
 </div>
 <div class="events">
   <img src="assets/accueil/image2.png" alt="Evenement" class="event-img">
