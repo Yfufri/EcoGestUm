@@ -5,6 +5,8 @@ $dotenv->load();
 
 include "models/gererBaseDeDonnees.php";
 
+$conn = OpenCon();
+
 if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
@@ -22,12 +24,7 @@ if ($mail != null && $password != null) {
     }
 }
 
-
-define('BASE_URL', '/EcoGestUm/');
-define('ASSETS_URL', BASE_URL . 'assets/');
-
-
-$action = $_GET['action'] ?? 'accueil';
+$action = $_GET['action'] ?? null;
 
 switch($action){
     case 'evenements':
