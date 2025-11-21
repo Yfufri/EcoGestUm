@@ -24,6 +24,6 @@ if ($stmt->num_rows > 0) {
          exit;
     }
 }
-header('Location: ../views/connection.php?error=1');
+header('Location: index.php?action=login&error=1');
 exit;
 ?>

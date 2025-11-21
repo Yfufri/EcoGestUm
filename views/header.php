@@ -10,9 +10,9 @@
             <a href="index.php?action=statistiques">Statistiques</a>
             <a href="index.php?action=evenements">Événements</a>
             <?php if (!empty($_SESSION['id_utilisateur'])): ?>
-                <a href="index.php?action=logout">Se déconnecter</a>
+                <a href="?action=logout">Se déconnecter</a>
             <?php else: ?>
-                <a href="index.php?action=login">Se connecter</a>
+                <a href="?action=login">Se connecter</a>
             <?php endif; ?>
         </nav>
     </div>
