@@ -18,4 +18,5 @@
 *{
     margin: 0;
     font-family: 'Luciole','Montserrat', 'Arial';
+    overflow-x: hidden;
 }

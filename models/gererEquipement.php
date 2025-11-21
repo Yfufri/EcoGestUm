@@ -1,12 +1,13 @@
 <?php
 
-function getAvailableEquipments($conn) { 
+function getAvailableEquipments($conn)
+{
     $sql = "SELECT Nom_objet,
                     Desc_objet,
                     Nom_categorie_objet,
                     Nom_point_de_collecte,
                     Localisation_point_de_collecte,
-                    Nom_utilisateur,Nom_statut,Url_photo
+                    Nom_utilisateur,Nom_statut
                  FROM vue_objets_disponibles";
     $result = $conn->query($sql);
 
@@ -14,7 +15,8 @@ function getAvailableEquipments($conn) {
     return $result->fetch_all(MYSQLI_ASSOC);
 }
 
-function getNbObjectRecycled($conn) {
+function getNbObjectRecycled($conn)
+{
     $sql = "SELECT COUNT(*) AS total_recycles
             FROM `vue_objets_disponibles`
             WHERE Nom_Statut NOT LIKE 'Disponible';";
@@ -23,7 +25,8 @@ function getNbObjectRecycled($conn) {
     return $row['total_recycles'];
 }
 
-function getNbObjectDisponible($conn) {
+function getNbObjectDisponible($conn)
+{
     $sql = "SELECT COUNT(*) AS total_disponibles
             FROM `vue_objets_disponibles`
             WHERE Nom_Statut LIKE 'Disponible';";
@@ -32,6 +35,21 @@ function getNbObjectDisponible($conn) {
     return $row['total_disponibles'];
 }
 
+function addObject($conn, $nom_objet, $desc_objet, $id_categorie_objet, $id_point_de_collecte, $id_utilisateur, $id_statut) {
+    $stmt = $conn->prepare("INSERT INTO Objet (Nom_objet, 
+                                                Desc_objet, 
+                                                Id_categorie_objet, 
+                                                Id_point_de_collecte, 
+                                                Id_utilisateur, 
+                                                Id_statut) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssiiii", $nom_objet, $desc_objet, $id_categorie_objet, $id_point_de_collecte, $id_utilisateur, $id_statut);
+    
+    if ($stmt->execute()) {
+        return true;
+    } else {
+        return false;
+    }
+}
 function consulterObjets(mysqli $conn, $mot_clef = null, $categorie = null, $point_collecte = null) {
     $sql = "SELECT 
                 Nom_objet,
@@ -93,6 +111,5 @@ function consulterObjets(mysqli $conn, $mot_clef = null, $categorie = null, $poi
 
     return $rows;
 }
-
 
 ?>
