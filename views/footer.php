@@ -1,13 +1,20 @@
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/styleFooter.css">
+
 <footer class="footer">
     <img src="assets/Logo/BlancComplet.png" alt="EcoGestUM Logo" class="footer-logo" />
 
     <div class="acess">
         <p>Accès rapides</p>
         <div class="links">
-            <a href="#">Site de l'université</a>
-            <a href="#">Notre politique de recyclage</a>
-            <a href="#">Nos événements</a>
-            <a href="#">Se déconnecter</a>
+            <a href="https://mon-ent-etudiant.univ-lemans.fr/fr/index.html">Site de l'université</a>
+            <a href="?action=politique">Notre politique de recyclage</a>
+            <a href="?action=evenements">Nos événements</a>
+            <?php if (!empty($_SESSION['id_utilisateur'])): ?>
+                <a href="?action=logout">Se déconnecter</a>
+            <?php else: ?>
+                <a href="?action=login">Se connecter</a>
+            <?php endif; ?>
         </div>
     </div>
 
