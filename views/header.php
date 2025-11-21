@@ -9,7 +9,7 @@
             <a href="index.php?action=politique">Politique de recyclage</a>
             <a href="index.php?action=statistiques">Statistiques</a>
             <a href="index.php?action=evenements">Événements</a>
-            <?php if (!empty($_SESSION['id_utilisateur'])): ?>
+            <?php if (!empty($_SESSION['user'])): ?>
                 <a href="index.php?action=logout">Se déconnecter</a>
             <?php else: ?>
                 <a href="index.php?action=login">Se connecter</a>

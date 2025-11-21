@@ -10,7 +10,7 @@
             <a href="https://mon-ent-etudiant.univ-lemans.fr/fr/index.html">Site de l'université</a>
             <a href="?action=politique">Notre politique de recyclage</a>
             <a href="?action=evenements">Nos événements</a>
-            <?php if (!empty($_SESSION['id_utilisateur'])): ?>
+            <?php if (!empty($_SESSION['user'])): ?>
                 <a href="?action=logout">Se déconnecter</a>
             <?php else: ?>
                 <a href="?action=login">Se connecter</a>

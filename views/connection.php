@@ -8,10 +8,10 @@
                 <img src="assets/Logo/logo-LeMansUniversite.png" alt="Le Mans Université">
             </div>
 
-            <form class="form-container" method="POST" action="connect.php">
+            <form class="form-container" method="POST" action="index.php">
                 <div class="form-group">
-                    <label for="identifiant">Identifiant :*</label>
-                    <input type="text" id="identifiant" name="identifiant" required>
+                    <label for="mail">Mail :*</label>
+                    <input type="text" id="mail" name="mail" required>
                 </div>
 
                 <div class="form-group">
@@ -24,7 +24,7 @@
                     <label for="remember">Se souvenir de moi</label>
                 </div>
 
-                <?php if (isset($_GET['error'])){
+                <?php if ($error == 1) {
                     echo "<div class='error'>Identifiant ou mot de passe incorrect.</div>";
                 }
                 ?>
