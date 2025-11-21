@@ -1,12 +1,12 @@
-.event-title {
+.event-title{
     text-align: center;
     background: url('../backgroundlight.png') center/cover repeat;
-}
-h2{
     font-family: 'Poppins', 'Montserrat', 'Arial';
     font-size: 3rem;
     color: #2d386d;
+    padding: 2.4rem;
 }
+
 .events {
     position: relative;
     width: 100%;
