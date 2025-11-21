@@ -5,6 +5,7 @@
     display: flex;
     align-items: right;
     justify-content: right;
+    overflow: hidden;
 }
 .event-img {
     width: 100%;

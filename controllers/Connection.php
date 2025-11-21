@@ -20,7 +20,7 @@ if ($stmt->num_rows > 0) {
      $stmt->fetch();
     if (password_verify($password, $hash)) {
          $_SESSION['id_utilisateur'] = $id_utilisateur;
-        header('Location: index.php?login=success');
+        header('Location: index.php');
          exit;
     }
 }
