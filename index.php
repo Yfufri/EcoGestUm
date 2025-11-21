@@ -5,8 +5,6 @@ $dotenv->load();
 
 include "models/gererBaseDeDonnees.php";
 
-$conn = OpenCon();
-
 if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
@@ -24,20 +22,55 @@ if ($mail != null && $password != null) {
     }
 }
 
-$action = $_GET['action'] ?? null;
+// Définir les constantes de chemins
+define('BASE_URL', '/EcoGestUm/');
+define('ASSETS_URL', BASE_URL . 'assets/');
+
+// Router
+$action = $_GET['action'] ?? 'accueil';
 
 switch($action){
+    case 'evenements':
+        // Page liste des événements
+        include_once "controllers/Evenement.php";
+        include "views/header.php";
+        include "views/evenement.php";
+        include "views/footer.php";
+        break;
+        
+    case 'inscription':
+        // Page formulaire d'inscription à un événement
+        include_once "controllers/Evenement.php";
+        include "views/header.php";
+        include "views/inscription.php";
+        include "views/footer.php";
+        break;
+        
+    case 'statistiques':
+        include "views/header.php";
+        include "views/Statistics.php";
+        include "views/footer.php";
+        break;
+        
+    case 'politique':
+        include "views/header.php";
+        include "views/politiqueDeRecyclage.php";
+        include "views/footer.php";
+        break;
+        
     case 'login':
         include "controllers/login.php";
         break;
+        
     case 'logout':
         include "controllers/logout.php";
         break;
+        
     default:
+        // Page d'accueil
         include "views/header.php";
         include "controllers/Home.php";
         include "views/footer.php";
+        break;
 }
-
-
 ?>

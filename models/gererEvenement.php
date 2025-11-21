@@ -1,31 +1,27 @@
 <?php
 function getNbPastEvent($conn) {
-    $sql = "SELECT COUNT(*) FROM Vue_Evenement_Passé";
+    $sql = "SELECT COUNT(*) as count FROM Evenement WHERE Date_evenement < CURDATE()";
     $result = $conn->query($sql);
-    $row = $result->fetch_assoc();
-    return $row['COUNT(*)'];
+    $row = $result->fetch(PDO::FETCH_ASSOC);
+    return $row['count'];
 }
 
 function getAllEventId($conn) {
-    $sql = "SELECT Id_evenement FROM Evenement";
-    $result = $conn->query($sql);
+    $result = $conn->query('SELECT Id_evenement FROM evenement');
     $ids = [];
-    while ($row = $result->fetch_assoc()) {
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         $ids[] = $row['Id_evenement'];
     }
     return $ids;
 }
 
-function getInfoEvent($conn,$id_event){
-    $sql = "SELECT evenement.Nom_evenement,evenement.Description,image_evenement.Url_image FROM evenement
-            INNER JOIN image_evenement 
-                ON image_evenement.Id_evenement=evenement.Id_evenement
-            WHERE evenement.Id_evenement=?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $id_event);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    return $result->fetch_assoc();
+function getInfoEvent($conn, $id) {
+    // Récupérer l'événement avec une seule image
+    $stmt = $conn->prepare('SELECT e.*, 
+                            (SELECT Url_image FROM IMAGE_EVENEMENT WHERE Id_evenement = e.Id_evenement LIMIT 1) as Url_image
+                            FROM Evenement e 
+                            WHERE e.Id_evenement = ?');
+    $stmt->execute([$id]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
 }
-
 ?>
