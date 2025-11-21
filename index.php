@@ -22,7 +22,7 @@ switch($action){
         break;
     default:
         include "views/header.php";
-        include "views/home.php";
+        include "views/banner.php";
         include "views/footer.php";
 }
 
