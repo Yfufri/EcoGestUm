@@ -7,7 +7,11 @@
             <a href="#">Site de l'université</a>
             <a href="#">Notre politique de recyclage</a>
             <a href="#">Nos événements</a>
-            <a href="#">Se déconnecter</a>
+             <?php if (!empty($_SESSION['id_utilisateur'])): ?>
+                <a href="?action=logout">Se déconnecter</a>
+            <?php else: ?>
+                <a href="?action=login">Se connecter</a>
+            <?php endif; ?>
         </div>
     </div>
 
