@@ -1,0 +1,70 @@
+.recycle{
+    background: url('../backgroundlight.png') center/cover repeat;
+    padding: 100px;
+    font-size: 24px;
+    display: flex;
+    flex-direction: column;
+    gap:80px;
+}
+
+h2{
+    font-size: 3rem;
+    font-family: 'Poppins', sans-serif;
+    color : #282F63;
+    margin-left : 60px;
+}
+
+.content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: column;
+    font-family: 'Poppins', sans-serif;
+    justify-content: space-around;
+}
+
+.recycle img{
+    border-radius: 2rem;
+}
+
+.btnChercher {
+    display: inline-block;
+    font-size: 1.6rem;
+    padding: 0.7em 2em;
+    background-color: #d4451b;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 22px;
+    box-shadow: 0 2px 5px rgba(34, 70, 99, 0.06);
+    margin-top: 1em;
+    border: 2px solid #d4451b;
+    transition: background-color 0.5s, color 0.5s, border 0.5s;
+}
+.btnChercher:hover {
+    background: #f7cabc;
+    color: #2d386d;
+    border: 2px solid #f47952;
+}
+
+.btnRecycler {
+    display: inline-block;
+    font-size: 1.6rem;
+    padding: 0.7em 2em;
+    background-color: #ffffff;
+    color: #d4451b;
+    text-decoration: none;
+    border-radius: 22px;
+    box-shadow: 0 2px 5px rgba(34, 70, 99, 0.06);
+    margin-top: 1em;
+    border: 2px solid #ffffff;
+    transition: background-color 0.5s, color 0.5s, border 0.5s;
+}
+.btnRecycler:hover {
+    background: #f7cabc;
+    color: #2d386d;
+    border: 2px solid #f47952;
+}
