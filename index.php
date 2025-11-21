@@ -8,24 +8,16 @@ include "models/gererBaseDeDonnees.php";
 
 $conn = OpenCon();
 
-
-
-var_dump(getInfoEvent($conn, 1));
-
-
-
 define('BASE_URL', '/EcoGestUM/'); // à deplacer dans .env ou à supp
 define('ASSETS_URL', BASE_URL . 'assets/');
 
 require 'views/Header.php';
-require 'views/ObjectBrowser.php';
+require 'controllers/ObjectBrowser.php';
 require 'views/Footer.php';
 
 //if (isset($_GET['action']) && $_GET['action'] === 'ACTION') {
 //	header('Location:assets/views/PAGE');
 //	exit;
 //}
-require_once 'views/header.php';
-require_once 'views/InscriptionEvent/inscription.php';
-require_once 'views/footer.php';
+
 ?>
