@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/styleHeader.css">
+
 <header>
     <div class="header-bar">
         <img src="assets/Logo/logo.webp" alt="Le Mans Université" class="header-logo">
