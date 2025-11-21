@@ -1,0 +1,146 @@
+.container {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    flex: row;
+}
+
+.login-section {
+    flex: 1;
+    background-color: #ffffff;
+    padding: 60px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 527px;
+}
+.logo {
+    margin-bottom: 1vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo img {
+    max-width: 280px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.form-container {
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 15px 20px;
+    border: 2px solid #D1D5DB;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+    background-color: #FFFFFF;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-color: #2C3E7E;
+}
+
+input::placeholder {
+    color: #9CA3AF;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    margin-top: 15px;
+}
+
+.remember-me input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    accent-color: #2C3E7E;
+}
+
+.remember-me label {
+    margin: 0;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: normal;
+}
+
+.btn,
+.btn-primary,
+.btn-secondary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #2C3E7E;
+    color: #FFFFFF;
+    border: none;
+    transition: background-color 0.3s ease;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary:hover {
+    background-color: #1e2a52;
+}
+
+.btn-secondary {
+    background-color: #D4EEF3;
+    color: #2C3E7E;
+    border: none;
+    transition: background-color 0.3s ease;
+    margin-bottom: 25px;
+}
+
+.btn-secondary:hover {
+    background-color: #b8dfe8;
+}
+
+.forgot-password {
+    display: block;
+    color: #2C3E7E;
+    text-decoration: underline;
+    font-size: 15px;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.image-section {
+    flex: 1;
+    background: url('../Connection/photo.webp') no-repeat center center;
+    background-size: cover;
+}

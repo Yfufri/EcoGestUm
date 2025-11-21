@@ -1,132 +1,13 @@
-/* Reset et variables */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-:root {
-    --primary-blue: #1e3766;
-    --dark-blue: #2d4373;
-    --light-blue: #c8e6f5;
-    --bright-blue: #2d59b7;
-    --text-dark: #1e293b;
-    --text-gray: #475569;
-}
-
-/* En-tête "NOS ÉVÉNEMENTS" */
-.event-title {
-    background: linear-gradient(180deg, #c8e6f5 0%, #b5ddef 100%);
-    padding: 60px 20px 50px;
+.event-title{
     text-align: center;
+    background: url('../backgroundlight.png') center/cover repeat;
+    font-family: 'Poppins', 'Montserrat', 'Arial';
+    font-size: 3rem;
+    color: #2d386d;
+    padding: 2.4rem;
 }
 
-.event-title h2 {
-    font-family: 'Luciole','Montserrat', 'Arial';
-    font-size: 3.5rem;
-    font-weight: 800;
-    color: var(--primary-blue);
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    margin-bottom: 30px;
-}
-
-/* Barre de recherche */
-.search-bar {
-    display: inline-flex;
-    align-items: center;
-    background: white;
-    border-radius: 50px;
-    padding: 10px 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    max-width: 600px;
-    width: 90%;
-    gap: 10px;
-}
-
-.search-bar span {
-    font-size: 1.2rem;
-}
-
-.search-bar input {
-    flex: 1;
-    border: none;
-    outline: none;
-    font-size: 1rem;
-    padding: 8px 12px;
-    font-family: inherit;
-}
-
-.search-bar input::placeholder {
-    color: #94a3b8;
-}
-
-.search-bar button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.1rem;
-    color: var(--primary-blue);
-    padding: 5px;
-    transition: transform 0.2s;
-}
-
-.search-bar button:hover {
-    transform: scale(1.1);
-}
-
-/* Section événements avec fond foncé */
-.events-section {
-    background: var(--dark-blue);
-    padding: 80px 0;
-    position: relative;
-    overflow: hidden;
-}
-
-/* Pattern de fond */
-.events-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: 
-        repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 25px,
-            rgba(255,255,255,0.02) 25px,
-            rgba(255,255,255,0.02) 50px
-        );
-    pointer-events: none;
-    z-index: 0;
-}
-
-.events-section h3 {
-    color: white;
-    font-size: 2.2rem;
-    font-weight: 700;
-    margin: 0 60px 50px;
-    position: relative;
-    z-index: 1;
-}
-
-/* Section événements fond clair */
-.events-section-light {
-    background: linear-gradient(180deg, #d4e8f3 0%, #c2dfe9 100%);
-    padding: 80px 0;
-}
-
-.events-section-light h3 {
-    color: var(--primary-blue);
-    font-size: 2.2rem;
-    font-weight: 700;
-    margin: 0 60px 50px;
-}
-
-/* Wrapper du carrousel */
-.carousel-wrapper {
+.events {
     position: relative;
     max-width: 1500px;
     margin: 0 auto;

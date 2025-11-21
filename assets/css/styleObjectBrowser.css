@@ -84,22 +84,24 @@
 }
 
 /* Bouton Filtrer avec image uniquement */
-button .filter-btn {
+.filter-btn {
     width: 48px;          /* bouton plus large */
     height: 48px;         /* bouton plus haut */
-    padding: 4px;         /* espace interne */;
-    border: none;
+    padding: 0;        /* espace interne */
+    border: 1px solid #bbb;
+    border-radius: 35%; /* bouton rond */
+    margin-bottom: 5px;
     background: none;
     cursor: pointer;
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
-    box-sizing: border-box;    /* inclut bordure/padding dans la taille */
+    box-sizing: border-box;    
 }
 /* Taille et ajustement de l'image dans le bouton */
 .filter-btn img {
-  width: 95%;
-  height: 95%;
+  width: 80%;
+  height: 80%;
   object-fit: contain;  /* préserve les proportions */
   display: block;
 }
@@ -143,6 +145,12 @@ button .filter-btn {
   font-size: 2rem;
   font-weight: normal;
   letter-spacing: 1px;
+}
+
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;      /* espace vertical entre les éléments */
 }
 
 /* Zone de texte */

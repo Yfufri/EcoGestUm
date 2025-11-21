@@ -1,13 +1,8 @@
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>ÉcoGestUM - Accueil</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="assets/style.css">
-</head>
+
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/styleConnect.css">
 <body>
     <div class="container">
-        <!-- Section gauche - Formulaire de connexion -->
         <div class="login-section">
             <div class="logo">
                 <img src="assets/Logo/logo-LeMansUniversite.png" alt="Le Mans Université">
@@ -46,7 +41,6 @@
             </form>
         </div>
 
-        <!-- Section droite - Image -->
         <div class="image-section"></div>
     </div>
 </body>
