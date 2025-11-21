@@ -1,5 +1,6 @@
 <?php
-include "models/gererEquipement.php";
+/*include "models/gererEquipement.php";
+
 
 // Récupérer les paramètres envoyés par le formulaire (via GET)
 $mot_clef = $_GET['search'] ?? null;
@@ -20,6 +21,20 @@ foreach ($objets as $objet) {
             <div class="objet-nom">' . htmlspecialchars($objet['Nom_objet']) . '</div>
             <button>Réserver</button>
         </div>';
-}
-?>
+}*/
 
+include "models/gererEquipement.php";
+
+$mot_clef = $_GET['search'] ?? null;
+$categorie = $_GET['categorie'] ?? null;
+$point_collecte = $_GET['point_collecte'] ?? null;
+
+$objets = consulterObjets($conn, $mot_clef, $categorie, $point_collecte);
+
+$categories = getAllCategories($conn);
+$points_collecte = getAllPointsCollecte($conn);
+
+include 'views/ObjectBrowser.php';
+
+
+?>

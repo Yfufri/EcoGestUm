@@ -94,5 +94,50 @@ function consulterObjets(mysqli $conn, $mot_clef = null, $categorie = null, $poi
     return $rows;
 }
 
+// Fonction pour récupérer toutes les catégories d'objets
+function getAllCategories(mysqli $conn) {
+    $sql = "SELECT Id_categorie_objet, Nom_categorie_objet FROM CATEGORIE_OBJET";
+    $result = $conn->query($sql);
+    $categories = [];
+    if ($result) {
+        while ($row = $result->fetch_assoc()) {
+            $categories[] = $row;
+        }
+        $result->free();
+    }
+    return $categories;
+}
+
+// Fonction pour récupérer toutes les ponts de collecte
+function getAllPointsCollecte($conn) {
+    $sql = "SELECT Nom_point_de_collecte FROM POINT_DE_COLLECTE";
+    $result = $conn->query($sql);
+    $points_collecte = [];
+    if ($result) {
+        while ($row = $result->fetch_assoc()) {
+            $points_collecte[] = $row;
+        }
+        $result->free();
+    }
+    return $points_collecte;
+}
+
+function filtrerObjets(mysqli $conn, $categorie = null, $point_collecte = null) {
+     // Appel direct de la procédure avec les deux paramètres (même s'ils sont null)
+    $stmt = $conn->prepare("CALL filtrer_Objets_Disponibles(?, ?)");
+    if (!$stmt) {
+        die("Erreur de préparation : " . $conn->error);
+    }
+    $stmt->bind_param('ss', $categorie, $point_collecte); // 2 chaînes (ou null)
+
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
+
+    $stmt->close();
+
+    return $rows;
+}
 
 ?>
+
