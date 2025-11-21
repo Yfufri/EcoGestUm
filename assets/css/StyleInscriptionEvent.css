@@ -1,33 +1,26 @@
 .evenements-conteneur {
-  background: #d8eef6;
-  border-radius: 18px;
-  box-shadow: 0 3px 16px #93abc8a0;
-  max-width: 800px;
-  margin: 20px 250px;
-  padding: 60px 72px;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  overflow-x: auto;
 }
-
 .evenement-ligne {
   display: flex;
-  align-items: center;
-  gap: 28px;
   flex-wrap: wrap;
-}
-
-.evenement-gauche {
-  display: flex;
-  justify-content: center;   /* Centre l'image horizontalement */
+  box-sizing: border-box;
+  justify-content: center;
   align-items: flex-start;
+  width: 100%;
+}
+.evenement-gauche img,
+.evenement-gauche .image-placeholder {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
-.evenement-gauche img {
-  width: 400px;              /* Agrandit l'image, adapte selon ce que tu veux */
-  border-radius: 14px;
-  background: #f3fcff;
-  box-shadow: 0 1px 7px #c4d9e0;
-  margin-top: 30px;  
-  margin-left: 0;        /* Descend un peu l'image pour qu'elle soit moins collée au header */
-}
 
 
 .evenement-details {
