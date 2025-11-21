@@ -22,25 +22,20 @@ if ($mail != null && $password != null) {
     }
 }
 
-// Définir les constantes de chemins
+
 define('BASE_URL', '/EcoGestUm/');
 define('ASSETS_URL', BASE_URL . 'assets/');
 
-// Router
+
 $action = $_GET['action'] ?? 'accueil';
 
 switch($action){
     case 'evenements':
-        // Page liste des événements
-        include_once "controllers/Evenement.php";
-        include "views/header.php";
-        include "views/evenement.php";
-        include "views/footer.php";
+        include "controllers/Evenement.php";
         break;
         
     case 'inscription':
-        // Page formulaire d'inscription à un événement
-        include_once "controllers/Evenement.php";
+        include "models/gererEvenement.php";
         include "views/header.php";
         include "views/inscription.php";
         include "views/footer.php";
@@ -67,7 +62,6 @@ switch($action){
         break;
         
     default:
-        // Page d'accueil
         include "views/header.php";
         include "controllers/Home.php";
         include "views/footer.php";
