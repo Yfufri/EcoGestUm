@@ -2,7 +2,6 @@
 <link rel="stylesheet" href="assets/css/styleObjectBrowser.css">
 
 <div class="titre-objets">OBJETS DISPONIBLES</div>
-<!-- ObjetsDisponibles.html -->
 <div class="container-objets">
     <div class="barre-recherche">
         <form method="get" action="" class="search-form">
@@ -14,9 +13,8 @@
         </form>
     </div>
 
-    <!-- Bouton Filtrer à placer ici -->
     <button id="openFilterBtn" class="filter-btn" title="Filtrer"><img src="assets/ObjectBrowser/image2ObjectBrowser.png" alt="Filtrer"></button>
-    <!-- Modale Filtre -->
+
     <div id="filterModal" class="modal" style="display:none;">
         <div class="modal-content">
             <span id="closeFilterBtn" class="close">&times;</span>

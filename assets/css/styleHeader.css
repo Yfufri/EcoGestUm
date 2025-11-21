@@ -1,0 +1,119 @@
+.header-logo {
+    height: 80px;
+    width: auto;
+    margin-right: 30px;
+    padding-right: 3em;
+}
+
+.header-bar {
+    display: flex;
+    align-items: center;
+    padding: 2em;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #fff;
+}
+
+.header-title {
+    font-size: 1.32rem;
+    color: #25327a;
+    font-weight: 700;
+    line-height: 1.06;
+    margin-right: 22px;
+}
+
+.site-nav {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    justify-content:  space-around;
+    height: 40px;
+    margin-left: 8px;
+}
+
+.site-nav a {
+    font-family: 'Poppins', sans-serif;
+    flex: 1 1 0%;
+    color: #25327a;
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 7px 0 7px 0;
+    margin: 0 4px;
+    text-align: center;
+    letter-spacing: 0.01em;
+    width: auto;
+}
+
+.ecogestum-bar {
+    background: #25327a;
+    color: #fff;
+    text-align: center;
+    font-size: 2.5rem;
+    font-family: 'Poppins', sans-serif;
+    padding: 5px 0 5px 0;
+    letter-spacing: 0.1em;
+    box-shadow: 0 -2px 7px rgba(52, 70, 130, 0.04);
+    margin-top: 140px;
+
+}
+
+@media (max-width: 824px) {
+    .header-title {
+        font-size: 0.97rem;
+        margin-right: 8px;
+    }
+
+    .header-bar {
+        padding: 6px 3vw 4px 3vw;
+    }
+
+    .site-nav a {
+        font-size: 0.90rem;
+        padding: 6px 0;
+    }
+
+    .site-nav {
+        height: 30px;
+    }
+
+    .ecogestum-bar {
+        font-size: 0.99rem;
+    }
+}
+
+@media (max-width: 650px) {
+    .header-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 7px 2vw 3px 2vw;
+    }
+
+    .header-logo {
+        height: 33px;
+    }
+
+    .header-title {
+        font-size: 0.83rem;
+        margin-right: 5px;
+    }
+
+    .site-nav {
+        width: 100%;
+        height: auto;
+        flex-direction: column;
+        gap: 6px;
+        margin-left: 0;
+        margin-top: 4px;
+    }
+
+    .site-nav a {
+        padding: 7px 0;
+        font-size: 0.88rem;
+        width: 100%;
+        margin: 0;
+    }
+
+}

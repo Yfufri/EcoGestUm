@@ -10,8 +10,6 @@ $conn = OpenCon();
 
 
 
-var_dump(getInfoEvent($conn, 1));
-
 
 
 define('BASE_URL', '/EcoGestUM/'); // à deplacer dans .env ou à supp
@@ -25,7 +23,23 @@ require 'views/Footer.php';
 //	header('Location:assets/views/PAGE');
 //	exit;
 //}
-require_once 'views/header.php';
-require_once 'views/InscriptionEvent/inscription.php';
-require_once 'views/footer.php';
+
 ?>
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ÉcoGestUM - Accueil</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <?php
+    require_once 'views/header.php';
+    require_once 'views/InscriptionEvent/inscription.php';
+    require_once 'views/footer.php';
+    ?>
+</body>
+
+</html>
