@@ -1,11 +1,4 @@
 
---
--- Base de données : `SAE3`
---
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `CATEGORIE_EVENEMENT`
 --
 
@@ -178,6 +171,7 @@ CREATE TABLE `UTILISATEUR` (
   `Nom_utilisateur` varchar(255) DEFAULT NULL,
   `Prenom_utilisateur` varchar(255) DEFAULT NULL,
   `Mail_utilisateur` varchar(255) DEFAULT NULL,
+  `Password_utilisateur` varchar(255) DEFAULT NULL,
   `Id_departement` int NOT NULL,
   `Id_role` int NOT NULL
 );
@@ -442,7 +436,7 @@ ALTER TABLE `EVENEMENT`
 ADD COLUMN `Description` varchar(255) DEFAULT NULL;
 
 CREATE TABLE `IMAGE_EVENEMENT` (
-  `Id_Image` int NOT NULL,
+  `Id_Image` int NOT NULL ,
   `Url_image` varchar(255) DEFAULT NULL,
   `Id_evenement` int NOT NULL
 ) ;
@@ -450,4 +444,7 @@ CREATE TABLE `IMAGE_EVENEMENT` (
 ALTER TABLE `Image_Evenement`
   ADD PRIMARY KEY (`Id_Image`),
   ADD KEY `fk_evenement_objet` (`Id_evenement`);
+
+  ALTER TABLE `Image_Evenement`
+  MODIFY `Id_Image` int NOT NULL AUTO_INCREMENT;
 

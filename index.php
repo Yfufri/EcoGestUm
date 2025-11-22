@@ -7,6 +7,7 @@ include "models/gererBaseDeDonnees.php";
 
 $conn = OpenCon();
 
+
 if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
@@ -16,8 +17,8 @@ $password = $_POST['password'] ?? null;
 
 if ($mail != null && $password != null) {
     include "models/gererConnection.php";
-    $user = getUserFromConnection($conn, $mail, $password);
-    if (!empty($user)) {
+    $user = getUserFromConnection($conn, $mail);
+    if ($user && password_verify($password, $user['Password_utilisateur'])) {
         $_SESSION['user'] = $user;
     } else {
         header("Location: index.php?action=login&error=1");

@@ -243,19 +243,19 @@ INSERT INTO INSCRIPTION (Id_utilisateur, Id_evenement) VALUES
 
 -- modif web
 
-INSERT INTO IMAGE_EVENEMENT (Id_Image, Url_image, Id_evenement) VALUES
-(1, '', 1),
-(2, '', 2),
-(3, '', 3),
-(4, '', 4),
-(5, '', 5),
-(6, '', 6),
-(7, '', 7),
-(8, '', 8),
-(9, '', 9),
-(10, '', 10),
-(11, '', 11),
-(12, '', 12);
+INSERT INTO IMAGE_EVENEMENT (Url_image, Id_evenement) VALUES
+('', 1),
+('', 2),
+('', 3),
+('', 4),
+('', 5),
+('', 6),
+('', 7),
+('', 8),
+('', 9),
+('', 10),
+('', 11),
+('', 12);   
 
 
 

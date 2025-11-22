@@ -12,4 +12,25 @@ die("Connection failed: " . $conn->connect_error);
 }
 return $conn;
 }
+
+function updateAllPasswordsHashed($conn) { // A ne pas utiliser SVP, c'est pas très sécurisé :)
+    
+    $sql = "SELECT Id_utilisateur, Prenom_utilisateur FROM utilisateur";
+    $result = $conn->query($sql);
+
+    while ($row = $result->fetch_assoc()) {
+        $id = $row['Id_utilisateur'];
+        $prenom = $row['Prenom_utilisateur'];
+        
+        $newPassword = $prenom . "@";
+
+        $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+
+        $stmt = $conn->prepare("UPDATE utilisateur SET Password_utilisateur = ? WHERE Id_utilisateur = ?");
+        $stmt->bind_param("si", $hashedPassword, $id);
+        $stmt->execute();
+        echo "Password updated for : " . $prenom . "\n";
+    }
+    echo "C'est bon, tout est modifié :) \n";
+}
 ?>
