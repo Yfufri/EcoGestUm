@@ -1,7 +1,6 @@
 .container {
     margin: 40px auto;
     padding: 0;
-    overflow: hidden;
 }
 
 .bloc-objet {
@@ -9,7 +8,7 @@
 }
 
 .bloc-img {
-    width: 60%;
+    width: 75%;
     background: #282B64;
     margin-left: 0;
     color: #fff;
@@ -22,23 +21,42 @@
 .object-img {
     display: block;
     margin: 20px auto 25px auto;
-    width: 180px;
+    width: 400px;
     height: auto;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(40, 43, 100, 0.12);
 }
 
 .object-info {
-    width : 40%;
+    width : 25%;
     margin-left: 40px;
     flex-grow: 1;
     text-align: center;
 }
 
-.proprietaire {
-    font-family: 'Luciole-Regular', 'Montserrat', 'Arial';
+.categorie-object {
+    margin: 0 auto;
+    background-color: #D4451B;
+    font-family: 'Luciole', 'Montserrat', 'Arial';
+    padding:0% 90px;
+    width: fit-content;
+    border-radius: 10px;
     font-size: 18px;
-    margin-bottom: 15px;
+    margin-bottom: 100px;
+    color: #fff;
+}
+
+.proprietaire {
+    font-family:  'Luciole', 'Montserrat', 'Arial';
+    text-shadow: 4px 4px 8px rgba(40, 43, 100, 0.3);
+    font-size: 20px;
+    margin-bottom: 70px;
+    color: #282B64;
+}
+
+.description {
+    font-family: 'Luciole', 'Montserrat', 'Arial';
+    font-size: 16px;
     color: #282B64;
 }
 
@@ -46,7 +64,7 @@
     background: #c24121;
     color: white;
     font-weight: bold;
-    padding: 10px 32px;
+    padding: 10px 35%;
     border: none;
     border-radius: 6px;
     cursor: pointer;
@@ -61,9 +79,47 @@
 
 h1 {
     text-align: center;
+    font-family: 'Poppins', 'Montserrat', 'Arial';
+    font-weight: normal;
+    text-shadow: 4px 4px 8px rgba(40, 43, 100, 0.3);
     background: url('../backgroundlight.png') center/cover repeat;
     color: #282B64;
     margin-bottom: 35px;
     letter-spacing: 1px;
     padding: 15px 0;
 }
+
+#map {
+        height: 400px !important;
+        width: 600px !important;
+        margin: 20px auto !important;
+        display: block !important;
+        background: #f0f0f0 !important;
+}
+
+.carte-emplacement {
+    width: 100%;
+    margin-top: 60px;
+    padding: 30px 0;
+    display: flex;
+    align-items: flex-start;
+}
+
+.titre-emplacement {
+    font-size: 1.5rem;
+    color: #282B64;
+    margin-left: 40px;
+    margin-right: 40px;
+    text-shadow: 2px 2px 6px #c6c9e8;
+}
+
+
+.bloc-carte {
+    box-shadow: 0 4px 24px rgba(40,43,100,0.07);
+    border-radius: 12px;
+    overflow: visible;
+    overflow: visible !important;
+    background: transparent !important;
+}
+
+
