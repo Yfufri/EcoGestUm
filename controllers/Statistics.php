@@ -8,5 +8,4 @@ $nbEvenementPasse=getNbPastEvent($conn);
 $nbObjetDisponible=getNbObjectDisponible($conn);
 
 include "views/Statistics.php";
-
-?>x 
+?>
