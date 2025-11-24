@@ -1,5 +1,11 @@
 <?php
 
+function getHistorique($conn){
+    $sql = "SELECT Nom_objet,
+                    Desc_objet,
+                    ";  
+}
+
 function getAvailableEquipments($conn)
 {
     $sql = "SELECT Nom_objet,
