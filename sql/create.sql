@@ -430,10 +430,6 @@ ALTER TABLE `UTILISATEUR`
 COMMIT;
 
 
--- Modifications pour le web 
-
-ALTER TABLE `EVENEMENT`
-ADD COLUMN `Description` varchar(255) DEFAULT NULL;
 
 CREATE TABLE `IMAGE_EVENEMENT` (
   `Id_Image` int NOT NULL ,
