@@ -1,6 +1,3 @@
--- Modifier un objet qu'un utilisateur a lui-même proposé
-
-
 DROP PROCEDURE IF EXISTS modifier_MonObjet;
 DELIMITER //
 CREATE PROCEDURE modifier_MonObjet(
@@ -14,35 +11,26 @@ BEGIN
     DECLARE v_id_proprietaire INT;
     DECLARE v_statut INT;
 
-    -- On récupère les infos de l'objet
     SELECT Id_utilisateur, Id_statut
     INTO v_id_proprietaire, v_statut
     FROM OBJET
     WHERE Id_objet = p_id_objet;
 
-    -- Vérification que l'utilisateur est le propriétaire
     IF v_id_proprietaire IS NULL THEN
         SELECT 'Erreur : Objet non trouvé.' AS Message;
     ELSEIF v_id_proprietaire <> p_id_utilisateur THEN
         SELECT 'Erreur : cet objet ne vous appartient pas.' AS Message;
-
-    -- Vérification du statut (1 = Disponible, 3 = En attente validation)
     ELSEIF v_statut NOT IN (1,3) THEN
         SELECT 'Erreur : l objet ne peut pas être modifié (statut non autorisé).' AS Message;
-
-    -- Vérification de l'existence de la catégorie
     ELSEIF NOT EXISTS (SELECT 1 FROM CATEGORIE_OBJET WHERE Id_categorie_objet = p_id_categorie_objet) THEN
         SELECT 'Erreur : catégorie invalide.' AS Message;
-
     ELSE
-        -- Mise à jour de l'objet
         UPDATE OBJET
         SET Nom_objet = p_nom_objet,
             Desc_objet = p_desc_objet,
             Id_categorie_objet = p_id_categorie_objet
         WHERE Id_objet = p_id_objet;
 
-        -- Afficher la liste des objets de l'utilisateur (y compris modifié)
         SELECT 
             OBJET.Id_objet,
             OBJET.Nom_objet,
@@ -57,7 +45,8 @@ BEGIN
         WHERE OBJET.Id_utilisateur = p_id_utilisateur;
     END IF;
 END;
-
+//
+DELIMITER ;
 
 DROP PROCEDURE IF EXISTS filtrer_Objets_Disponibles;
 DELIMITER //
@@ -106,7 +95,7 @@ END;
 //
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS ReserverObjetAvec  ;
+DROP PROCEDURE IF EXISTS ReserverObjetAvecVue;
 DELIMITER //
 CREATE PROCEDURE ReserverObjetAvecVue (
     IN IdUtilisateur INT,
@@ -116,11 +105,9 @@ BEGIN
     DECLARE IdStatutDisponible INT;
     DECLARE IdStatutReserve INT;
 
-    -- Statuts
-    SELECT Id_statut INTO IdStatutDisponible FROM STATUT WHERE Nom_statut = 'Disponible'LIMIT 1;
-    SELECT Id_statut INTO IdStatutReserve FROM STATUT WHERE Nom_statut = 'Reserve'LIMIT 1;
+    SELECT Id_statut INTO IdStatutDisponible FROM STATUT WHERE Nom_statut = 'Disponible' LIMIT 1;
+    SELECT Id_statut INTO IdStatutReserve FROM STATUT WHERE Nom_statut = 'Reserve' LIMIT 1;
 
-    -- Vérifier existence et disponibilité via la vue
     IF NOT EXISTS (
         SELECT 1 FROM Vue_ObjetComplet
         WHERE Id_objet = IdObjet
@@ -128,11 +115,9 @@ BEGIN
     ) THEN
         SELECT 'Erreur : objet non disponible ou n’existe pas' AS Message;
     ELSE
-        -- Insérer la réservation avec la date actuelle
         INSERT INTO RESERVATION (Date_reservation, Id_utilisateur, Id_objet)
         VALUES (NOW(), IdUtilisateur, IdObjet);
 
-        -- Mettre à jour le statut dans la table principale
         UPDATE OBJET
         SET Id_statut = IdStatutReserve
         WHERE Id_objet = IdObjet;
@@ -148,7 +133,7 @@ DELIMITER //
 CREATE PROCEDURE Chef_ValiderOuRefuserObjetAvecVue (
    IN IdChef INT,
    IN IdObjet INT,
-   IN Decision VARCHAR(10)  -- 'Valider' ou 'Refuser'
+   IN Decision VARCHAR(10)
 )
 BEGIN
     DECLARE IdDepartement INT;
@@ -157,15 +142,12 @@ BEGIN
     DECLARE IdStatutAttente INT;
     DECLARE nb INT;
 
-    -- Récupérer le département du chef
     SELECT Id_departement INTO IdDepartement FROM UTILISATEUR WHERE Id_utilisateur = IdChef;
 
-    -- Récupérer les différents statuts utiles
     SELECT Id_statut INTO IdStatutDisponible FROM STATUT WHERE Nom_statut = 'Disponible' LIMIT 1;
-    SELECT Id_statut INTO IdStatutNonDisponible FROM STATUT WHERE Nom_statut = 'Non Disponible'LIMIT 1;
-    SELECT Id_statut INTO IdStatutAttente FROM STATUT WHERE Nom_statut = 'En attente validation'LIMIT 1;
+    SELECT Id_statut INTO IdStatutNonDisponible FROM STATUT WHERE Nom_statut = 'Non Disponible' LIMIT 1;
+    SELECT Id_statut INTO IdStatutAttente FROM STATUT WHERE Nom_statut = 'En attente validation' LIMIT 1;
 
-    -- Vérifier via la vue que l'objet appartient au département du chef et est en attente de validation
     SELECT COUNT(*) INTO nb FROM Vue_Id_ObjetDepartement
     WHERE Id_objet = IdObjet
       AND Id_statut = IdStatutAttente
@@ -174,7 +156,6 @@ BEGIN
     IF nb = 0 THEN
         SELECT 'Erreur : Objet non valide ou n''appartient pas à votre département.' AS Message;
     ELSE
-        -- Mettre à jour le statut selon la décision
         IF Decision = 'Valider' THEN
             UPDATE OBJET SET Id_statut = IdStatutDisponible WHERE Id_objet = IdObjet;
             SELECT 'Objet validé avec succès.' AS Message;
@@ -205,49 +186,6 @@ BEGIN
     FROM Vue_Statistiques_Departement s
     WHERE s.Id_departement = IdDepartement
     ORDER BY s.Nom_categorie_objet;
-END;
-//
-DELIMITER ;
-
-DROP PROCEDURE IF EXISTS Procedure_Liste_Objet_Departement;
-DELIMITER //
-CREATE PROCEDURE Procedure_Liste_Objet_Departement (
-    IN Id_Departement INT
-)
-BEGIN
-    SELECT Nom_objet, Desc_objet, Nom_categorie_objet, Nom_statut, Nom_utilisateur, Prenom_utilisateur        
-    FROM UTILISATEUR
-    INNER JOIN OBJET ON OBJET.Id_utilisateur = UTILISATEUR.Id_utilisateur
-    INNER JOIN CATEGORIE_OBJET ON CATEGORIE_OBJET.Id_categorie_objet = OBJET.Id_categorie_objet
-    INNER JOIN STATUT ON STATUT.Id_statut = OBJET.Id_statut
-    WHERE UTILISATEUR.Id_departement = Id_Departement;
-END;
-//DROP PROCEDURE IF EXISTS Procedure_Liste_Objet_Departement;
-DELIMITER //
-CREATE PROCEDURE Procedure_Liste_Objet_Departement (
-    IN Id_Departement INT
-)
-BEGIN
-    SELECT Nom_objet, Desc_objet, Nom_categorie_objet, Nom_statut, Nom_utilisateur, Prenom_utilisateur        
-    FROM UTILISATEUR
-    INNER JOIN OBJET ON OBJET.Id_utilisateur = UTILISATEUR.Id_utilisateur
-    INNER JOIN CATEGORIE_OBJET ON CATEGORIE_OBJET.Id_categorie_objet = OBJET.Id_categorie_objet
-    INNER JOIN STATUT ON STATUT.Id_statut = OBJET.Id_statut
-    WHERE UTILISATEUR.Id_departement = Id_Departement;
-END;
-//
-DELIMITER ;DROP PROCEDURE IF EXISTS Procedure_Liste_Objet_Departement;
-DELIMITER //
-CREATE PROCEDURE Procedure_Liste_Objet_Departement (
-    IN Id_Departement INT
-)
-BEGIN
-    SELECT Nom_objet, Desc_objet, Nom_categorie_objet, Nom_statut, Nom_utilisateur, Prenom_utilisateur        
-    FROM UTILISATEUR
-    INNER JOIN OBJET ON OBJET.Id_utilisateur = UTILISATEUR.Id_utilisateur
-    INNER JOIN CATEGORIE_OBJET ON CATEGORIE_OBJET.Id_categorie_objet = OBJET.Id_categorie_objet
-    INNER JOIN STATUT ON STATUT.Id_statut = OBJET.Id_statut
-    WHERE UTILISATEUR.Id_departement = Id_Departement;
 END;
 //
 DELIMITER ;
