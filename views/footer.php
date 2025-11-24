@@ -8,8 +8,8 @@
         <p>Accès rapides</p>
         <div class="links">
             <a href="https://www.univ-lemans.fr" target="_blank" rel="noopener noreferrer">Site de l'université</a>
-            <a href="#">Notre politique de recyclage</a>
-            <a href="#">Nos événements</a>
+            <a href="index.php?action=politique">Notre politique de recyclage</a>
+            <a href="index.php?action=evenements">Nos événements</a>
              <?php if (!empty($_SESSION['id_utilisateur'])): ?>
                 <a href="?action=logout">Se déconnecter</a>
             <?php else: ?>
