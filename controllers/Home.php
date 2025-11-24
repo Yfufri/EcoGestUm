@@ -1,28 +1,23 @@
 <?php
 
-include "models/gererEquipement.php";
-include "models/gererEvenement.php";
-
-$nbObjetRecycle = getNbObjectRecycled($conn);
-$nbEvenementPasse = getNbPastEvent($conn);
-$nbObjetDisponible = getNbObjectDisponible($conn);
+include "models/gererUtilisateur.php";
 
 function displayDefaultHomePage($conn) {
         include "views/banner.php";
         include "views/DiscoverPolitique.php";
-        include "controllers/Statistics.php";
+        include "controllers/HomeStatistics.php";
         include "views/Events.php";
-        include "views/Visits.php";
-        }
+        include "views/visite.php";
+}
 
 function displayStudentHomePage($conn) {
         include "views/banner.php";
-        include "views/welcome.php";
+        include "controllers/welcome.php";
         include "views/Recycle.php";
-        include "controllers/Statistics.php";
+        include "controllers/HomeStatistics.php";
         // point de collecte
         echo "point de collecte";
-        }
+}
 
 
 $sessionUser = $_SESSION['user'] ?? null;

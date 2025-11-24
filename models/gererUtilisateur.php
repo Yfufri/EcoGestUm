@@ -12,6 +12,9 @@ function getRole($conn, $id_utilisateur)
     $stmt->execute();
     $result = $stmt->get_result();
     $row = $result->fetch_assoc();
+    if (!$row) {
+        return null;
+    }
     return $row['Nom_role'];
 }
 
