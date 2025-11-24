@@ -23,7 +23,7 @@ switch ($action) {
         $elements = [];
         foreach ($objets as $objet) {
             array_push($elements, [
-                "image" => !empty($objet['Url_photo']) ? htmlspecialchars($objet['Url_photo']) : 'assets/ObjectBrowser/imageDefautObjectBrowser.png',
+                "image" => !empty($objet['Url_photo']) ? 'assets/' . htmlspecialchars($objet['Url_photo']) : 'assets/ObjectBrowser/imageDefautObjectBrowser.png',
                 "titre" => $objet['Nom_statut'] == 'Disponible' ? 'Objet Ajouté' : 'Objet Donné',
                 "desc" => $objet["Nom_objet"] . "<br>Propriétaire : " . $objet["Nom_utilisateur"]
             ]);

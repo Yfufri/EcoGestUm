@@ -1,9 +1,10 @@
 <?php
 
-function getHistorique($conn){
+function getHistorique($conn)
+{
     $sql = "SELECT Nom_objet,
                     Desc_objet,
-                    ";  
+                    ";
 }
 
 function getAvailableEquipments($conn)
@@ -41,7 +42,8 @@ function getNbObjectDisponible($conn)
     return $row['total_disponibles'];
 }
 
-function addObject($conn, $nom_objet, $desc_objet, $id_categorie_objet, $id_point_de_collecte, $id_utilisateur, $id_statut) {
+function addObject($conn, $nom_objet, $desc_objet, $id_categorie_objet, $id_point_de_collecte, $id_utilisateur, $id_statut)
+{
     $stmt = $conn->prepare("INSERT INTO Objet (Nom_objet, 
                                                 Desc_objet, 
                                                 Id_categorie_objet, 
@@ -49,29 +51,32 @@ function addObject($conn, $nom_objet, $desc_objet, $id_categorie_objet, $id_poin
                                                 Id_utilisateur, 
                                                 Id_statut) VALUES (?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("ssiiii", $nom_objet, $desc_objet, $id_categorie_objet, $id_point_de_collecte, $id_utilisateur, $id_statut);
-    
+
     if ($stmt->execute()) {
         return true;
     } else {
         return false;
     }
 }
-function consulterObjets(mysqli $conn, $mot_clef = null, $categorie = null, $point_collecte = null) {
+function consulterObjets(mysqli $conn, $mot_clef = null, $categorie = null, $point_collecte = null)
+{
     $sql = "SELECT 
-                Nom_objet,
-                Desc_objet,
-                Nom_categorie_objet,
-                Nom_point_de_collecte,
-                Nom_statut,
-                Nom_utilisateur,
-                Url_photo
-            FROM OBJET
-            INNER JOIN CATEGORIE_OBJET ON OBJET.Id_categorie_objet = CATEGORIE_OBJET.Id_categorie_objet
-            INNER JOIN POINT_DE_COLLECTE ON OBJET.Id_point_collecte = POINT_DE_COLLECTE.Id_point_collecte
-            INNER JOIN STATUT ON OBJET.Id_statut = STATUT.Id_statut
-            INNER JOIN UTILISATEUR ON OBJET.Id_utilisateur = UTILISATEUR.Id_utilisateur
-            LEFT JOIN PHOTO ON PHOTO.Id_objet = OBJET.Id_objet
-            WHERE Nom_statut = 'Disponible'";
+    o.Nom_objet,
+    o.Desc_objet,
+    c.Nom_categorie_objet,
+    p.Nom_point_de_collecte,
+    s.Nom_statut,
+    u.Nom_utilisateur,
+    MIN(ph.Url_photo) AS Url_photo
+FROM OBJET o
+INNER JOIN CATEGORIE_OBJET c ON o.Id_categorie_objet = c.Id_categorie_objet
+INNER JOIN POINT_DE_COLLECTE p ON o.Id_point_collecte = p.Id_point_collecte
+INNER JOIN STATUT s ON o.Id_statut = s.Id_statut
+INNER JOIN UTILISATEUR u ON o.Id_utilisateur = u.Id_utilisateur
+LEFT JOIN PHOTO ph ON ph.Id_objet = o.Id_objet
+WHERE s.Nom_statut = 'Disponible'
+GROUP BY o.Id_objet, o.Nom_objet, o.Desc_objet, c.Nom_categorie_objet, p.Nom_point_de_collecte, s.Nom_statut, u.Nom_utilisateur
+ORDER BY o.Id_objet ASC;";
 
     $params = [];
     $types = '';
@@ -101,11 +106,11 @@ function consulterObjets(mysqli $conn, $mot_clef = null, $categorie = null, $poi
     $bind_names = [];
     if (!empty($params)) {
         $bind_names[] = $types; // le premier argument est la chaîne de types
-            for ($i=0; $i < count($params); $i++) {
-                $bind_name = 'bind' . $i;
-                $$bind_name = $params[$i];
-                $bind_names[] = &$$bind_name; // référence
-            }
+        for ($i = 0; $i < count($params); $i++) {
+            $bind_name = 'bind' . $i;
+            $$bind_name = $params[$i];
+            $bind_names[] = &$$bind_name; // référence
+        }
         call_user_func_array([$stmt, 'bind_param'], $bind_names);
     }
 
@@ -119,7 +124,8 @@ function consulterObjets(mysqli $conn, $mot_clef = null, $categorie = null, $poi
 }
 
 // Fonction pour récupérer toutes les catégories d'objets
-function getAllCategories(mysqli $conn) {
+function getAllCategories(mysqli $conn)
+{
     $sql = "SELECT Id_categorie_objet, Nom_categorie_objet FROM CATEGORIE_OBJET";
     $result = $conn->query($sql);
     $categories = [];
@@ -133,7 +139,8 @@ function getAllCategories(mysqli $conn) {
 }
 
 // Fonction pour récupérer toutes les ponts de collecte
-function getAllPointsCollecte($conn) {
+function getAllPointsCollecte($conn)
+{
     $sql = "SELECT Nom_point_de_collecte FROM POINT_DE_COLLECTE";
     $result = $conn->query($sql);
     $points_collecte = [];
@@ -146,8 +153,9 @@ function getAllPointsCollecte($conn) {
     return $points_collecte;
 }
 
-function filtrerObjets(mysqli $conn, $categorie = null, $point_collecte = null) {
-     // Appel direct de la procédure avec les deux paramètres (même s'ils sont null)
+function filtrerObjets(mysqli $conn, $categorie = null, $point_collecte = null)
+{
+    // Appel direct de la procédure avec les deux paramètres (même s'ils sont null)
     $stmt = $conn->prepare("CALL filtrer_Objets_Disponibles(?, ?)");
     if (!$stmt) {
         die("Erreur de préparation : " . $conn->error);
@@ -164,4 +172,3 @@ function filtrerObjets(mysqli $conn, $categorie = null, $point_collecte = null) 
 }
 
 ?>
-
