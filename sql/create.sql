@@ -1,4 +1,3 @@
-
 -- Structure de la table `CATEGORIE_EVENEMENT`
 --
 
@@ -55,7 +54,8 @@ CREATE TABLE `EVENEMENT` (
   `Localisation_evenement` varchar(255) DEFAULT NULL,
   `Date_evenement` date DEFAULT NULL,
   `Id_categorie_evenement` int NOT NULL,
-  `Id_utilisateur` int NOT NULL
+  `Id_utilisateur` int NOT NULL,
+  `Description` varchar(255) DEFAULT NULL
 ) ;
 
 -- --------------------------------------------------------
@@ -447,4 +447,16 @@ ALTER TABLE `Image_Evenement`
 
   ALTER TABLE `Image_Evenement`
   MODIFY `Id_Image` int NOT NULL AUTO_INCREMENT;
+
+-- Table pour les inscriptions externes (formulaires inscriptions)
+CREATE TABLE IF NOT EXISTS INSCRIPTION_EXTERNE (
+    Id_inscription_externe INT AUTO_INCREMENT PRIMARY KEY,
+    Nom VARCHAR(100) NOT NULL,
+    Prenom VARCHAR(100) NOT NULL,
+    Email VARCHAR(255) NOT NULL,
+    Date_inscription DATETIME DEFAULT CURRENT_TIMESTAMP,
+    Id_evenement INT NOT NULL,
+    FOREIGN KEY (Id_evenement) REFERENCES EVENEMENT(Id_evenement) ON DELETE CASCADE,
+    UNIQUE KEY unique_inscription (Email, Id_evenement)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 

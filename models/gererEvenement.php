@@ -30,6 +30,39 @@ function getInfoEvent($conn, $id) {
     return $result->fetch_assoc();
 }
 
+// Fonction pour inscrire une personne EXTERNE à un événement
+function inscrirePersonneEvenement($conn, $nom, $prenom, $email, $id_evenement) {
+    // Vérifier si l'événement existe
+    $stmt = $conn->prepare("SELECT Id_evenement FROM EVENEMENT WHERE Id_evenement = ?");
+    $stmt->bind_param("i", $id_evenement);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    if ($result->num_rows === 0) {
+        return ['success' => false, 'message' => 'Événement introuvable'];
+    }
+    
+    // Vérifier si la personne n'est pas déjà inscrite
+    $stmt = $conn->prepare("SELECT Id_inscription_externe FROM INSCRIPTION_EXTERNE WHERE Email = ? AND Id_evenement = ?");
+    $stmt->bind_param("si", $email, $id_evenement);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    if ($result->num_rows > 0) {
+        return ['success' => false, 'message' => 'Vous êtes déjà inscrit à cet événement'];
+    }
+    
+    // Insérer l'inscription dans la table INSCRIPTION_EXTERNE
+    $stmt = $conn->prepare("INSERT INTO INSCRIPTION_EXTERNE (Nom, Prenom, Email, Id_evenement) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("sssi", $nom, $prenom, $email, $id_evenement);
+    
+    if ($stmt->execute()) {
+        return ['success' => true, 'message' => 'Inscription réussie ! Merci pour votre participation.'];
+    } else {
+        return ['success' => false, 'message' => 'Erreur lors de l\'inscription: ' . $stmt->error];
+    }
+}
+
 $evenementsAVenir = [];
 $evenementsPasses = [];
 

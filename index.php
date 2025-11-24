@@ -1,68 +1,80 @@
 <?php
+// filepath: /Applications/MAMP/htdocs/BoukhedraYanis/EcoGestUmAPP/EcoGestUm/index.php
+
+// ============================================
+// 1. CONFIGURATION ET INITIALISATION
+// ============================================
 require_once __DIR__ . '/vendor/autoload.php';
+
+// Charger les variables d'environnement
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-include "models/gererBaseDeDonnees.php";
-
-$conn = OpenCon();
-
-
+// Démarrer la session
 if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
 
-$mail = $_POST['mail'] ?? null;
-$password = $_POST['password'] ?? null;
+// Connexion à la base de données
+include "models/gererBaseDeDonnees.php";
+$conn = OpenCon();
 
-if ($mail != null && $password != null) {
-    include "models/gererConnection.php";
-    $user = getUserFromConnection($conn, $mail);
-    if ($user && password_verify($password, $user['Password_utilisateur'])) {
-        $_SESSION['user'] = $user;
-    } else {
-        header("Location: index.php?action=login&error=1");
-    }
-}
+// ============================================
+// 2. RÉCUPÉRATION DES PARAMÈTRES
+// ============================================
+$action = $_GET['action'] ?? 'accueil';
 
-$action = $_GET['action'] ?? null;
-
-switch($action){
+// ============================================
+// 3. ROUTAGE ET CONTRÔLEURS
+// ============================================
+switch($action) {
+    
+    // ===== PAGE D'ACCUEIL =====
+    case 'accueil':
+        include "views/header.php";
+        include "views/welcome.php";
+        include "views/footer.php";
+        break;
+    
+    // ===== ÉVÉNEMENTS =====
     case 'evenements':
         include "controllers/Evenement.php";
         break;
-        
+    
+    // ===== INSCRIPTION À UN ÉVÉNEMENT =====
     case 'inscription':
-        include "models/gererEvenement.php";
-        include "views/header.php";
-        include "views/inscription.php";
-        include "views/footer.php";
+        include "controllers/Inscription.php";
         break;
-        
+    
+    // ===== STATISTIQUES =====
     case 'statistiques':
-        include "views/header.php";
-        include "views/Statistics.php";
-        include "views/footer.php";
+        include "controllers/Statistics.php";
         break;
-        
+    
+    // ===== POLITIQUE DE RECYCLAGE =====
     case 'politique':
         include "views/header.php";
         include "views/politiqueDeRecyclage.php";
         include "views/footer.php";
         break;
-        
+    
+    // ===== AUTHENTIFICATION =====
     case 'login':
         include "controllers/login.php";
         break;
-        
+    
     case 'logout':
         include "controllers/logout.php";
         break;
-        
+    
+    // ===== PAGE PAR DÉFAUT =====
     default:
         include "views/header.php";
-        include "controllers/Home.php";
+        include "views/Accueil.php";
         include "views/footer.php";
         break;
 }
+
+// Fermer la connexion
+$conn->close();
 ?>
