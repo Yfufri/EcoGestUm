@@ -1,3 +1,7 @@
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/styleConnect.css">
+
+
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -41,7 +45,7 @@
                 <a href="" class="forgot-password">Mot de passe oublié ?</a>
 
                 <p class="security-notice">
-                    Pour des raisons de sécurité, veuillez vous <a href="../logout.php">déconnecter</a> et fermer votre navigateur lorsque vous avez fini d'accéder aux services authentifiés.
+                    Pour des raisons de sécurité, veuillez vous <a href="logout.php">déconnecter</a> et fermer votre navigateur lorsque vous avez fini d'accéder aux services authentifiés.
                 </p>
             </form>
         </div>

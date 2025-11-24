@@ -15,8 +15,27 @@ function getRole($conn, $id_utilisateur)
     return $row['Nom_role'];
 }
 
+function getName($conn, $id_utilisateur)
+    {
+        $sql = "SELECT Prenom_utilisateur FROM utilisateur WHERE Id_utilisateur = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $id_utilisateur);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        return $row['Prenom_utilisateur'];
+    }
+
 function isTeacher($conn, $id_utilisateur)
 {
     $role = getRole($conn, $id_utilisateur);
     return $role === 'Enseignant';
 }
+
+function isStudent($conn, $id_utilisateur)
+{
+    $role = getRole($conn, $id_utilisateur);
+    return $role === 'Etudiant';
+}
+
+?>

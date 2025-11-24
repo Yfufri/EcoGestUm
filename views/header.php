@@ -5,7 +5,7 @@
     <div class="header-bar">
         <img src="assets/Logo/logo.webp" alt="Le Mans Université" class="header-logo">
         <nav class="site-nav">
-            <a href="index.php">Accueil</a>
+            <a href="index.php ">Accueil</a>
             <a href="index.php?action=politique">Politique de recyclage</a>
             <a href="index.php?action=statistiques">Statistiques</a>
             <a href="index.php?action=evenements">Événements</a>

@@ -20,6 +20,16 @@ switch($action){
     case 'logout':
         include "logout.php";
         break;
+    case 'politique':
+        include "views/header.php";
+        include "views/politiqueDeRecylage.php";
+        include "views/footer.php";
+        break;
+    case 'statistiques':
+        include "views/header.php";
+        include "controllers/Stati.php";
+        include "views/footer.php";
+        break;
     default:
         include "views/header.php";
         include "controllers/Home.php";
