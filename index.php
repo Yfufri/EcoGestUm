@@ -7,9 +7,30 @@ include "models/gererBaseDeDonnees.php";
 
 $conn = OpenCon();
 
+
 if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
+
+
+$mail = $_POST['mail'] ?? null;
+$password = $_POST['password'] ?? null;
+
+
+if ($mail != null && $password != null) {
+    include "models/gererConnection.php";
+    $user = getUserFromConnection($conn, $mail, $password);
+    if (!empty($user)) {
+    $user = getUserFromConnection($conn, $mail);
+        if ($user && password_verify($password, $user['Password_utilisateur'])) {
+            $_SESSION['user'] = $user;
+        } else {
+            header("Location: index.php?action=login&error=1");
+    exit;
+        }
+    }
+    }
+
 
 $action = $_GET['action'] ?? null;
 
@@ -21,7 +42,7 @@ switch($action){
         include "controllers/Inscription.php";
         break;
     case 'login':
-        include "views/Connection.php";
+        include "controllers/login.php";
         break;
     case 'logout':
         include "logout.php";
