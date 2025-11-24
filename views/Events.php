@@ -9,6 +9,6 @@ Evénements
   <div class="event-text">
     Des événements<br>
     <strong>à ne pas rater !</strong>
-    <a href="#" class="btn">S'inscrire à un événement</a>
+    <a href="?action=evenements" class="btn">Nos événements</a>
   </div>
 </div>
