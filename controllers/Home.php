@@ -1,15 +1,18 @@
 <?php
 
-include "models/gererUtilisateur.php";
+include "models/gererEquipement.php";
+include "models/gererEvenement.php";
+
+$nbObjetRecycle = getNbObjectRecycled($conn);
+$nbEvenementPasse = getNbPastEvent($conn);
+$nbObjetDisponible = getNbObjectDisponible($conn);
 
 function displayDefaultHomePage($conn) {
         include "views/banner.php";
         include "views/DiscoverPolitique.php";
         include "controllers/Statistics.php";
-       
         include "views/Events.php";
         include "views/Visits.php";
-
         }
 
 function displayStudentHomePage($conn) {
