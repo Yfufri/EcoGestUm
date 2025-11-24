@@ -1,6 +1,7 @@
 .visite-title {
     text-align: center;
     background: url('../backgrounddark2.png') center/cover repeat;
+    padding: 2.4rem;
 }
 h2{
     font-family: 'Poppins', 'Montserrat', 'Arial';

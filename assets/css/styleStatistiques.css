@@ -1,0 +1,165 @@
+.stats-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.stats-header {
+    background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+    text-align: center;
+    padding: 60px 20px;
+    margin-bottom: 40px;
+    border-radius: 20px;
+}
+
+.stats-header h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    color: #2d386d;
+    letter-spacing: 2px;
+}
+
+/* Section graphiques */
+.charts-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.chart-card {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.chart-card h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #2d386d;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.chart-card canvas {
+    max-height: 350px;
+}
+
+/* Section rapports */
+.rapports-section {
+    margin-top: 50px;
+}
+
+.rapports-section h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2d386d;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.rapport-card {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.rapport-card h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #2d386d;
+    margin-bottom: 10px;
+}
+
+.rapport-subtitle {
+    font-size: 1.2rem;
+    color: #64748b;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.rapport-date {
+    font-size: 1rem;
+    color: #94a3b8;
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+.rapport-content {
+    line-height: 1.8;
+    color: #475569;
+    font-size: 1.05rem;
+}
+
+.rapport-content p {
+    margin-bottom: 20px;
+}
+
+.rapport-stats {
+    background: #f8fafc;
+    padding: 25px;
+    border-radius: 12px;
+    border-left: 4px solid #2d386d;
+    margin: 30px 0;
+}
+
+.rapport-stats p strong {
+    color: #2d386d;
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.rapport-stats ul {
+    margin-left: 20px;
+}
+
+.rapport-stats li {
+    margin-bottom: 12px;
+    line-height: 1.6;
+}
+
+.rapport-conclusion {
+    font-weight: 600;
+    color: #2d386d;
+    font-size: 1.1rem;
+    margin-top: 30px;
+}
+
+.rapport-signature {
+    text-align: right;
+    font-style: italic;
+    color: #64748b;
+    margin-top: 40px;
+    font-size: 1.05rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .charts-section {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .stats-header h1 {
+        font-size: 2.2rem;
+    }
+    
+    .chart-card {
+        padding: 20px;
+    }
+    
+    .rapport-card {
+        padding: 25px;
+    }
+    
+    .rapport-card h3 {
+        font-size: 1.5rem;
+    }
+}

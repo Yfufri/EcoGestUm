@@ -14,6 +14,12 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 $action = $_GET['action'] ?? null;
 
 switch($action){
+    case 'evenements':
+        include "controllers/Evenement.php";
+        break;
+    case 'inscription':
+        include "controllers/Inscription.php";
+        break;
     case 'login':
         include "views/Connection.php";
         break;
@@ -27,14 +33,15 @@ switch($action){
         break;
     case 'statistiques':
         include "views/header.php";
-        include "controllers/Stati.php";
+        include "controllers/Statistics.php";
         include "views/footer.php";
         break;
     default:
         include "views/header.php";
         include "controllers/Home.php";
         include "views/footer.php";
+        break;
 }
 
-
+$conn->close();
 ?>

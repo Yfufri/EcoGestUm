@@ -243,19 +243,19 @@ INSERT INTO INSCRIPTION (Id_utilisateur, Id_evenement) VALUES
 
 -- modif web
 
-INSERT INTO IMAGE_EVENEMENT (Id_Image, Url_image, Id_evenement) VALUES
-(1, '', 1),
-(2, '', 2),
-(3, '', 3),
-(4, '', 4),
-(5, '', 5),
-(6, '', 6),
-(7, '', 7),
-(8, '', 8),
-(9, '', 9),
-(10, '', 10),
-(11, '', 11),
-(12, '', 12);
+INSERT INTO `Image_Evenement` (`Id_Image`, `Url_image`, `Id_evenement`) VALUES
+(1, 'assets/images/events/atelier-tri.jpg', 1),
+(2, 'assets/images/events/collecte-info.jpg', 2),
+(3, 'assets/images/events/zero-dechet.jpg', 3),
+(4, 'assets/images/events/recyclage-info.jpg', 4),
+(5, 'assets/images/events/collecte-livres.jpg', 5),
+(6, 'assets/images/events/conference-climat.jpg', 6),
+(7, 'assets/images/events/compostage.jpg', 7),
+(8, 'assets/images/events/visite-centre-tri.jpg', 8),
+(9, 'assets/images/events/competition-eco.jpg', 9),
+(10, 'assets/images/events/exposition.jpg', 10),
+(11, 'assets/images/events/nettoyage-campus.jpg', 11),
+(12, 'assets/images/events/marche-solidaire.jpg', 12);  
 
 
 

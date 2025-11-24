@@ -1,11 +1,12 @@
 <?php
+// filepath: /Applications/MAMP/htdocs/BoukhedraYanis/EcoGestUmAPP/EcoGestUm/controllers/Statistics.php
 
-require "models/gererEquipement.php";
-require "models/gererEvenement.php";
+include "models/gererEquipement.php";
+include "models/gererEvenement.php";
 
-$nbObjetRecycle=getNbObjectRecycled($conn);
-$nbEvenementPasse=getNbPastEvent($conn);
-$nbObjetDisponible=getNbObjectDisponible($conn);
+$nbObjetRecycle = getNbObjectRecycled($conn);
+$nbEvenementPasse = getNbPastEvent($conn);
+$nbObjetDisponible = getNbObjectDisponible($conn);
 
 include "views/Statistics.php";
 ?>
