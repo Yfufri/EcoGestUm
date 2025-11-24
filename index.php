@@ -16,7 +16,7 @@ $mail = $_POST['mail'] ?? null;
 $password = $_POST['password'] ?? null;
 
 if ($mail != null && $password != null) {
-    include "models/gererConnection.php";
+    include "controllers/identification.php";
 }
 
 $action = $_GET['action'] ?? null;
