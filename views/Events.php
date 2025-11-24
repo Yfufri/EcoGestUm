@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="assets/css/style.css">
-<link rel="stylesheet" href="assets/css/styleEvents.css">
+<link rel="stylesheet" href="assets/css/styleEvent.css">
 
 <div class="event-title">
 Evénements
