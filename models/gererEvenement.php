@@ -30,7 +30,7 @@ function getInfoEvent($conn, $id) {
     return $result->fetch_assoc();
 }
 
-// Fonction pour inscrire une personne EXTERNE à un événement
+// Fonction pour inscrire une personne  à un événement
 function inscrirePersonneEvenement($conn, $nom, $prenom, $email, $id_evenement) {
     // Vérifier si l'événement existe
     $stmt = $conn->prepare("SELECT Id_evenement FROM EVENEMENT WHERE Id_evenement = ?");
