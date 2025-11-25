@@ -54,6 +54,7 @@ function addObject($conn, $nom_objet, $desc_objet, $id_categorie_objet, $id_poin
 function consulterObjets(mysqli $conn, $mot_clef = null, $categorie = null, $point_collecte = null)
 {
     $sql = "SELECT 
+                o.Id_objet,
     o.Nom_objet,
     o.Desc_objet,
     c.Nom_categorie_objet,
@@ -173,4 +174,38 @@ function filtrerObjets(mysqli $conn, $categorie = null, $point_collecte = null)
     return $rows;
 }
 
+// Fonction pour récupérer un objet par son ID
+function getObjetById(mysqli $conn, $id_objet) {
+    $sql = "SELECT 
+                OBJET.Id_objet,
+                Nom_objet,
+                Desc_objet,
+                Nom_categorie_objet,
+                Nom_point_de_collecte,
+                Localisation_point_de_collecte,
+                Nom_statut,
+                Nom_utilisateur,
+                Prenom_utilisateur,
+                Url_photo
+            FROM OBJET
+            INNER JOIN CATEGORIE_OBJET ON OBJET.Id_categorie_objet = CATEGORIE_OBJET.Id_categorie_objet
+            INNER JOIN POINT_DE_COLLECTE ON OBJET.Id_point_collecte = POINT_DE_COLLECTE.Id_point_collecte
+            INNER JOIN STATUT ON OBJET.Id_statut = STATUT.Id_statut
+            INNER JOIN UTILISATEUR ON OBJET.Id_utilisateur = UTILISATEUR.Id_utilisateur
+            LEFT JOIN PHOTO ON PHOTO.Id_objet = OBJET.Id_objet
+            WHERE OBJET.Id_objet = ? AND Nom_statut = 'Disponible'
+            LIMIT 1";
+    
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('i', $id_objet);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $objet = $result->fetch_assoc();
+    $stmt->close();
+    
+    return $objet;
+}
+
+
 ?>
+
