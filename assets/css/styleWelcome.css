@@ -1,10 +1,8 @@
 .welcome{
-    background: url('../backgroundlight.png') center/cover repeat;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    background: url('../backgrounddark2.png') center/cover repeat;
     padding: 20px;
     padding-left: 40px;
     font-size: 24px;
     font-family: 'Poppins', sans-serif;
-    color : #282F63;
+    color : #ffffff;
 }

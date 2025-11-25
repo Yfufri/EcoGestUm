@@ -1,12 +1,5 @@
 <?php
 
-function getHistorique($conn)
-{
-    $sql = "SELECT Nom_objet,
-                    Desc_objet,
-                    ";
-}
-
 function getAvailableEquipments($conn)
 {
     $sql = "SELECT Nom_objet,
@@ -138,18 +131,27 @@ function getAllCategories(mysqli $conn)
     return $categories;
 }
 
-// Fonction pour récupérer toutes les ponts de collecte
 function getAllPointsCollecte($conn)
 {
-    $sql = "SELECT Nom_point_de_collecte FROM POINT_DE_COLLECTE";
+    $sql = "SELECT Nom_point_de_collecte, Localisation_point_de_collecte FROM POINT_DE_COLLECTE";
     $result = $conn->query($sql);
+
     $points_collecte = [];
+
     if ($result) {
         while ($row = $result->fetch_assoc()) {
-            $points_collecte[] = $row;
+
+            list($lat, $lng) = explode(',', $row['Localisation_point_de_collecte']);
+
+            $points_collecte[] = [
+                "nom" => $row["Nom_point_de_collecte"],
+                "lat" => floatval($lat),
+                "lng" => floatval($lng)
+            ];
         }
         $result->free();
     }
+
     return $points_collecte;
 }
 
