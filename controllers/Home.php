@@ -17,10 +17,9 @@ function displayStudentTeacherHomePage($conn) {
         include "controllers/welcome.php";
         include "views/Recycle.php";
         include "controllers/HomeStatistics.php";
-        // point de collecte
-        echo "point de collecte";
         include "controllers/BlockScrollerPresentation.php";
         setPresentation('ConseilEco',$conn);
+        include "controllers/AllPointsCollecte.php";
 }
 
 function displayChefDepHomePage($conn) {
