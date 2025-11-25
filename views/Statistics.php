@@ -20,5 +20,5 @@
       <span class="stat-libelle">objets disponibles</span>
     </div>
   </div>
-  <a class="btn" href="#">En savoir plus</a>
+  <a class="btn" href="?action=statistiques">En savoir plus</a>
 </section>

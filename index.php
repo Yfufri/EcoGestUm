@@ -11,9 +11,17 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
 
+
+$mail = $_POST['mail'] ?? null;
+$password = $_POST['password'] ?? null;
+
+if ($mail != null && $password != null) {
+    include "controllers/identification.php";
+}
+
 $action = $_GET['action'] ?? null;
 
-switch($action){
+switch ($action) {
     case 'evenements':
         include "controllers/Evenement.php";
         break;
@@ -21,10 +29,10 @@ switch($action){
         include "controllers/Inscription.php";
         break;
     case 'login':
-        include "views/Connection.php";
+        include "controllers/login.php";
         break;
     case 'logout':
-        include "logout.php";
+        include "controllers/logout.php";
         break;
     case 'politique':
         include "views/header.php";
@@ -35,6 +43,16 @@ switch($action){
         include "views/header.php";
         include "controllers/Statistics.php";
         include "views/footer.php";
+        break;
+    case 'ConseilEco':
+        include 'views/header.php';
+        include 'controllers/BlockScroller.php';
+        include 'views/footer.php';
+        break;
+    case 'historique':
+        include 'views/header.php';
+        include 'controllers/BlockScroller.php';
+        include 'views/footer.php';
         break;
     default:
         include "views/header.php";

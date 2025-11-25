@@ -1,12 +1,5 @@
 <?php
-// filepath: /Applications/MAMP/htdocs/BoukhedraYanis/EcoGestUmAPP/EcoGestUm/controllers/Statistics.php
 
-include "models/gererEquipement.php";
-include "models/gererEvenement.php";
-
-$nbObjetRecycle = getNbObjectRecycled($conn);
-$nbEvenementPasse = getNbPastEvent($conn);
-$nbObjetDisponible = getNbObjectDisponible($conn);
 
 // Données pour le graphique d'évolution
 $evolutionData = [
