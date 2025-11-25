@@ -1,7 +1,7 @@
 @font-face{
     font-family: 'Luciole';
     src: url('../fonts/Luciole-Regular.ttf');
-    font-weight : normal,
+    font-weight : normal;
 }
 
 @font-face{
@@ -18,5 +18,5 @@
 *{
     margin: 0;
     font-family: 'Luciole','Montserrat', 'Arial';
-    overflow-x: hidden;
+    /*overflow-x: hidden;*/
 }

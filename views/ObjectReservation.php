@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
-<div class="container">
+<!--<div class="container">
     <h1>[Objet]</h1>
     <div class="bloc-objet">
         <div class="bloc-img">
@@ -30,44 +30,84 @@
     <div class="carte-emplacement">
         <p class="titre-emplacement">Emplacement&nbsp;:</p>
         <div class="bloc-carte">
-            <!-- Ici l'intégration (iframe, <img> ou composant JS) de ta carte interactive -->
+            Ici l'intégration (iframe, <img> ou composant JS) de ta carte interactive
             <div id="map"></div>
         </div>
     </div>
+</div>-->
 
 
-    <!--<script>
-    // Définis les coordonnées du point central (exemple : Le Mans)
-    var latitude = 48.0086;
-    var longitude = 0.1985;
-    var zoomLevel = 14;
+<div class="header-objet">
+    <a href="index.php?action=ObjectBrowser" class="retour-objets" title="Retour à la liste">
+        <img src="assets/ObjectReservation/image1.png" alt="Retour">
+    </a>
+    <h1><?php echo htmlspecialchars($objet['Nom_objet']); ?></h1>
+    <div class="header-spacer"></div>
+</div>
+<div class="bloc-objet">
+    <div class="bloc-img">
+        <?php
+        $url_photo = !empty($objet['Url_photo']) ? htmlspecialchars($objet['Url_photo']) : 'assets/ObjectBrowser/imageDefautObjectBrowser.png';
+        ?>
+        <img src="<?php echo $url_photo; ?>" alt="<?php echo htmlspecialchars($objet['Nom_objet']); ?>"
+            class="object-img">
+    </div>
+    <div class="object-info">
+        <div class="categorie-object">
+            <p><?php echo htmlspecialchars($objet['Nom_categorie_objet']); ?></p>
+        </div>
+        <div class="proprietaire">
+            <p>Propriétaire : <?php echo htmlspecialchars($objet['Prenom_utilisateur']); ?>
+                <?php echo htmlspecialchars($objet['Nom_utilisateur']); ?></p>
+        </div>
+        <div class="description">
+            <p><?php echo nl2br(htmlspecialchars($objet['Desc_objet'])); ?></p>
+        </div>
+        <button class="btn-reserve">Réserver</button>
+    </div>
+</div>
+<div class="carte-emplacement">
+        <p class="titre-emplacement">Emplacement&nbsp;:</p>
+        <div class="bloc-carte">
+            <!--Ici l'intégration (iframe, <img> ou composant JS) de ta carte interactive-->
+            <div id="map"></div>
+        </div>
+</div>
 
-    // Initialise la carte
-    //alert("Script Leaflet lancé !");
-    var map = L.map('map').setView([latitude, longitude], zoomLevel);
+<?php
+$localisation = $objet['Localisation_point_de_collecte'] ?? '';
+$latitude = $longitude = null;
 
-    // Ajoute OpenStreetMap comme fond
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
+// Test si la chaîne existe et contient une virgule
+if (!empty($localisation) && strpos($localisation, ',') !== false) {
+    list($latitude, $longitude) = explode(',', $localisation);
+}
+?>
 
-    // Ajoute un marqueur
-    L.marker([latitude, longitude]).addTo(map)
-        .bindPopup('Emplacement du Mug !')
-        .openPopup();
-</script>-->
-<script>  
-    document.addEventListener("DOMContentLoaded", function () {
-    var map = L.map('map', {
-        preferCanvas: false
-    }).setView([48.0086, 0.1985], 14);
-    
-    // Essaie avec une autre source de tuiles
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Valeurs par défaut (Le Mans)
+    var mapCenterLat = 48.0086;
+    var mapCenterLng = 0.1985;
+
+    // Test si localisation fournie et valide
+    var hasCoords = <?php echo ($latitude !== null && $longitude !== null && $latitude !== '' && $longitude !== '') ? 'true' : 'false'; ?>;
+    if (hasCoords) {
+        mapCenterLat = <?php echo floatval($latitude); ?>;
+        mapCenterLng = <?php echo floatval($longitude); ?>;
+    }
+
+    var map = L.map('map').setView([mapCenterLat, mapCenterLng], 14);
+
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
-    
-    L.marker([48.0086, 0.1985]).addTo(map).bindPopup('Emplacement du Mug !');
+
+    // Ajoute le marqueur SEULEMENT si coordonnées présentes
+    if (hasCoords) {
+        L.marker([mapCenterLat, mapCenterLng]).addTo(map)
+            .bindPopup('Emplacement de l\'objet !');
+    }
 });
 </script>

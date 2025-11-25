@@ -9,7 +9,7 @@
 
 .bloc-img {
     width: 75%;
-    background: #282B64;
+    background: #282F63;
     margin-left: 0;
     color: #fff;
     padding: 30px;
@@ -41,7 +41,7 @@
     padding:0% 90px;
     width: fit-content;
     border-radius: 10px;
-    font-size: 18px;
+    font-size: 1.5em;
     margin-bottom: 100px;
     color: #fff;
 }
@@ -49,15 +49,15 @@
 .proprietaire {
     font-family:  'Luciole', 'Montserrat', 'Arial';
     text-shadow: 4px 4px 8px rgba(40, 43, 100, 0.3);
-    font-size: 20px;
+    font-size: 1.7em;
     margin-bottom: 70px;
-    color: #282B64;
+    color: #282F63;
 }
 
 .description {
     font-family: 'Luciole', 'Montserrat', 'Arial';
-    font-size: 16px;
-    color: #282B64;
+    font-size: 1.5em;
+    color: #282F63;
 }
 
 .btn-reserve {
@@ -68,7 +68,7 @@
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1.5em;
     margin-top: 25px;
     transition: background 0.2s;
 }
@@ -77,16 +77,37 @@
     background: #c02f3a;
 }
 
+.header-objet {
+    background: url('../backgroundlight.png') center/cover repeat;
+    display: flex;
+    align-items: center; /* centre verticalement les éléments */
+    position: relative;  /* permet à .retour-objets d’être absolument positionné si besoin */
+    margin-bottom: 20px;
+}
+
 h1 {
+    flex:1 1 auto;
     text-align: center;
     font-family: 'Poppins', 'Montserrat', 'Arial';
-    font-weight: normal;
+    font-weight: bold;
+    font-size:3.5rem;
     text-shadow: 4px 4px 8px rgba(40, 43, 100, 0.3);
-    background: url('../backgroundlight.png') center/cover repeat;
-    color: #282B64;
+    color: #282F63;
     margin-bottom: 35px;
     letter-spacing: 1px;
     padding: 15px 0;
+}
+
+.header-spacer {
+    width: 80px;  
+}
+
+.retour-objets img {
+    margin-left: 20px;
+    height: 80px;      
+    display: flex;
+    /*align-items: center;*/
+
 }
 
 #map {
