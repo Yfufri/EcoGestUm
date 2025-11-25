@@ -14,7 +14,7 @@ function setPresentation($type, $conn)
             break;
         case 'historique':
             include_once('models/gererEquipement.php');
-            $objets = consulterAllObjets($conn);
+            $objets = getObjetsByDepartement($conn,$_SESSION['user']["Id_departement"]);
             $objet = $objets[0];
             $titre = "Historique des Opérations";
             $element = [

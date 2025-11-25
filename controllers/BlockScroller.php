@@ -18,7 +18,7 @@ switch ($action) {
         break;
     case 'historique':
         include('models/gererEquipement.php');
-        $objets = consulterAllObjets($conn);
+        $objets = getObjetsByDepartement($conn,$_SESSION['user']["Id_departement"]);
         $titre = "Historique des Opérations";
         $elements = [];
         foreach ($objets as $objet) {

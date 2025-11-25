@@ -65,6 +65,40 @@ function getNouveauPropriétaire($conn, $idObjet){
     return $row;
 }
 
+function getObjetsByDepartement($conn, $idDepartement) {
+    $sql = "SELECT 
+                o.Id_objet,
+                o.Nom_objet,
+                o.Desc_objet,
+                c.Nom_categorie_objet,
+                p.Nom_point_de_collecte,
+                s.Nom_statut,
+                u.Nom_utilisateur,
+                u.Id_departement,
+                o.Date_de_publication,
+                MIN(ph.Url_photo) AS Url_photo
+            FROM OBJET o
+            INNER JOIN CATEGORIE_OBJET c ON o.Id_categorie_objet = c.Id_categorie_objet
+            INNER JOIN POINT_DE_COLLECTE p ON o.Id_point_collecte = p.Id_point_collecte
+            INNER JOIN STATUT s ON o.Id_statut = s.Id_statut
+            INNER JOIN UTILISATEUR u ON o.Id_utilisateur = u.Id_utilisateur
+            LEFT JOIN PHOTO ph ON ph.Id_objet = o.Id_objet
+            WHERE u.Id_departement = ?
+            GROUP BY o.Id_objet, o.Nom_objet, o.Desc_objet, c.Nom_categorie_objet, 
+                     p.Nom_point_de_collecte, s.Nom_statut, u.Nom_utilisateur, 
+                     u.Id_departement, o.Date_de_publication
+            ORDER BY o.Date_de_publication DESC";
+    
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $idDepartement);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+    
+    return $rows;
+}
+
 function consulterAllObjets(mysqli $conn)
 {
     $sql = "SELECT 
@@ -75,6 +109,7 @@ function consulterAllObjets(mysqli $conn)
     p.Nom_point_de_collecte,
     s.Nom_statut,
     u.Nom_utilisateur,
+    u.Id_departement,
     o.Date_de_publication,
     MIN(ph.Url_photo) AS Url_photo
 FROM OBJET o
