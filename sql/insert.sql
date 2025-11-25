@@ -203,20 +203,19 @@ INSERT INTO SIGNALEMENT (Motif_signalement, Date_signalement, Id_objet, Id_utili
 ('Information manquante', '2025-10-20', 25, 28);
 
 -- 13. INSERTION DES ÉVÉNEMENTS 
-INSERT INTO EVENEMENT 
-(Nom_evenement, Localisation_evenement, Date_evenement, Id_categorie_evenement, Id_utilisateur, Description) VALUES
-('Atelier tri selectif', 'Amphi A', '2025-11-05', 1, 16, 'Atelier sur le tri sélectif et bonnes pratiques éco-responsables.'),
-('Collecte de materiel informatique', 'Hall principal', '2025-11-12', 2, 17, 'Collecte de matériels informatiques usagés pour recyclage.'),
-('Sensibilisation zero dechet', 'Salle B12', '2025-11-20', 3, 18, 'Atelier de sensibilisation à la démarche zéro déchet.'),
-('Journee du recyclage departement Info', 'Batiment A', '2025-11-25', 1, 26, 'Action de recyclage avec le département informatique.'),
-('Grande collecte de livres', 'Bibliotheque', '2025-12-01', 2, 27, 'Collecte de livres pour donner une seconde vie aux ouvrages.'),
-('Conference climat', 'Amphi Central', '2025-11-15', 5, 19, 'Conférence sur les enjeux climatiques actuels.'),
-('Formation compostage', 'Jardin universitaire', '2025-11-18', 4, 20, 'Formation pratique au compostage sur site.'),
-('Visite centre de tri', 'Hors campus', '2025-11-22', 6, 28, 'Visite guidée d’un centre de tri des déchets.'),
-('Competition eco-gestes', 'Campus', '2025-12-05', 7, 21, 'Compétition d’éco-gestes avec remise de prix.'),
-('Exposition recyclage artistique', 'Hall principal', '2025-12-10', 8, 29, 'Exposition d’œuvres réalisées à partir de matériaux recyclés.'),
-('Nettoyage campus', 'Campus entier', '2025-11-28', 9, 22, 'Journée collective de nettoyage de l’ensemble du campus.'),
-('Marche solidaire', 'Parking principal', '2025-12-15', 10, 30, 'Marche solidaire au profit d’une cause environnementale.');
+INSERT INTO `EVENEMENT` (`Id_evenement`, `Nom_evenement`, `Localisation_evenement`, `Date_evenement`, `Id_categorie_evenement`, `Id_utilisateur`, `Description`) VALUES
+(1, 'Atelier tri selectif', 'Amphi A - Le Mans', '2026-11-05', 1, 16, 'Atelier sur le tri sélectif et bonnes pratiques éco-responsables.'),
+(2, 'Collecte de materiel informatique', 'Hall principal - Le Mans', '2026-11-12', 2, 17, 'Collecte de matériels informatiques usagés pour recyclage.'),
+(3, 'Sensibilisation zero dechet', 'Salle B12 - Le Mans', '2026-11-20', 3, 18, 'Atelier de sensibilisation à la démarche zéro déchet.'),
+(4, 'Journee du recyclage departement Info', 'Batiment A - Le Mans', '2026-11-25', 1, 26, 'Action de recyclage avec le département informatique.'),
+(5, 'Grande collecte de livres', 'Bibliotheque - Le Mans', '2026-12-01', 2, 27, 'Collecte de livres pour donner une seconde vie aux ouvrages.'),
+(6, 'Conference climat', 'Amphi Central - Laval', '2026-11-15', 5, 19, 'Conférence sur les enjeux climatiques actuels.'),
+(7, 'Formation compostage', 'Jardin universitaire - Laval', '2026-11-18', 4, 20, 'Formation pratique au compostage sur site.'),
+(8, 'Visite centre de tri', 'Hors campus - Laval', '2026-11-22', 6, 28, 'Visite guidée d’un centre de tri des déchets.'),
+(9, 'Competition eco-gestes', 'Campus - Laval', '2026-12-05', 7, 21, 'Compétition d’éco-gestes avec remise de prix.'),
+(10, 'Exposition recyclage artistique', 'Hall principal - Laval', '2026-12-10', 8, 29, 'Exposition d’œuvres réalisées à partir de matériaux recyclés.'),
+(11, 'Nettoyage campus', 'Campus entier - Le Mans', '2026-11-28', 9, 22, 'Journée collective de nettoyage de l’ensemble du campus.'),
+(12, 'Marche solidaire', 'Parking principal - Laval', '2026-12-15', 10, 30, 'Marche solidaire au profit d’une cause environnementale.');
 
 -- 14. INSERTION DES INSCRIPTIONS AUX ÉVÉNEMENTS
 INSERT INTO INSCRIPTION (Id_utilisateur, Id_evenement) VALUES
