@@ -18,22 +18,23 @@ h2{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    padding:0 8% 0 8%;
 }
 
 .btnBS {
     display: inline-block;
-    font-size: 1.6rem;
+    font-size: 2.2rem;
     padding: 1em;
     background-color: #d4451b;
     color: #ffffff;
     text-decoration: none;
     border-radius: 22px;
-    margin: auto;
     border: 2px solid #d4451b;
     transition: background-color 0.5s, color 0.5s, border 0.5s;
-    height : 50px;
-    width : 120px;
     text-align: center;
+    height :min-content;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 .btnBS:hover {
     background: #f7cabc;
@@ -50,7 +51,6 @@ h2{
   display: flex;
   flex-direction: column;
   border-radius: 10px;
-  margin:auto;
 }
 
 .text{

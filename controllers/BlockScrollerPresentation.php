@@ -14,19 +14,19 @@ function setPresentation($type, $conn)
             break;
         case 'historique':
             include_once('models/gererEquipement.php');
-            $objets = consulterObjets($conn);
+            $objets = consulterAllObjets($conn);
             $objet = $objets[0];
             $titre = "Historique des Opérations";
             $element = [
                 "image" => !empty($objet['Url_photo'])
                     ? htmlspecialchars($objet['Url_photo'])
-                    : 'assets/ObjectBrowser/imageDefautObjectBrowser.png',
+                    : 'ObjectBrowser/imageDefautObjectBrowser.png',
 
                 "titre" => $objet['Nom_statut'] == 'Disponible'
                     ? 'Objet Ajouté'
                     : 'Objet Donné',
 
-                "desc" => $objet["Nom_objet"] . "<br>Propriétaire : " . $objet["Nom_utilisateur"]
+                "desc" => $objet["Nom_objet"] . "<br>Propriétaire : " . $objet["Nom_utilisateur"] . "<br>Mise en ligne : " . $objet["Date_de_publication"]
             ];
             break;
         default:

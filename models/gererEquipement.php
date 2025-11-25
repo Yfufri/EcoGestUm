@@ -17,9 +17,7 @@ function getAvailableEquipments($conn)
 
 function getNbObjectRecycled($conn)
 {
-    $sql = "SELECT COUNT(*) AS total_recycles
-            FROM `vue_objets_disponibles`
-            WHERE Nom_Statut NOT LIKE 'Disponible';";
+    $sql = "SELECT COUNT(*) AS total_recycles FROM objet WHERE Id_Statut=2;";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
     return $row['total_recycles'];
@@ -51,16 +49,46 @@ function addObject($conn, $nom_objet, $desc_objet, $id_categorie_objet, $id_poin
         return false;
     }
 }
-function consulterObjets(mysqli $conn, $mot_clef = null, $categorie = null, $point_collecte = null)
+
+function consulterAllObjets(mysqli $conn)
 {
     $sql = "SELECT 
-                o.Id_objet,
+    o.Id_objet,
     o.Nom_objet,
     o.Desc_objet,
     c.Nom_categorie_objet,
     p.Nom_point_de_collecte,
     s.Nom_statut,
     u.Nom_utilisateur,
+    o.Date_de_publication,
+    MIN(ph.Url_photo) AS Url_photo
+FROM OBJET o
+INNER JOIN CATEGORIE_OBJET c ON o.Id_categorie_objet = c.Id_categorie_objet
+INNER JOIN POINT_DE_COLLECTE p ON o.Id_point_collecte = p.Id_point_collecte
+INNER JOIN STATUT s ON o.Id_statut = s.Id_statut
+INNER JOIN UTILISATEUR u ON o.Id_utilisateur = u.Id_utilisateur
+LEFT JOIN PHOTO ph ON ph.Id_objet = o.Id_objet
+GROUP BY o.Id_objet, o.Nom_objet, o.Desc_objet, c.Nom_categorie_objet, p.Nom_point_de_collecte, s.Nom_statut, u.Nom_utilisateur
+ORDER BY o.Date_de_publication DESC;";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+    return $rows;
+}
+
+function consulterObjets(mysqli $conn, $mot_clef = null, $categorie = null, $point_collecte = null)
+{
+    $sql = "SELECT 
+    o.Id_objet,
+    o.Nom_objet,
+    o.Desc_objet,
+    c.Nom_categorie_objet,
+    p.Nom_point_de_collecte,
+    s.Nom_statut,
+    u.Nom_utilisateur,
+    o.Date_de_publication,
     MIN(ph.Url_photo) AS Url_photo
 FROM OBJET o
 INNER JOIN CATEGORIE_OBJET c ON o.Id_categorie_objet = c.Id_categorie_objet
@@ -70,7 +98,7 @@ INNER JOIN UTILISATEUR u ON o.Id_utilisateur = u.Id_utilisateur
 LEFT JOIN PHOTO ph ON ph.Id_objet = o.Id_objet
 WHERE s.Nom_statut = 'Disponible'
 GROUP BY o.Id_objet, o.Nom_objet, o.Desc_objet, c.Nom_categorie_objet, p.Nom_point_de_collecte, s.Nom_statut, u.Nom_utilisateur
-ORDER BY o.Id_objet ASC;";
+ORDER BY o.Date_de_publication DESC;";
 
     $params = [];
     $types = '';
@@ -175,7 +203,8 @@ function filtrerObjets(mysqli $conn, $categorie = null, $point_collecte = null)
 }
 
 // Fonction pour récupérer un objet par son ID
-function getObjetById(mysqli $conn, $id_objet) {
+function getObjetById(mysqli $conn, $id_objet)
+{
     $sql = "SELECT 
                 OBJET.Id_objet,
                 Nom_objet,
@@ -195,17 +224,16 @@ function getObjetById(mysqli $conn, $id_objet) {
             LEFT JOIN PHOTO ON PHOTO.Id_objet = OBJET.Id_objet
             WHERE OBJET.Id_objet = ? AND Nom_statut = 'Disponible'
             LIMIT 1";
-    
+
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('i', $id_objet);
     $stmt->execute();
     $result = $stmt->get_result();
     $objet = $result->fetch_assoc();
     $stmt->close();
-    
+
     return $objet;
 }
 
 
 ?>
-

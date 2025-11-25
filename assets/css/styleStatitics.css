@@ -45,7 +45,7 @@
     margin-bottom: 8px;
 }
 
-.btn {
+.stats .btn {
     display: inline-block;
     padding: 0.7em 2em;
     background: #ffffff;
@@ -56,9 +56,10 @@
     border: 2px solid #ffffff;
     transition: background 0.5s, color 0.5s, border 0.5s;
     margin-bottom: 100px;
+    border-radius: 10px;
 }
 
-.btn:hover {
+.stats .btn:hover {
     background: #f7cabc;
     color: #2d386d;
     border: 2px solid #f47952;

@@ -18,14 +18,20 @@ switch ($action) {
         break;
     case 'historique':
         include('models/gererEquipement.php');
-        $objets = consulterObjets($conn);
+        $objets = consulterAllObjets($conn);
         $titre = "Historique des Opérations";
         $elements = [];
         foreach ($objets as $objet) {
             array_push($elements, [
-                "image" => !empty($objet['Url_photo']) ? 'assets/' . htmlspecialchars($objet['Url_photo']) : 'assets/ObjectBrowser/imageDefautObjectBrowser.png',
-                "titre" => $objet['Nom_statut'] == 'Disponible' ? 'Objet Ajouté' : 'Objet Donné',
-                "desc" => $objet["Nom_objet"] . "<br>Propriétaire : " . $objet["Nom_utilisateur"]
+                "image" => !empty($objet['Url_photo'])
+                    ? htmlspecialchars('assets'.$objet['Url_photo'])
+                    : 'assets/ObjectBrowser/imageDefautObjectBrowser.png',
+
+                "titre" => $objet['Nom_statut'] == 'Disponible'
+                    ? 'Objet Ajouté'
+                    : 'Objet Donné',
+
+                "desc" => $objet["Nom_objet"] . "<br>Propriétaire : " . $objet["Nom_utilisateur"] . "<br>Mise en ligne : " . $objet["Date_de_publication"]
             ]);
         }
         break;
