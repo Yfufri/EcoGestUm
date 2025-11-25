@@ -49,6 +49,21 @@ function addObject($conn, $nom_objet, $desc_objet, $id_categorie_objet, $id_poin
         return false;
     }
 }
+function getNouveauPropriétaire($conn, $idObjet){
+    $sql = "SELECT Date_reservation,reservation.id_utilisateur,Nom_utilisateur,Prenom_utilisateur,Mail_utilisateur FROM objet 
+            INNER JOIN reservation ON objet.Id_objet = reservation.Id_objet 
+            INNER JOIN utilisateur ON utilisateur.Id_utilisateur = reservation.Id_utilisateur 
+            WHERE objet.Id_objet = ?";
+    
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $idObjet);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $stmt->close();
+    
+    return $row;
+}
 
 function consulterAllObjets(mysqli $conn)
 {
