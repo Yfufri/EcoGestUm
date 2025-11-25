@@ -1,5 +1,4 @@
-<link rel="stylesheet" href="../assets/css/style.css">
-<link rel="stylesheet" href="../assets/css/stylePolitiqueDeRecyclage.css">
+<link rel="stylesheet" href="assets/css/stylePolitiqueDeRecyclage.css">
 
 
 <h1>Politique de Recyclage</h1>

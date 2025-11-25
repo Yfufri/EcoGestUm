@@ -1,4 +1,4 @@
 /vendor/
 .env
 index.php
-
+.DS_Store

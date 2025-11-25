@@ -1,5 +1,4 @@
-<link rel="stylesheet" href="assets/css/style.css">
-<link rel="stylesheet" href="assets/css/styleEvents.css">
+<link rel="stylesheet" href="assets/css/styleEvents.css?v=<?= time() ?>">
 
 <div class="event-title">
 Evénements
