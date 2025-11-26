@@ -7,12 +7,13 @@ include "models/gererBaseDeDonnees.php";
 
 $conn = OpenCon();
 
+
 if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
 
 
-$mail = $_POST['mail'] ?? null;
+/*$mail = $_POST['mail'] ?? null;
 $password = $_POST['password'] ?? null;
 
 if ($mail != null && $password != null) {
@@ -62,4 +63,4 @@ switch ($action) {
 }
 
 $conn->close();
-?>
+?>*/
