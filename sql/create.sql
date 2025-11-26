@@ -454,5 +454,4 @@ CREATE TABLE IF NOT EXISTS INSCRIPTION_EXTERNE (
     Id_evenement INT NOT NULL,
     FOREIGN KEY (Id_evenement) REFERENCES EVENEMENT(Id_evenement) ON DELETE CASCADE,
     UNIQUE KEY unique_inscription (Email, Id_evenement)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
+) 

@@ -317,35 +317,100 @@ body {
     color: white;
 }
 
-/* Responsive */
-@media (max-width: 968px) {
-    .evenement-ligne {
-        flex-direction: column;
-        align-items: center;
+/* RESPONSIVE - 768px comme référence */
+@media (max-width: 768px) {
+    /* Bannière */
+    .inscription-banner {
+        padding: 45px 20px;
     }
     
-    .evenement-gauche,
-    .evenement-details {
-        width: 100%;
-        max-width: 600px;
-    }
-}
-
-@media (max-width: 768px) {
     .inscription-banner h1 {
         font-size: 1.6rem;
+        margin-bottom: 12px;
     }
     
     .inscription-banner h2 {
-        font-size: 1.8rem;
+        font-size: 2rem;
     }
     
+    /* Conteneur principal */
     .evenements-conteneur {
         padding: 40px 15px;
     }
     
+    /* Layout en colonne */
+    .evenement-ligne {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+    
+    /* Section gauche */
+    .evenement-gauche {
+        width: 100%;
+    }
+    
+    .evenement-gauche img,
+    .image-placeholder {
+        max-width: 100%;
+        width: 100%;
+    }
+    
+    .image-placeholder {
+        height: 300px;
+        font-size: 4rem;
+    }
+    
+    /* Box info */
+    .event-info-box {
+        padding: 20px;
+    }
+    
+    .event-info-box p {
+        font-size: 0.9rem;
+    }
+    
+    .event-date,
+    .event-location {
+        font-size: 0.85rem;
+    }
+    
+    /* Section droite - Formulaire */
+    .evenement-details {
+        width: 100%;
+    }
+    
     .formulaire-inscription {
         padding: 30px 20px;
+        gap: 18px;
+    }
+    
+    .formulaire-inscription input {
+        padding: 13px 15px;
+        font-size: 0.9rem;
+    }
+    
+    .formulaire-inscription button {
+        padding: 14px;
+        font-size: 0.95rem;
+    }
+    
+    /* Messages */
+    .message-inscription {
+        padding: 16px 18px;
+        gap: 12px;
+    }
+    
+    .message-icon {
+        font-size: 1.6rem;
+    }
+    
+    .message-content strong {
+        font-size: 0.95rem;
+    }
+    
+    .message-content p {
+        font-size: 0.85rem;
     }
 }
 

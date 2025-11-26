@@ -273,29 +273,79 @@ body {
     right: 10px;
 }
 
-/* Responsive */
+/* RESPONSIVE - 768px comme référence */
 @media (max-width: 768px) {
-    .event-header h1 {
-        font-size: 2.2rem;
+    /* Header */
+    .event-header {
+        padding: 40px 20px;
     }
     
+    .event-header h1 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+    
+    /* Barre de recherche */
     .search-container {
         max-width: 90%;
+        padding: 8px 12px;
     }
     
+    .search-input {
+        font-size: 0.9rem;
+    }
+    
+    /* Titres sections */
     .events-section-lemans h2,
     .events-section-laval h2 {
         font-size: 1.4rem;
         margin-left: 30px;
     }
     
+    /* Carousel */
     .events-carousel-container {
-        padding: 0 50px;
+        padding: 0 45px;
     }
     
+    /* Cards événements */
     .event-card {
         min-width: 240px;
         max-width: 240px;
+    }
+    
+    .event-img {
+        height: 110px;
+    }
+    
+    .event-content {
+        padding: 10px 12px;
+    }
+    
+    .event-content h3 {
+        font-size: 0.85rem;
+        min-height: 32px;
+    }
+    
+    .event-desc {
+        font-size: 0.75rem;
+        min-height: 38px;
+    }
+    
+    /* Flèches */
+    .carousel-arrow {
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
+    }
+    
+    /* Menu filtres */
+    .filter-menu h3 {
+        font-size: 1.1rem;
+    }
+    
+    .filter-btn {
+        padding: 8px 16px;
+        font-size: 0.85rem;
     }
 }
 
@@ -319,8 +369,6 @@ body {
     color: #2d386d;
 }
 
-/* ...existing code... */
-
 /* Menu de filtres */
 .filter-menu {
     max-width: 500px;
@@ -339,16 +387,7 @@ body {
     animation: slideDown 0.3s ease-out;
 }
 
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+
 
 .filter-menu h3 {
     font-size: 1rem;
