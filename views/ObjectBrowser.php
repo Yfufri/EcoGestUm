@@ -5,6 +5,7 @@
 <div class="container-objets">
     <div class="barre-recherche">
         <form method="get" action="" class="search-form">
+            <input type="hidden" name="action" value="chercherObjet">
             <div class="input-wrapper">
                 <input type="text" placeholder="Rechercher..." name="search" id="rechercheObjets"
                     value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
@@ -14,11 +15,11 @@
             <button type="submit" class="loupe-btn" title="Rechercher"><img
                     src="assets/ObjectBrowser/image1ObjectBrowser.png" alt="Loupe de recherche"></button>
         </form>
+        <button id="openFilterBtn" class="filter-btn" title="Filtrer">
+            <img src="assets/ObjectBrowser/image2ObjectBrowser.png" alt="Filtrer">
+        </button>
     </div>
 
-    <!-- Bouton Filtrer à placer ici -->
-    <button id="openFilterBtn" class="filter-btn" title="Filtrer"><img
-            src="assets/ObjectBrowser/image2ObjectBrowser.png" alt="Filtrer"></button>
     <!-- Modale Filtre -->
     <div id="filterModal" class="modal" style="display:none;">
         <div class="modal-content">
@@ -26,6 +27,7 @@
             <h2>Filtrer les objets</h2>
 
             <form id="filterForm" method="GET" action="">
+                <input type="hidden" name="action" value="chercherObjet">
                 <label for="categorie">Catégorie :</label>
                 <select name="categorie" id="categorie">
                     <option value="">Toutes</option>
@@ -40,8 +42,8 @@
                 <select name="point_collecte" id="point_collecte">
                     <option value="">Tous</option>
                     <?php foreach ($points_collecte as $point_collecte): ?>
-                        <option value="<?php echo htmlspecialchars($point_collecte['Nom_point_de_collecte']); ?>">
-                            <?php echo htmlspecialchars($point_collecte['Nom_point_de_collecte']); ?>
+                        <option value="<?php echo htmlspecialchars($point_collecte['nom']); ?>">
+                            <?php echo htmlspecialchars($point_collecte['nom']); ?>
                         </option>
                     <?php endforeach; ?>
                 </select>
@@ -86,7 +88,7 @@
             </div>
         <?php else: ?>
             <?php foreach ($objets as $objet): ?>
-                <?php $url_photo = !empty($objet['Url_photo']) ? htmlspecialchars($objet['Url_photo']) : 'assets/ObjectBrowser/imageDefautObjectBrowser.png'; ?>
+                <?php $url_photo = !empty($objet['Url_photo']) ? htmlspecialchars('assets/' . $objet['Url_photo']) : 'assets/ObjectBrowser/imageDefautObjectBrowser.png'; ?>
                 <div class="carte-objet">
                     <img src="<?php echo $url_photo; ?>" alt="Objet">
                     <div class="objet-nom"><?php echo htmlspecialchars($objet['Nom_objet']); ?></div>

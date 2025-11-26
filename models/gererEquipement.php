@@ -146,42 +146,42 @@ INNER JOIN POINT_DE_COLLECTE p ON o.Id_point_collecte = p.Id_point_collecte
 INNER JOIN STATUT s ON o.Id_statut = s.Id_statut
 INNER JOIN UTILISATEUR u ON o.Id_utilisateur = u.Id_utilisateur
 LEFT JOIN PHOTO ph ON ph.Id_objet = o.Id_objet
-WHERE s.Nom_statut = 'Disponible'
-GROUP BY o.Id_objet, o.Nom_objet, o.Desc_objet, c.Nom_categorie_objet, p.Nom_point_de_collecte, s.Nom_statut, u.Nom_utilisateur
-ORDER BY o.Date_de_publication DESC;";
+WHERE s.Nom_statut = 'Disponible'";
 
     $params = [];
     $types = '';
 
     if (!empty($mot_clef)) {
-        $sql .= " AND (Nom_objet LIKE ? OR Desc_objet LIKE ?)";
+        $sql .= " AND (o.Nom_objet LIKE ? OR o.Desc_objet LIKE ?)";
         $mot_clef_param = "%$mot_clef%";
         $params[] = $mot_clef_param;
         $params[] = $mot_clef_param;
         $types .= 'ss';
     }
     if (!empty($categorie)) {
-        $sql .= " AND Nom_categorie_objet LIKE ?";
+        $sql .= " AND c.Nom_categorie_objet LIKE ?";
         $params[] = "%$categorie%";
         $types .= 's';
     }
     if (!empty($point_collecte)) {
-        $sql .= " AND Nom_point_de_collecte LIKE ?";
+        $sql .= " AND p.Nom_point_de_collecte LIKE ?";
         $params[] = "%$point_collecte%";
         $types .= 's';
     }
+
+    $sql .= " GROUP BY o.Id_objet, o.Nom_objet, o.Desc_objet, c.Nom_categorie_objet, p.Nom_point_de_collecte, s.Nom_statut, u.Nom_utilisateur, o.Date_de_publication";
 
     $stmt = $conn->prepare($sql);
     if (!$stmt) {
         die("Erreur de préparation : " . $conn->error);
     }
-    $bind_names = [];
+    
     if (!empty($params)) {
-        $bind_names[] = $types; // le premier argument est la chaîne de types
+        $bind_names = [$types];
         for ($i = 0; $i < count($params); $i++) {
             $bind_name = 'bind' . $i;
             $$bind_name = $params[$i];
-            $bind_names[] = &$$bind_name; // référence
+            $bind_names[] = &$$bind_name;
         }
         call_user_func_array([$stmt, 'bind_param'], $bind_names);
     }
