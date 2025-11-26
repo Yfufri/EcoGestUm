@@ -58,8 +58,6 @@ function addObject($conn, $nom_objet, $desc_objet, $id_categorie_objet, $id_poin
 }
 function getNouveauPropriétaire($conn, $idObjet)
 {
-function getNouveauPropriétaire($conn, $idObjet)
-{
     $sql = "SELECT Date_reservation,reservation.id_utilisateur,Nom_utilisateur,Prenom_utilisateur,Mail_utilisateur FROM objet 
             INNER JOIN reservation ON objet.Id_objet = reservation.Id_objet 
             INNER JOIN utilisateur ON utilisateur.Id_utilisateur = reservation.Id_utilisateur 
@@ -77,8 +75,6 @@ function getNouveauPropriétaire($conn, $idObjet)
     return $row;
 }
 
-function getObjetsByDepartement($conn, $idDepartement)
-{
 function getObjetsByDepartement($conn, $idDepartement)
 {
     $sql = "SELECT 
