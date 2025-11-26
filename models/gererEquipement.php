@@ -24,9 +24,7 @@ function getAvailableEquipments($conn)
 
 function getNbObjectRecycled($conn)
 {
-    $sql = "SELECT COUNT(*) AS total_recycles
-            FROM `vue_objets_disponibles`
-            WHERE Nom_Statut NOT LIKE 'Disponible';";
+    $sql = "SELECT COUNT(*) AS total_recycles FROM objet WHERE Id_Statut=2;";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
     return $row['total_recycles'];
@@ -58,26 +56,105 @@ function addObject($conn, $nom_objet, $desc_objet, $id_categorie_objet, $id_poin
         return false;
     }
 }
+function getNouveauPropriétaire($conn, $idObjet){
+    $sql = "SELECT Date_reservation,reservation.id_utilisateur,Nom_utilisateur,Prenom_utilisateur,Mail_utilisateur FROM objet 
+            INNER JOIN reservation ON objet.Id_objet = reservation.Id_objet 
+            INNER JOIN utilisateur ON utilisateur.Id_utilisateur = reservation.Id_utilisateur 
+            WHERE objet.Id_objet = ?";
+    
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $idObjet);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $stmt->close();
+    
+    return $row;
+}
+
+function getObjetsByDepartement($conn, $idDepartement) {
+    $sql = "SELECT 
+                o.Id_objet,
+                o.Nom_objet,
+                o.Desc_objet,
+                c.Nom_categorie_objet,
+                p.Nom_point_de_collecte,
+                s.Nom_statut,
+                u.Nom_utilisateur,
+                u.Id_departement,
+                o.Date_de_publication,
+                MIN(ph.Url_photo) AS Url_photo
+            FROM OBJET o
+            INNER JOIN CATEGORIE_OBJET c ON o.Id_categorie_objet = c.Id_categorie_objet
+            INNER JOIN POINT_DE_COLLECTE p ON o.Id_point_collecte = p.Id_point_collecte
+            INNER JOIN STATUT s ON o.Id_statut = s.Id_statut
+            INNER JOIN UTILISATEUR u ON o.Id_utilisateur = u.Id_utilisateur
+            LEFT JOIN PHOTO ph ON ph.Id_objet = o.Id_objet
+            WHERE u.Id_departement = ?
+            GROUP BY o.Id_objet, o.Nom_objet, o.Desc_objet, c.Nom_categorie_objet, 
+                     p.Nom_point_de_collecte, s.Nom_statut, u.Nom_utilisateur, 
+                     u.Id_departement, o.Date_de_publication
+            ORDER BY o.Date_de_publication DESC";
+    
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $idDepartement);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+    
+    return $rows;
+}
+
+function consulterAllObjets(mysqli $conn)
+{
+    $sql = "SELECT 
+    o.Id_objet,
+    o.Nom_objet,
+    o.Desc_objet,
+    c.Nom_categorie_objet,
+    p.Nom_point_de_collecte,
+    s.Nom_statut,
+    u.Nom_utilisateur,
+    u.Id_departement,
+    o.Date_de_publication,
+    MIN(ph.Url_photo) AS Url_photo
+FROM OBJET o
+INNER JOIN CATEGORIE_OBJET c ON o.Id_categorie_objet = c.Id_categorie_objet
+INNER JOIN POINT_DE_COLLECTE p ON o.Id_point_collecte = p.Id_point_collecte
+INNER JOIN STATUT s ON o.Id_statut = s.Id_statut
+INNER JOIN UTILISATEUR u ON o.Id_utilisateur = u.Id_utilisateur
+LEFT JOIN PHOTO ph ON ph.Id_objet = o.Id_objet
+GROUP BY o.Id_objet, o.Nom_objet, o.Desc_objet, c.Nom_categorie_objet, p.Nom_point_de_collecte, s.Nom_statut, u.Nom_utilisateur
+ORDER BY o.Date_de_publication DESC;";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+    return $rows;
+}
 
 function consulterObjets(mysqli $conn, $mot_clef = null, $categorie = null, $point_collecte = null)
 {
     // Requête de base, avec WHERE statique
     $sql = "SELECT 
-        o.Id_objet,
-        o.Nom_objet,
-        o.Desc_objet,
-        c.Nom_categorie_objet,
-        p.Nom_point_de_collecte,
-        s.Nom_statut,
-        u.Nom_utilisateur,
-        MIN(ph.Url_photo) AS Url_photo
-    FROM OBJET o
-    INNER JOIN CATEGORIE_OBJET c ON o.Id_categorie_objet = c.Id_categorie_objet
-    INNER JOIN POINT_DE_COLLECTE p ON o.Id_point_collecte = p.Id_point_collecte
-    INNER JOIN STATUT s ON o.Id_statut = s.Id_statut
-    INNER JOIN UTILISATEUR u ON o.Id_utilisateur = u.Id_utilisateur
-    LEFT JOIN PHOTO ph ON ph.Id_objet = o.Id_objet
-    WHERE s.Nom_statut = 'Disponible'";
+    o.Id_objet,
+    o.Nom_objet,
+    o.Desc_objet,
+    c.Nom_categorie_objet,
+    p.Nom_point_de_collecte,
+    s.Nom_statut,
+    u.Nom_utilisateur,
+    o.Date_de_publication,
+    MIN(ph.Url_photo) AS Url_photo
+FROM OBJET o
+INNER JOIN CATEGORIE_OBJET c ON o.Id_categorie_objet = c.Id_categorie_objet
+INNER JOIN POINT_DE_COLLECTE p ON o.Id_point_collecte = p.Id_point_collecte
+INNER JOIN STATUT s ON o.Id_statut = s.Id_statut
+INNER JOIN UTILISATEUR u ON o.Id_utilisateur = u.Id_utilisateur
+LEFT JOIN PHOTO ph ON ph.Id_objet = o.Id_objet
+WHERE s.Nom_statut = 'Disponible'";
 
     $params = [];
     $types = '';
@@ -146,18 +223,27 @@ function getAllCategories(mysqli $conn)
     return $categories;
 }
 
-// Fonction pour récupérer toutes les ponts de collecte
 function getAllPointsCollecte($conn)
 {
-    $sql = "SELECT Nom_point_de_collecte FROM POINT_DE_COLLECTE";
+    $sql = "SELECT Nom_point_de_collecte, Localisation_point_de_collecte FROM POINT_DE_COLLECTE";
     $result = $conn->query($sql);
+
     $points_collecte = [];
+
     if ($result) {
         while ($row = $result->fetch_assoc()) {
-            $points_collecte[] = $row;
+
+            list($lat, $lng) = explode(',', $row['Localisation_point_de_collecte']);
+
+            $points_collecte[] = [
+                "nom" => $row["Nom_point_de_collecte"],
+                "lat" => floatval($lat),
+                "lng" => floatval($lng)
+            ];
         }
         $result->free();
     }
+
     return $points_collecte;
 }
 

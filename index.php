@@ -6,15 +6,13 @@ $dotenv->load();
 include "models/gererBaseDeDonnees.php";
 
 $conn = OpenCon();
-
-
 if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
 
-
-/*$mail = $_POST['mail'] ?? null;
+$mail = $_POST['mail'] ?? null;
 $password = $_POST['password'] ?? null;
+
 
 if ($mail != null && $password != null) {
     include "controllers/identification.php";
@@ -53,6 +51,12 @@ switch ($action) {
     case 'historique':
         include 'views/header.php';
         include 'controllers/BlockScroller.php';
+        include 'views/footer.php';
+        break;
+    case 'chercherObjet':
+    case 'reservation':
+        include 'views/header.php';
+        include 'controllers/ObjectBrowserReservation.php';
         include 'views/footer.php';
         break;
     default:

@@ -5,7 +5,7 @@
 
 
 <div class="header-objet">
-    <a href="index.php?action=ObjectBrowser" class="retour-objets" title="Retour à la liste">
+    <a href="index.php?action=chercherObjet" class="retour-objets" title="Retour à la liste">
         <img src="assets/ObjectReservation/image1.png" alt="Retour">
     </a>
     <h1><?php echo htmlspecialchars($objet['Nom_objet']); ?></h1>

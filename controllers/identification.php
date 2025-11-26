@@ -8,6 +8,8 @@ if (!empty($user)) {
     } else {
         header("Location: index.php?action=login&error=1");
     }
+} else{
+    header("Location: index.php?action=login&error=1");
 }
 
 ?>

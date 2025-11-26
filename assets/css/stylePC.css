@@ -1,0 +1,55 @@
+.points-collecte-container{
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    background: url('../backgrounddark2.png') center/cover repeat;
+    padding-bottom: 20px;
+    padding-top: 40px;
+}
+
+.points-collecte-container h2 {
+    font-size: 2.4rem;
+    margin-bottom: 20px;
+    color: #ffffff;
+    font-weight: 800;
+}
+
+.PCcontent {
+    width: 100%;
+    min-height: 620px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.toggle-buttons {
+    margin-bottom: 15px;
+}
+
+.toggle-buttons button {
+    background: #ffffff;
+    color: #d4451b;
+    text-decoration: none;
+    box-shadow: 0 2px 5px rgba(34, 70, 99, 0.06);
+    border: 2px solid #ffffff;
+    transition: background 0.5s, color 0.5s, border 0.5s;
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.toggle-buttons button:hover {
+    background: #f7cabc;
+    color: #2d386d;
+    border: 2px solid #f47952;
+}
+
+#map {
+    width: 100%;
+    max-width: 1000px;
+    height: 500px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.15);
+}

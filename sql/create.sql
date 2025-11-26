@@ -1,458 +1,180 @@
--- Structure de la table `CATEGORIE_EVENEMENT`
---
+DROP TABLE IF EXISTS INSCRIPTION_EXTERNE;
+DROP TABLE IF EXISTS IMAGE_EVENEMENT;
+DROP TABLE IF EXISTS SIGNALEMENT;
+DROP TABLE IF EXISTS RESERVATION;
+DROP TABLE IF EXISTS PHOTO;
+DROP TABLE IF EXISTS OBJET;
+DROP TABLE IF EXISTS INSCRIPTION;
+DROP TABLE IF EXISTS EVENEMENT;
+DROP TABLE IF EXISTS UTILISATEUR;
+DROP TABLE IF EXISTS DEPARTEMENT;
+DROP TABLE IF EXISTS STATUT;
+DROP TABLE IF EXISTS ROLE;
+DROP TABLE IF EXISTS POINT_DE_COLLECTE;
+DROP TABLE IF EXISTS COMPOSANTE;
+DROP TABLE IF EXISTS CATEGORIE_OBJET;
+DROP TABLE IF EXISTS CATEGORIE_EVENEMENT;
 
-CREATE TABLE `CATEGORIE_EVENEMENT` (
-  `Id_categorie_evenement` int NOT NULL,
-  `Nom_categorie_evenement` varchar(255) DEFAULT NULL,
-  `Desc_categorie_evenement` varchar(500) DEFAULT NULL
-) ;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `CATEGORIE_OBJET`
---
-
-CREATE TABLE `CATEGORIE_OBJET` (
-  `Id_categorie_objet` int NOT NULL,
-  `Nom_categorie_objet` varchar(255) DEFAULT NULL,
-  `Desc_categorie_objet` varchar(500) DEFAULT NULL
-) ;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `COMPOSANTE`
---
-
-CREATE TABLE `COMPOSANTE` (
-  `Id_composante` int NOT NULL,
-  `Nom_composante` varchar(255) DEFAULT NULL
-) ;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `DEPARTEMENT`
---
-
-CREATE TABLE `DEPARTEMENT` (
-  `Id_departement` int NOT NULL,
-  `Nom_departement` varchar(255) DEFAULT NULL,
-  `Id_composante` int NOT NULL
-) ;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `EVENEMENT`
---
-
-CREATE TABLE `EVENEMENT` (
-  `Id_evenement` int NOT NULL,
-  `Nom_evenement` varchar(255) DEFAULT NULL,
-  `Localisation_evenement` varchar(255) DEFAULT NULL,
-  `Date_evenement` date DEFAULT NULL,
-  `Id_categorie_evenement` int NOT NULL,
-  `Id_utilisateur` int NOT NULL,
-  `Description` varchar(255) DEFAULT NULL
-) ;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `INSCRIPTION`
---
-
-CREATE TABLE `INSCRIPTION` (
-  `Id_inscription` int NOT NULL,
-  `Id_utilisateur` int NOT NULL,
-  `Id_evenement` int NOT NULL
-) ;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `OBJET`
---
-
-CREATE TABLE `OBJET` (
-  `Id_objet` int NOT NULL,
-  `Nom_objet` varchar(255) DEFAULT NULL,
-  `Desc_objet` varchar(500) DEFAULT NULL,
-  `Id_utilisateur` int NOT NULL,
-  `Id_categorie_objet` int NOT NULL,
-  `Id_point_collecte` int NOT NULL,
-  `Id_statut` int NOT NULL
+CREATE TABLE CATEGORIE_EVENEMENT (
+Id_categorie_evenement INT NOT NULL AUTO_INCREMENT,
+Nom_categorie_evenement VARCHAR(255) DEFAULT NULL,
+Desc_categorie_evenement VARCHAR(500) DEFAULT NULL,
+PRIMARY KEY (Id_categorie_evenement)
 );
 
--- --------------------------------------------------------
-
---
--- Structure de la table `PHOTO`
---
-
-CREATE TABLE `PHOTO` (
-  `Id_photo` int NOT NULL,
-  `Url_photo` varchar(255) DEFAULT NULL,
-  `Id_objet` int NOT NULL
-) ;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `POINT_DE_COLLECTE`
---
-
-CREATE TABLE `POINT_DE_COLLECTE` (
-  `Id_point_collecte` int NOT NULL,
-  `Nom_point_de_collecte` varchar(255) DEFAULT NULL,
-  `Desc_point_de_collecte` varchar(500) DEFAULT NULL,
-  `Localisation_point_de_collecte` varchar(255) DEFAULT NULL
-) ;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `RESERVATION`
---
-
-CREATE TABLE `RESERVATION` (
-  `Id_reservation` int NOT NULL,
-  `Date_reservation` date DEFAULT NULL,
-  `Id_utilisateur` int NOT NULL,
-  `Id_objet` int NOT NULL
-) ;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `ROLE`
---
-
-CREATE TABLE `ROLE` (
-  `Id_role` int NOT NULL,
-  `Nom_role` varchar(255) DEFAULT NULL
-) ;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `SIGNALEMENT`
---
-
-CREATE TABLE `SIGNALEMENT` (
-  `Id_signalement` int NOT NULL,
-  `Motif_signalement` varchar(500) DEFAULT NULL,
-  `Date_signalement` date DEFAULT NULL,
-  `Id_objet` int NOT NULL,
-  `Id_utilisateur` int NOT NULL
-) ;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `STATUT`
---
-
-CREATE TABLE `STATUT` (
-  `Id_statut` int NOT NULL,
-  `Nom_statut` varchar(255) DEFAULT NULL
-) ;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `UTILISATEUR`
---
-
-CREATE TABLE `UTILISATEUR` (
-  `Id_utilisateur` int NOT NULL,
-  `Nom_utilisateur` varchar(255) DEFAULT NULL,
-  `Prenom_utilisateur` varchar(255) DEFAULT NULL,
-  `Mail_utilisateur` varchar(255) DEFAULT NULL,
-  `Password_utilisateur` varchar(255) DEFAULT NULL,
-  `Id_departement` int NOT NULL,
-  `Id_role` int NOT NULL
+CREATE TABLE CATEGORIE_OBJET (
+Id_categorie_objet INT NOT NULL AUTO_INCREMENT,
+Nom_categorie_objet VARCHAR(255) DEFAULT NULL,
+Desc_categorie_objet VARCHAR(500) DEFAULT NULL,
+PRIMARY KEY (Id_categorie_objet)
 );
 
---
--- Index pour les tables déchargées
---
+CREATE TABLE COMPOSANTE (
+Id_composante INT NOT NULL AUTO_INCREMENT,
+Nom_composante VARCHAR(255) DEFAULT NULL,
+PRIMARY KEY (Id_composante)
+);
 
---
--- Index pour la table `CATEGORIE_EVENEMENT`
---
-ALTER TABLE `CATEGORIE_EVENEMENT`
-  ADD PRIMARY KEY (`Id_categorie_evenement`);
+CREATE TABLE POINT_DE_COLLECTE (
+Id_point_collecte INT NOT NULL AUTO_INCREMENT,
+Nom_point_de_collecte VARCHAR(255) DEFAULT NULL,
+Desc_point_de_collecte VARCHAR(500) DEFAULT NULL,
+Localisation_point_de_collecte VARCHAR(255) DEFAULT NULL,
+PRIMARY KEY (Id_point_collecte)
+);
 
---
--- Index pour la table `CATEGORIE_OBJET`
---
-ALTER TABLE `CATEGORIE_OBJET`
-  ADD PRIMARY KEY (`Id_categorie_objet`);
+CREATE TABLE ROLE (
+Id_role INT NOT NULL AUTO_INCREMENT,
+Nom_role VARCHAR(255) DEFAULT NULL,
+PRIMARY KEY (Id_role)
+);
 
---
--- Index pour la table `COMPOSANTE`
---
-ALTER TABLE `COMPOSANTE`
-  ADD PRIMARY KEY (`Id_composante`);
+CREATE TABLE STATUT (
+Id_statut INT NOT NULL AUTO_INCREMENT,
+Nom_statut VARCHAR(255) DEFAULT NULL,
+PRIMARY KEY (Id_statut)
+);
 
---
--- Index pour la table `DEPARTEMENT`
---
-ALTER TABLE `DEPARTEMENT`
-  ADD PRIMARY KEY (`Id_departement`),
-  ADD KEY `fk_departement_composante` (`Id_composante`);
+CREATE TABLE DEPARTEMENT (
+Id_departement INT NOT NULL AUTO_INCREMENT,
+Nom_departement VARCHAR(255) DEFAULT NULL,
+Id_composante INT NOT NULL,
+PRIMARY KEY (Id_departement),
+KEY fk_departement_composante (Id_composante),
+CONSTRAINT fk_departement_composante FOREIGN KEY (Id_composante) REFERENCES COMPOSANTE (Id_composante)
+);
 
---
--- Index pour la table `EVENEMENT`
---
-ALTER TABLE `EVENEMENT`
-  ADD PRIMARY KEY (`Id_evenement`),
-  ADD KEY `fk_evenement_categorie` (`Id_categorie_evenement`),
-  ADD KEY `fk_evenement_utilisateur` (`Id_utilisateur`);
+CREATE TABLE UTILISATEUR (
+Id_utilisateur INT NOT NULL AUTO_INCREMENT,
+Nom_utilisateur VARCHAR(255) DEFAULT NULL,
+Prenom_utilisateur VARCHAR(255) DEFAULT NULL,
+Mail_utilisateur VARCHAR(255) DEFAULT NULL,
+Password_utilisateur VARCHAR(255) DEFAULT NULL,
+Id_departement INT NOT NULL,
+Id_role INT NOT NULL,
+PRIMARY KEY (Id_utilisateur),
+KEY fk_utilisateur_departement (Id_departement),
+KEY fk_utilisateur_role (Id_role),
+CONSTRAINT fk_utilisateur_departement FOREIGN KEY (Id_departement) REFERENCES DEPARTEMENT (Id_departement),
+CONSTRAINT fk_utilisateur_role FOREIGN KEY (Id_role) REFERENCES ROLE (Id_role)
+);
 
---
--- Index pour la table `INSCRIPTION`
---
-ALTER TABLE `INSCRIPTION`
-  ADD PRIMARY KEY (`Id_inscription`),
-  ADD KEY `fk_inscription_utilisateur` (`Id_utilisateur`),
-  ADD KEY `fk_inscription_evenement` (`Id_evenement`);
+CREATE TABLE EVENEMENT (
+Id_evenement INT NOT NULL AUTO_INCREMENT,
+Nom_evenement VARCHAR(255) DEFAULT NULL,
+Localisation_evenement VARCHAR(255) DEFAULT NULL,
+Date_evenement DATE DEFAULT NULL,
+Id_categorie_evenement INT NOT NULL,
+Id_utilisateur INT NOT NULL,
+Description VARCHAR(255) DEFAULT NULL,
+PRIMARY KEY (Id_evenement),
+KEY fk_evenement_categorie (Id_categorie_evenement),
+KEY fk_evenement_utilisateur (Id_utilisateur),
+CONSTRAINT fk_evenement_categorie FOREIGN KEY (Id_categorie_evenement) REFERENCES CATEGORIE_EVENEMENT (Id_categorie_evenement),
+CONSTRAINT fk_evenement_utilisateur FOREIGN KEY (Id_utilisateur) REFERENCES UTILISATEUR (Id_utilisateur)
+);
 
---
--- Index pour la table `OBJET`
---
-ALTER TABLE `OBJET`
-  ADD PRIMARY KEY (`Id_objet`),
-  ADD KEY `fk_objet_utilisateur` (`Id_utilisateur`),
-  ADD KEY `fk_objet_categorie_objet` (`Id_categorie_objet`),
-  ADD KEY `fk_objet_point_collecte` (`Id_point_collecte`),
-  ADD KEY `fk_objet_statut` (`Id_statut`);
+CREATE TABLE INSCRIPTION (
+Id_inscription INT NOT NULL AUTO_INCREMENT,
+Id_utilisateur INT NOT NULL,
+Id_evenement INT NOT NULL,
+PRIMARY KEY (Id_inscription),
+KEY fk_inscription_utilisateur (Id_utilisateur),
+KEY fk_inscription_evenement (Id_evenement),
+CONSTRAINT fk_inscription_evenement FOREIGN KEY (Id_evenement) REFERENCES EVENEMENT (Id_evenement),
+CONSTRAINT fk_inscription_utilisateur FOREIGN KEY (Id_utilisateur) REFERENCES UTILISATEUR (Id_utilisateur)
+);
 
---
--- Index pour la table `PHOTO`
---
-ALTER TABLE `PHOTO`
-  ADD PRIMARY KEY (`Id_photo`),
-  ADD KEY `fk_photo_objet` (`Id_objet`);
+CREATE TABLE OBJET (
+Id_objet INT NOT NULL AUTO_INCREMENT,
+Nom_objet VARCHAR(255) DEFAULT NULL,
+Desc_objet VARCHAR(500) DEFAULT NULL,
+Id_utilisateur INT NOT NULL,
+Id_categorie_objet INT NOT NULL,
+Id_point_collecte INT NOT NULL,
+Id_statut INT NOT NULL,
+Date_de_publication DATETIME DEFAULT CURRENT_TIMESTAMP,
+PRIMARY KEY (Id_objet),
+KEY fk_objet_utilisateur (Id_utilisateur),
+KEY fk_objet_categorie_objet (Id_categorie_objet),
+KEY fk_objet_point_collecte (Id_point_collecte),
+KEY fk_objet_statut (Id_statut),
+CONSTRAINT fk_objet_categorie_objet FOREIGN KEY (Id_categorie_objet) REFERENCES CATEGORIE_OBJET (Id_categorie_objet),
+CONSTRAINT fk_objet_point_collecte FOREIGN KEY (Id_point_collecte) REFERENCES POINT_DE_COLLECTE (Id_point_collecte),
+CONSTRAINT fk_objet_statut FOREIGN KEY (Id_statut) REFERENCES STATUT (Id_statut),
+CONSTRAINT fk_objet_utilisateur FOREIGN KEY (Id_utilisateur) REFERENCES UTILISATEUR (Id_utilisateur)
+);
 
---
--- Index pour la table `POINT_DE_COLLECTE`
---
-ALTER TABLE `POINT_DE_COLLECTE`
-  ADD PRIMARY KEY (`Id_point_collecte`);
+CREATE TABLE PHOTO (
+Id_photo INT NOT NULL AUTO_INCREMENT,
+Url_photo VARCHAR(255) DEFAULT NULL,
+Id_objet INT NOT NULL,
+PRIMARY KEY (Id_photo),
+KEY fk_photo_objet (Id_objet),
+CONSTRAINT fk_photo_objet FOREIGN KEY (Id_objet) REFERENCES OBJET (Id_objet)
+);
 
---
--- Index pour la table `RESERVATION`
---
-ALTER TABLE `RESERVATION`
-  ADD PRIMARY KEY (`Id_reservation`),
-  ADD KEY `fk_reservation_utilisateur` (`Id_utilisateur`),
-  ADD KEY `fk_reservation_objet` (`Id_objet`);
+CREATE TABLE RESERVATION (
+Id_reservation INT NOT NULL AUTO_INCREMENT,
+Date_reservation DATE DEFAULT NULL,
+Id_utilisateur INT NOT NULL,
+Id_objet INT NOT NULL,
+PRIMARY KEY (Id_reservation),
+KEY fk_reservation_utilisateur (Id_utilisateur),
+KEY fk_reservation_objet (Id_objet),
+CONSTRAINT fk_reservation_objet FOREIGN KEY (Id_objet) REFERENCES OBJET (Id_objet),
+CONSTRAINT fk_reservation_utilisateur FOREIGN KEY (Id_utilisateur) REFERENCES UTILISATEUR (Id_utilisateur)
+);
 
---
--- Index pour la table `ROLE`
---
-ALTER TABLE `ROLE`
-  ADD PRIMARY KEY (`Id_role`);
+CREATE TABLE SIGNALEMENT (
+Id_signalement INT NOT NULL AUTO_INCREMENT,
+Motif_signalement VARCHAR(500) DEFAULT NULL,
+Date_signalement DATE DEFAULT NULL,
+Id_objet INT NOT NULL,
+Id_utilisateur INT NOT NULL,
+PRIMARY KEY (Id_signalement),
+KEY fk_signalement_objet (Id_objet),
+KEY fk_signalement_utilisateur (Id_utilisateur),
+CONSTRAINT fk_signalement_objet FOREIGN KEY (Id_objet) REFERENCES OBJET (Id_objet),
+CONSTRAINT fk_signalement_utilisateur FOREIGN KEY (Id_utilisateur) REFERENCES UTILISATEUR (Id_utilisateur)
+);
 
---
--- Index pour la table `SIGNALEMENT`
---
-ALTER TABLE `SIGNALEMENT`
-  ADD PRIMARY KEY (`Id_signalement`),
-  ADD KEY `fk_signalement_objet` (`Id_objet`),
-  ADD KEY `fk_signalement_utilisateur` (`Id_utilisateur`);
+CREATE TABLE IMAGE_EVENEMENT (
+Id_Image INT NOT NULL AUTO_INCREMENT,
+Url_image VARCHAR(255) DEFAULT NULL,
+Id_evenement INT NOT NULL,
+PRIMARY KEY (Id_Image),
+KEY fk_evenement_objet (Id_evenement),
+CONSTRAINT fk_evenement_objet FOREIGN KEY (Id_evenement) REFERENCES EVENEMENT (Id_evenement)
+);
 
---
--- Index pour la table `STATUT`
---
-ALTER TABLE `STATUT`
-  ADD PRIMARY KEY (`Id_statut`);
-
---
--- Index pour la table `UTILISATEUR`
---
-ALTER TABLE `UTILISATEUR`
-  ADD PRIMARY KEY (`Id_utilisateur`),
-  ADD KEY `fk_utilisateur_departement` (`Id_departement`),
-  ADD KEY `fk_utilisateur_role` (`Id_role`);
-
---
--- AUTO_INCREMENT pour les tables déchargées
---
-
---
--- AUTO_INCREMENT pour la table `CATEGORIE_EVENEMENT`
---
-ALTER TABLE `CATEGORIE_EVENEMENT`
-  MODIFY `Id_categorie_evenement` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `CATEGORIE_OBJET`
---
-ALTER TABLE `CATEGORIE_OBJET`
-  MODIFY `Id_categorie_objet` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `COMPOSANTE`
---
-ALTER TABLE `COMPOSANTE`
-  MODIFY `Id_composante` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `DEPARTEMENT`
---
-ALTER TABLE `DEPARTEMENT`
-  MODIFY `Id_departement` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `EVENEMENT`
---
-ALTER TABLE `EVENEMENT`
-  MODIFY `Id_evenement` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `INSCRIPTION`
---
-ALTER TABLE `INSCRIPTION`
-  MODIFY `Id_inscription` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `OBJET`
---
-ALTER TABLE `OBJET`
-  MODIFY `Id_objet` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `PHOTO`
---
-ALTER TABLE `PHOTO`
-  MODIFY `Id_photo` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `POINT_DE_COLLECTE`
---
-ALTER TABLE `POINT_DE_COLLECTE`
-  MODIFY `Id_point_collecte` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `RESERVATION`
---
-ALTER TABLE `RESERVATION`
-  MODIFY `Id_reservation` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `ROLE`
---
-ALTER TABLE `ROLE`
-  MODIFY `Id_role` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `SIGNALEMENT`
---
-ALTER TABLE `SIGNALEMENT`
-  MODIFY `Id_signalement` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `STATUT`
---
-ALTER TABLE `STATUT`
-  MODIFY `Id_statut` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `UTILISATEUR`
---
-ALTER TABLE `UTILISATEUR`
-  MODIFY `Id_utilisateur` int NOT NULL AUTO_INCREMENT;
-
---
--- Contraintes pour les tables déchargées
---
-
---
--- Contraintes pour la table `DEPARTEMENT`
---
-ALTER TABLE `DEPARTEMENT`
-  ADD CONSTRAINT `fk_departement_composante` FOREIGN KEY (`Id_composante`) REFERENCES `COMPOSANTE` (`Id_composante`);
-
---
--- Contraintes pour la table `EVENEMENT`
---
-ALTER TABLE `EVENEMENT`
-  ADD CONSTRAINT `fk_evenement_categorie` FOREIGN KEY (`Id_categorie_evenement`) REFERENCES `CATEGORIE_EVENEMENT` (`Id_categorie_evenement`),
-  ADD CONSTRAINT `fk_evenement_utilisateur` FOREIGN KEY (`Id_utilisateur`) REFERENCES `UTILISATEUR` (`Id_utilisateur`);
-
---
--- Contraintes pour la table `INSCRIPTION`
---
-ALTER TABLE `INSCRIPTION`
-  ADD CONSTRAINT `fk_inscription_evenement` FOREIGN KEY (`Id_evenement`) REFERENCES `EVENEMENT` (`Id_evenement`),
-  ADD CONSTRAINT `fk_inscription_utilisateur` FOREIGN KEY (`Id_utilisateur`) REFERENCES `UTILISATEUR` (`Id_utilisateur`);
-
---
--- Contraintes pour la table `OBJET`
---
-ALTER TABLE `OBJET`
-  ADD CONSTRAINT `fk_objet_categorie_objet` FOREIGN KEY (`Id_categorie_objet`) REFERENCES `CATEGORIE_OBJET` (`Id_categorie_objet`),
-  ADD CONSTRAINT `fk_objet_point_collecte` FOREIGN KEY (`Id_point_collecte`) REFERENCES `POINT_DE_COLLECTE` (`Id_point_collecte`),
-  ADD CONSTRAINT `fk_objet_statut` FOREIGN KEY (`Id_statut`) REFERENCES `STATUT` (`Id_statut`),
-  ADD CONSTRAINT `fk_objet_utilisateur` FOREIGN KEY (`Id_utilisateur`) REFERENCES `UTILISATEUR` (`Id_utilisateur`);
-
---
--- Contraintes pour la table `PHOTO`
---
-ALTER TABLE `PHOTO`
-  ADD CONSTRAINT `fk_photo_objet` FOREIGN KEY (`Id_objet`) REFERENCES `OBJET` (`Id_objet`);
-
---
--- Contraintes pour la table `RESERVATION`
---
-ALTER TABLE `RESERVATION`
-  ADD CONSTRAINT `fk_reservation_objet` FOREIGN KEY (`Id_objet`) REFERENCES `OBJET` (`Id_objet`),
-  ADD CONSTRAINT `fk_reservation_utilisateur` FOREIGN KEY (`Id_utilisateur`) REFERENCES `UTILISATEUR` (`Id_utilisateur`);
-
---
--- Contraintes pour la table `SIGNALEMENT`
---
-ALTER TABLE `SIGNALEMENT`
-  ADD CONSTRAINT `fk_signalement_objet` FOREIGN KEY (`Id_objet`) REFERENCES `OBJET` (`Id_objet`),
-  ADD CONSTRAINT `fk_signalement_utilisateur` FOREIGN KEY (`Id_utilisateur`) REFERENCES `UTILISATEUR` (`Id_utilisateur`);
-
---
--- Contraintes pour la table `UTILISATEUR`
---
-ALTER TABLE `UTILISATEUR`
-  ADD CONSTRAINT `fk_utilisateur_departement` FOREIGN KEY (`Id_departement`) REFERENCES `DEPARTEMENT` (`Id_departement`),
-  ADD CONSTRAINT `fk_utilisateur_role` FOREIGN KEY (`Id_role`) REFERENCES `ROLE` (`Id_role`);
-COMMIT;
-
-
-
-CREATE TABLE `IMAGE_EVENEMENT` (
-  `Id_Image` int NOT NULL ,
-  `Url_image` varchar(255) DEFAULT NULL,
-  `Id_evenement` int NOT NULL
-) ;
-
-ALTER TABLE `Image_Evenement`
-  ADD PRIMARY KEY (`Id_Image`),
-  ADD KEY `fk_evenement_objet` (`Id_evenement`);
-
-  ALTER TABLE `Image_Evenement`
-  MODIFY `Id_Image` int NOT NULL AUTO_INCREMENT;
-
--- Table pour les inscriptions externes (formulaires inscriptions)
 CREATE TABLE IF NOT EXISTS INSCRIPTION_EXTERNE (
-    Id_inscription_externe INT AUTO_INCREMENT PRIMARY KEY,
-    Nom VARCHAR(100) NOT NULL,
-    Prenom VARCHAR(100) NOT NULL,
-    Email VARCHAR(255) NOT NULL,
-    Date_inscription DATETIME DEFAULT CURRENT_TIMESTAMP,
-    Id_evenement INT NOT NULL,
-    FOREIGN KEY (Id_evenement) REFERENCES EVENEMENT(Id_evenement) ON DELETE CASCADE,
-    UNIQUE KEY unique_inscription (Email, Id_evenement)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
+Id_inscription_externe INT AUTO_INCREMENT PRIMARY KEY,
+Nom VARCHAR(100) NOT NULL,
+Prenom VARCHAR(100) NOT NULL,
+Email VARCHAR(255) NOT NULL,
+Date_inscription DATETIME DEFAULT CURRENT_TIMESTAMP,
+Id_evenement INT NOT NULL,
+FOREIGN KEY (Id_evenement) REFERENCES EVENEMENT(Id_evenement) ON DELETE CASCADE,
+UNIQUE KEY unique_inscription (Email, Id_evenement)
+);

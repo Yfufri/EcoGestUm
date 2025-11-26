@@ -4,9 +4,9 @@ if (isset($_GET["action"])) {
         case "reservation":
             require_once "controllers/ObjectReservation.php";
             break;
-        // tu peux ajouter d'autres cas ici
-        default:
+        case "chercherObjet":
             require_once "controllers/ObjectBrowser.php";
+        default:
             break;
     }
 } else {
