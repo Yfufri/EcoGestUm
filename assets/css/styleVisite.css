@@ -3,7 +3,7 @@
     background: url('../backgrounddark2.png') center/cover repeat;
     padding: 2.4rem;
 }
-h2{
+.visite-title h2{
     font-family: 'Poppins', 'Montserrat', 'Arial';
     font-size: 3rem;
     color: #ffffff;

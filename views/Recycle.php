@@ -7,7 +7,7 @@
         <img src="assets/accueil/image4.png" alt="Recyclage" class="recyclage-img">
         <div class="buttons">
             <a href="?action=chercherObjet" class="btnChercher">Chercher un objet</a>
-            <a href="?action=reservation" class="btnRecycler">Recycler un objet</a>
+            <a href="?action=addObject" class="btnRecycler">Recycler un objet</a>
         </div>
     </div>
 </div>

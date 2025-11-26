@@ -3,7 +3,6 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
-
 <div class="header-objet">
     <a href="index.php?action=chercherObjet" class="retour-objets" title="Retour à la liste">
         <img src="assets/ObjectReservation/image1.png" alt="Retour">
@@ -14,7 +13,7 @@
 <div class="bloc-objet">
     <div class="bloc-img">
         <?php
-        $url_photo = !empty($objet['Url_photo']) ? htmlspecialchars("assets/" . $objet['Url_photo']) : 'assets/ObjectBrowser/imageDefautObjectBrowser.png';
+        $url_photo = !empty($objet['Url_photo']) ? htmlspecialchars('assets/'.$objet['Url_photo']) : 'assets/ObjectBrowser/imageDefautObjectBrowser.png';
         ?>
         <img src="<?php echo $url_photo; ?>" alt="<?php echo htmlspecialchars($objet['Nom_objet']); ?>"
             class="object-img">
