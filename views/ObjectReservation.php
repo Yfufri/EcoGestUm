@@ -3,40 +3,6 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
-<!--<div class="container">
-    <h1>[Objet]</h1>
-    <div class="bloc-objet">
-        <div class="bloc-img">
-            <img src="assets/ObjectBrowser/imageDefautObjectBrowser.png" alt="Mug rouge" class="object-img">
-        </div>
-        <div class="object-info">
-            <div class="categorie-object">
-                <p>Autre</p>
-            </div>
-            <div class="proprietaire">
-                <p>Propriétaire : [Prénom] [Nom]</p>
-            </div>
-            <div class="description">
-                <p>
-                    Cet objet est proposé gratuitement dans le cadre du projet EcoGESTUM.<br>
-                    Il est en très bon état et idéal pour une seconde vie.<br>
-                    N'hésitez pas à consulter sa localisation sur la carte et à contacter le propriétaire pour plus
-                    d'informations ou pour convenir d'un rendez-vous.
-                </p>
-            </div>
-            <button class="btn-reserve">Réserver</button>
-        </div>
-    </div>
-    <div class="carte-emplacement">
-        <p class="titre-emplacement">Emplacement&nbsp;:</p>
-        <div class="bloc-carte">
-            Ici l'intégration (iframe, <img> ou composant JS) de ta carte interactive
-            <div id="map"></div>
-        </div>
-    </div>
-</div>-->
-
-
 <div class="header-objet">
     <a href="index.php?action=chercherObjet" class="retour-objets" title="Retour à la liste">
         <img src="assets/ObjectReservation/image1.png" alt="Retour">
@@ -47,7 +13,7 @@
 <div class="bloc-objet">
     <div class="bloc-img">
         <?php
-        $url_photo = !empty($objet['Url_photo']) ? htmlspecialchars('assets'.$objet['Url_photo']) : 'assets/ObjectBrowser/imageDefautObjectBrowser.png';
+        $url_photo = !empty($objet['Url_photo']) ? htmlspecialchars('assets/'.$objet['Url_photo']) : 'assets/ObjectBrowser/imageDefautObjectBrowser.png';
         ?>
         <img src="<?php echo $url_photo; ?>" alt="<?php echo htmlspecialchars($objet['Nom_objet']); ?>"
             class="object-img">

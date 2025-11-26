@@ -49,23 +49,25 @@ function addObject($conn, $nom_objet, $desc_objet, $id_categorie_objet, $id_poin
         return false;
     }
 }
-function getNouveauPropriétaire($conn, $idObjet){
+function getNouveauPropriétaire($conn, $idObjet)
+{
     $sql = "SELECT Date_reservation,reservation.id_utilisateur,Nom_utilisateur,Prenom_utilisateur,Mail_utilisateur FROM objet 
             INNER JOIN reservation ON objet.Id_objet = reservation.Id_objet 
             INNER JOIN utilisateur ON utilisateur.Id_utilisateur = reservation.Id_utilisateur 
             WHERE objet.Id_objet = ?";
-    
+
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $idObjet);
     $stmt->execute();
     $result = $stmt->get_result();
     $row = $result->fetch_assoc();
     $stmt->close();
-    
+
     return $row;
 }
 
-function getObjetsByDepartement($conn, $idDepartement) {
+function getObjetsByDepartement($conn, $idDepartement)
+{
     $sql = "SELECT 
                 o.Id_objet,
                 o.Nom_objet,
@@ -88,14 +90,14 @@ function getObjetsByDepartement($conn, $idDepartement) {
                      p.Nom_point_de_collecte, s.Nom_statut, u.Nom_utilisateur, 
                      u.Id_departement, o.Date_de_publication
             ORDER BY o.Date_de_publication DESC";
-    
+
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $idDepartement);
     $stmt->execute();
     $result = $stmt->get_result();
     $rows = $result->fetch_all(MYSQLI_ASSOC);
     $stmt->close();
-    
+
     return $rows;
 }
 
@@ -175,7 +177,7 @@ WHERE s.Nom_statut = 'Disponible'";
     if (!$stmt) {
         die("Erreur de préparation : " . $conn->error);
     }
-    
+
     if (!empty($params)) {
         $bind_names = [$types];
         for ($i = 0; $i < count($params); $i++) {
@@ -212,7 +214,7 @@ function getAllCategories(mysqli $conn)
 
 function getAllPointsCollecte($conn)
 {
-    $sql = "SELECT Nom_point_de_collecte, Localisation_point_de_collecte FROM POINT_DE_COLLECTE";
+    $sql = "SELECT * FROM POINT_DE_COLLECTE";
     $result = $conn->query($sql);
 
     $points_collecte = [];
@@ -223,6 +225,7 @@ function getAllPointsCollecte($conn)
             list($lat, $lng) = explode(',', $row['Localisation_point_de_collecte']);
 
             $points_collecte[] = [
+                "id" => $row["Id_point_collecte"],
                 "nom" => $row["Nom_point_de_collecte"],
                 "lat" => floatval($lat),
                 "lng" => floatval($lng)
@@ -232,6 +235,43 @@ function getAllPointsCollecte($conn)
     }
 
     return $points_collecte;
+}
+
+function ajouterObjet($mysqli, $nom, $description, $idUtilisateur, $idCategorie, $idPointCollecte)
+{
+    $sql = "INSERT INTO OBJET (Nom_objet, Desc_objet, Id_utilisateur, Id_categorie_objet, Id_point_collecte, Id_statut) 
+            VALUES (?, ?, ?, ?, ?, 1)";
+
+    $stmt = $mysqli->prepare($sql);
+
+    $stmt->bind_param("ssiii", $nom, $description, $idUtilisateur, $idCategorie, $idPointCollecte);
+
+    if ($stmt->execute()) {
+        $objetId = $mysqli->insert_id;
+        $stmt->close();
+        return $objetId;
+    } else {
+        error_log("Erreur d'exécution : " . $stmt->error);
+        $stmt->close();
+        return null;
+    }
+}
+
+function ajouterImage($mysqli, $idObjet, $urlPhoto)
+{
+    $sql = "INSERT INTO PHOTO (Url_photo, Id_objet) VALUES (?, ?)";
+
+    $stmt = $mysqli->prepare($sql);
+    $stmt->bind_param("si", $urlPhoto, $idObjet);
+
+    if ($stmt->execute()) {
+        $stmt->close();
+        return true;
+    } else {
+        error_log("Erreur d'exécution : " . $stmt->error);
+        $stmt->close();
+        return false;
+    }
 }
 
 function filtrerObjets(mysqli $conn, $categorie = null, $point_collecte = null)

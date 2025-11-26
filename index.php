@@ -53,6 +53,11 @@ switch ($action) {
         include 'controllers/BlockScroller.php';
         include 'views/footer.php';
         break;
+    case 'addObject':
+        include 'views/header.php';
+        include 'controllers/AddObject.php';
+        include 'views/footer.php';
+        break;
     case 'chercherObjet':
     case 'reservation':
         include 'views/header.php';
