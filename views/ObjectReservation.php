@@ -33,10 +33,19 @@
         </div>
         <form method="POST" action="index.php?action=reservation&id=<?= htmlspecialchars($objet['Id_objet']) ?>"
             id="form-reserve">
-            <button type="submit" id="btn-reserve" class="btn-reserve" <?= $reservé ? 'disabled class="clicked"' : '' ?>>
+            <button type="button" id="btn-reserve" class="btn-reserve <?= $reservé ? 'clicked' : '' ?>" <?= $reservé ? 'disabled' : '' ?>>
                 <?= $reservé ? 'Réservé' : 'Réserver' ?>
             </button>
         </form>
+        <!--Modale cachée double check du bouton Réserver-->
+        <div id="confirm-modal" class="modal-overlay">
+            <div class="modal-content">
+                <p>Êtes-vous sûr de vouloir réserver cet objet ?</p>
+                <button id="modal-yes">Oui</button>
+                <button id="modal-no">Non</button>
+            </div>
+        </div>
+
     </div>
 </div>
 <div class="carte-emplacement">
@@ -90,6 +99,31 @@ if (!empty($localisation) && strpos($localisation, ',') !== false) {
 </script>
 
 <!--Script pour la gestion du bouton Réserver-->
+<!-- Modale de confirmation -->
+<script>
+    const modal = document.getElementById('confirm-modal');
+    const btnYes = document.getElementById('modal-yes');
+    const btnNo = document.getElementById('modal-no');
+    const btnReserve = document.getElementById('btn-reserve');
+    const formReserve = document.getElementById('form-reserve');
+
+    btnReserve.addEventListener('click', function () {
+        if (this.disabled) return;
+        modal.classList.add('active');
+    });
+
+    btnNo.addEventListener('click', function () {
+        modal.classList.remove('active');
+    });
+
+    btnYes.addEventListener('click', function () {
+        modal.classList.remove('active');
+        formReserve.submit();
+    });
+
+</script>
+
+<!--Changement visuel du bouton après clic-->
 <script>
     document.getElementById('form-reserve').addEventListener('submit', function () {
         const btn = document.getElementById('btn-reserve');

@@ -56,23 +56,25 @@ function addObject($conn, $nom_objet, $desc_objet, $id_categorie_objet, $id_poin
         return false;
     }
 }
-function getNouveauPropriétaire($conn, $idObjet){
+function getNouveauPropriétaire($conn, $idObjet)
+{
     $sql = "SELECT Date_reservation,reservation.id_utilisateur,Nom_utilisateur,Prenom_utilisateur,Mail_utilisateur FROM objet 
             INNER JOIN reservation ON objet.Id_objet = reservation.Id_objet 
             INNER JOIN utilisateur ON utilisateur.Id_utilisateur = reservation.Id_utilisateur 
             WHERE objet.Id_objet = ?";
-    
+
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $idObjet);
     $stmt->execute();
     $result = $stmt->get_result();
     $row = $result->fetch_assoc();
     $stmt->close();
-    
+
     return $row;
 }
 
-function getObjetsByDepartement($conn, $idDepartement) {
+function getObjetsByDepartement($conn, $idDepartement)
+{
     $sql = "SELECT 
                 o.Id_objet,
                 o.Nom_objet,
@@ -95,14 +97,14 @@ function getObjetsByDepartement($conn, $idDepartement) {
                      p.Nom_point_de_collecte, s.Nom_statut, u.Nom_utilisateur, 
                      u.Id_departement, o.Date_de_publication
             ORDER BY o.Date_de_publication DESC";
-    
+
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $idDepartement);
     $stmt->execute();
     $result = $stmt->get_result();
     $rows = $result->fetch_all(MYSQLI_ASSOC);
     $stmt->close();
-    
+
     return $rows;
 }
 
@@ -135,7 +137,7 @@ ORDER BY o.Date_de_publication DESC;";
     return $rows;
 }
 
-function consulterObjets(mysqli $conn, $mot_clef = null, $categorie = null, $point_collecte = null)
+function consulterObjets(mysqli $conn, $mot_clef = null, $categorie = null, $point_collecte = null, $idUtilisateurConnecte = null)
 {
     // Requête de base, avec WHERE statique
     $sql = "SELECT 
@@ -154,10 +156,16 @@ INNER JOIN POINT_DE_COLLECTE p ON o.Id_point_collecte = p.Id_point_collecte
 INNER JOIN STATUT s ON o.Id_statut = s.Id_statut
 INNER JOIN UTILISATEUR u ON o.Id_utilisateur = u.Id_utilisateur
 LEFT JOIN PHOTO ph ON ph.Id_objet = o.Id_objet
-WHERE s.Nom_statut = 'Disponible'";
+WHERE s.Nom_statut = 'Disponible'" /*AND u.Id_utilisateur<>?*/ ;
 
     $params = [];
     $types = '';
+
+    if ($idUtilisateurConnecte !== null) {
+        $sql .= " AND o.Id_utilisateur <> ?";
+        $params[] = $idUtilisateurConnecte;
+        $types .= 'i'; // entier
+    }
 
     // On ajoute dynamiquement les filtres sous forme d'AND (si renseignés)
     if (!empty($mot_clef)) {
@@ -285,7 +293,7 @@ function getObjetById(mysqli $conn, $id_objet)
             INNER JOIN STATUT ON OBJET.Id_statut = STATUT.Id_statut
             INNER JOIN UTILISATEUR ON OBJET.Id_utilisateur = UTILISATEUR.Id_utilisateur
             LEFT JOIN PHOTO ON PHOTO.Id_objet = OBJET.Id_objet
-            WHERE OBJET.Id_objet = ? AND Nom_statut = 'Disponible'
+            WHERE OBJET.Id_objet = ? 
             LIMIT 1";
 
     $stmt = $conn->prepare($sql);
@@ -298,7 +306,8 @@ function getObjetById(mysqli $conn, $id_objet)
     return $objet;
 }
 
-function reserverObjet(mysqli $conn, int $idUtilisateur, int $idObjet): bool {
+function reserverObjet(mysqli $conn, int $idUtilisateur, int $idObjet): bool
+{
     // Appel de la procédure stockée pour réservation et mise à jour statut
     $stmt = $conn->prepare("CALL ReserverObjetAvecVue(?, ?)");
     if (!$stmt) {
