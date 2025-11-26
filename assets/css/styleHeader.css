@@ -1,8 +1,7 @@
 .header-logo {
-    height: 80px;
+    height: 4vw;
     width: auto;
-    margin-right: 30px;
-    padding-right: 3em;
+
 }
 
 .header-bar {
@@ -59,39 +58,11 @@
 
 }
 
-@media (max-width: 824px) {
-    .header-title {
-        font-size: 0.97rem;
-        margin-right: 8px;
-    }
-
-    .header-bar {
-        padding: 6px 3vw 4px 3vw;
-    }
-
-    .site-nav a {
-        font-size: 0.90rem;
-        padding: 6px 0;
-    }
-
-    .site-nav {
-        height: 30px;
-    }
-
-    .ecogestum-bar {
-        font-size: 0.99rem;
-    }
-}
-
-@media (max-width: 650px) {
+@media (max-width: 768px) {
     .header-bar {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         padding: 7px 2vw 3px 2vw;
-    }
-
-    .header-logo {
-        height: 33px;
     }
 
     .header-title {
@@ -104,15 +75,27 @@
         height: auto;
         flex-direction: column;
         gap: 6px;
-        margin-left: 0;
+        margin: 0;
+        align-self: stretch;
         margin-top: 4px;
     }
 
     .site-nav a {
         padding: 7px 0;
-        font-size: 0.88rem;
+        font-size: 1rem;
         width: 100%;
         margin: 0;
     }
+
+    .ecogestum-bar {
+        font-size: 0.99rem;
+    }
+
+    .header-logo {
+          display: block;
+          align-self: center;
+          float: none;
+          height: 54px;
+     }
 
 }
