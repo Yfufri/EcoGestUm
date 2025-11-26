@@ -6,6 +6,7 @@ $dotenv->load();
 include "models/gererBaseDeDonnees.php";
 
 $conn = OpenCon();
+
 if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
