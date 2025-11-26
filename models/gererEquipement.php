@@ -58,59 +58,66 @@ function addObject($conn, $nom_objet, $desc_objet, $id_categorie_objet, $id_poin
         return false;
     }
 }
+
 function consulterObjets(mysqli $conn, $mot_clef = null, $categorie = null, $point_collecte = null)
 {
+    // Requête de base, avec WHERE statique
     $sql = "SELECT 
-                o.Id_objet,
-    o.Nom_objet,
-    o.Desc_objet,
-    c.Nom_categorie_objet,
-    p.Nom_point_de_collecte,
-    s.Nom_statut,
-    u.Nom_utilisateur,
-    MIN(ph.Url_photo) AS Url_photo
-FROM OBJET o
-INNER JOIN CATEGORIE_OBJET c ON o.Id_categorie_objet = c.Id_categorie_objet
-INNER JOIN POINT_DE_COLLECTE p ON o.Id_point_collecte = p.Id_point_collecte
-INNER JOIN STATUT s ON o.Id_statut = s.Id_statut
-INNER JOIN UTILISATEUR u ON o.Id_utilisateur = u.Id_utilisateur
-LEFT JOIN PHOTO ph ON ph.Id_objet = o.Id_objet
-WHERE s.Nom_statut = 'Disponible'
-GROUP BY o.Id_objet, o.Nom_objet, o.Desc_objet, c.Nom_categorie_objet, p.Nom_point_de_collecte, s.Nom_statut, u.Nom_utilisateur
-ORDER BY o.Id_objet ASC;";
+        o.Id_objet,
+        o.Nom_objet,
+        o.Desc_objet,
+        c.Nom_categorie_objet,
+        p.Nom_point_de_collecte,
+        s.Nom_statut,
+        u.Nom_utilisateur,
+        MIN(ph.Url_photo) AS Url_photo
+    FROM OBJET o
+    INNER JOIN CATEGORIE_OBJET c ON o.Id_categorie_objet = c.Id_categorie_objet
+    INNER JOIN POINT_DE_COLLECTE p ON o.Id_point_collecte = p.Id_point_collecte
+    INNER JOIN STATUT s ON o.Id_statut = s.Id_statut
+    INNER JOIN UTILISATEUR u ON o.Id_utilisateur = u.Id_utilisateur
+    LEFT JOIN PHOTO ph ON ph.Id_objet = o.Id_objet
+    WHERE s.Nom_statut = 'Disponible'";
 
     $params = [];
     $types = '';
 
+    // On ajoute dynamiquement les filtres sous forme d'AND (si renseignés)
     if (!empty($mot_clef)) {
-        $sql .= " AND (Nom_objet LIKE ? OR Desc_objet LIKE ?)";
+        $sql .= " AND (o.Nom_objet LIKE ? OR o.Desc_objet LIKE ?)";
         $mot_clef_param = "%$mot_clef%";
         $params[] = $mot_clef_param;
         $params[] = $mot_clef_param;
         $types .= 'ss';
     }
     if (!empty($categorie)) {
-        $sql .= " AND Nom_categorie_objet LIKE ?";
+        $sql .= " AND c.Nom_categorie_objet LIKE ?";
         $params[] = "%$categorie%";
         $types .= 's';
     }
     if (!empty($point_collecte)) {
-        $sql .= " AND Nom_point_de_collecte LIKE ?";
+        $sql .= " AND p.Nom_point_de_collecte LIKE ?";
         $params[] = "%$point_collecte%";
         $types .= 's';
     }
+
+    // Ajoute GROUP BY et ORDER BY à la fin (jamais avant les filtres)
+    $sql .= " GROUP BY o.Id_objet, o.Nom_objet, o.Desc_objet, c.Nom_categorie_objet, p.Nom_point_de_collecte, s.Nom_statut, u.Nom_utilisateur";
+    $sql .= " ORDER BY o.Id_objet ASC";
 
     $stmt = $conn->prepare($sql);
     if (!$stmt) {
         die("Erreur de préparation : " . $conn->error);
     }
-    $bind_names = [];
+
+    // Bind des paramètres (s'il y en a)
     if (!empty($params)) {
-        $bind_names[] = $types; // le premier argument est la chaîne de types
-        for ($i = 0; $i < count($params); $i++) {
+        $bind_names = [];
+        $bind_names[] = $types;
+        foreach ($params as $i => $value) {
             $bind_name = 'bind' . $i;
-            $$bind_name = $params[$i];
-            $bind_names[] = &$$bind_name; // référence
+            $$bind_name = $value;
+            $bind_names[] = &$$bind_name;
         }
         call_user_func_array([$stmt, 'bind_param'], $bind_names);
     }
@@ -118,11 +125,11 @@ ORDER BY o.Id_objet ASC;";
     $stmt->execute();
     $result = $stmt->get_result();
     $rows = $result->fetch_all(MYSQLI_ASSOC);
-
     $stmt->close();
 
     return $rows;
 }
+
 
 // Fonction pour récupérer toutes les catégories d'objets
 function getAllCategories(mysqli $conn)
@@ -173,7 +180,8 @@ function filtrerObjets(mysqli $conn, $categorie = null, $point_collecte = null)
 }
 
 // Fonction pour récupérer un objet par son ID
-function getObjetById(mysqli $conn, $id_objet) {
+function getObjetById(mysqli $conn, $id_objet)
+{
     $sql = "SELECT 
                 OBJET.Id_objet,
                 Nom_objet,
@@ -193,17 +201,30 @@ function getObjetById(mysqli $conn, $id_objet) {
             LEFT JOIN PHOTO ON PHOTO.Id_objet = OBJET.Id_objet
             WHERE OBJET.Id_objet = ? AND Nom_statut = 'Disponible'
             LIMIT 1";
-    
+
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('i', $id_objet);
     $stmt->execute();
     $result = $stmt->get_result();
     $objet = $result->fetch_assoc();
     $stmt->close();
-    
+
     return $objet;
 }
 
+function reserverObjet(mysqli $conn, int $idUtilisateur, int $idObjet): bool {
+    // Appel de la procédure stockée pour réservation et mise à jour statut
+    $stmt = $conn->prepare("CALL ReserverObjetAvecVue(?, ?)");
+    if (!$stmt) {
+        return false;
+    }
+    $stmt->bind_param('ii', $idUtilisateur, $idObjet);
+    $stmt->execute();
+    $stmt->close();
+
+    // La requête ayant changé les données, il vaut mieux reconnecter pour poursuivre les requêtes simples après procédure
+    $conn->next_result();
+    return true;
+}
 
 ?>
-

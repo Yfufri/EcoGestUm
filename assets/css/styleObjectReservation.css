@@ -38,10 +38,10 @@
     margin: 0 auto;
     background-color: #D4451B;
     font-family: 'Luciole', 'Montserrat', 'Arial';
-    padding:0% 90px;
+    padding:0% 70px;
     width: fit-content;
     border-radius: 10px;
-    font-size: 1.5em;
+    font-size: 1.3em;
     margin-bottom: 100px;
     color: #fff;
 }
@@ -77,6 +77,12 @@
     background: #c02f3a;
 }
 
+.btn-reserve.clicked {
+    background-color: #3cb371;
+    color: white;
+    cursor: default;
+}
+
 .header-objet {
     background: url('../backgroundlight.png') center/cover repeat;
     display: flex;
@@ -108,6 +114,12 @@ h1 {
     display: flex;
     /*align-items: center;*/
 
+}
+
+.retour-objets img:hover {
+    filter: brightness(0.7);   /* ça assombrit un peu pour l'effet clic */
+    transform: scale(1.08);    /* ça agrandit légèrement l'image */
+    cursor: pointer;
 }
 
 #map {

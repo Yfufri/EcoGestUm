@@ -86,7 +86,7 @@
             </div>
         <?php else: ?>
             <?php foreach ($objets as $objet): ?>
-                <?php $url_photo = !empty($objet['Url_photo']) ? htmlspecialchars($objet['Url_photo']) : 'assets/ObjectBrowser/imageDefautObjectBrowser.png'; ?>
+                <?php $url_photo = !empty($objet['Url_photo']) ? htmlspecialchars("assets/".$objet['Url_photo']) : 'assets/ObjectBrowser/imageDefautObjectBrowser.png'; ?>
                 <div class="carte-objet">
                     <img src="<?php echo $url_photo; ?>" alt="Objet">
                     <div class="objet-nom"><?php echo htmlspecialchars($objet['Nom_objet']); ?></div>
