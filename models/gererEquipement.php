@@ -56,8 +56,7 @@ function addObject($conn, $nom_objet, $desc_objet, $id_categorie_objet, $id_poin
         return false;
     }
 }
-function getNouveauPropriétaire($conn, $idObjet)
-{
+
 function getNouveauPropriétaire($conn, $idObjet)
 {
     $sql = "SELECT Date_reservation,reservation.id_utilisateur,Nom_utilisateur,Prenom_utilisateur,Mail_utilisateur FROM objet 
