@@ -169,12 +169,12 @@ CONSTRAINT fk_evenement_objet FOREIGN KEY (Id_evenement) REFERENCES EVENEMENT (I
 );
 
 CREATE TABLE IF NOT EXISTS INSCRIPTION_EXTERNE (
-Id_inscription_externe INT AUTO_INCREMENT PRIMARY KEY,
-Nom VARCHAR(100) NOT NULL,
-Prenom VARCHAR(100) NOT NULL,
-Email VARCHAR(255) NOT NULL,
-Date_inscription DATETIME DEFAULT CURRENT_TIMESTAMP,
-Id_evenement INT NOT NULL,
-FOREIGN KEY (Id_evenement) REFERENCES EVENEMENT(Id_evenement) ON DELETE CASCADE,
-UNIQUE KEY unique_inscription (Email, Id_evenement)
-);
+    Id_inscription_externe INT AUTO_INCREMENT PRIMARY KEY,
+    Nom VARCHAR(100) NOT NULL,
+    Prenom VARCHAR(100) NOT NULL,
+    Email VARCHAR(255) NOT NULL,
+    Date_inscription DATETIME DEFAULT CURRENT_TIMESTAMP,
+    Id_evenement INT NOT NULL,
+    FOREIGN KEY (Id_evenement) REFERENCES EVENEMENT(Id_evenement) ON DELETE CASCADE,
+    UNIQUE KEY unique_inscription (Email, Id_evenement)
+) 

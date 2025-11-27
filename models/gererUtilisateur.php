@@ -23,3 +23,17 @@ function isTeacher($conn, $id_utilisateur)
     $role = getRole($conn, $id_utilisateur);
     return $role === 'Enseignant';
 }
+
+function getMail($conn, $id_utilisateur)
+{
+    $sql = 'SELECT Mail_utilisateur FROM utilisateur WHERE Id_utilisateur = ?;';
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('i', $id_utilisateur);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    if (!$row) {
+        return null;
+    }
+    return $row['Mail_utilisateur'];
+}
