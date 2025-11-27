@@ -45,21 +45,21 @@
     margin-bottom: 8px;
 }
 
-.btn {
+.stats .btn {
     display: inline-block;
     padding: 0.7em 2em;
     background: #ffffff;
     color: #d4451b;
     text-decoration: none;
-    border-radius: 22px;
     box-shadow: 0 2px 5px rgba(34, 70, 99, 0.06);
     margin-top: 1em;
     border: 2px solid #ffffff;
     transition: background 0.5s, color 0.5s, border 0.5s;
     margin-bottom: 100px;
+    border-radius: 10px;
 }
 
-.btn:hover {
+.stats .btn:hover {
     background: #f7cabc;
     color: #2d386d;
     border: 2px solid #f47952;

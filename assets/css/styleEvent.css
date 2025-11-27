@@ -1,32 +1,35 @@
-.visite-title {
+.event-title{
     text-align: center;
-    background: url('../backgrounddark2.png') center/cover repeat;
-    padding: 2.4rem;
-}
-.visite-title h2{
+    background: url('../backgroundlight.png') center/cover repeat;
     font-family: 'Poppins', 'Montserrat', 'Arial';
     font-size: 3rem;
-    color: #ffffff;
+    color: #2d386d;
+    padding: 2.4rem;
 }
-.visites {
+
+.events {
     position: relative;
     width: 100%;
     background: #dbeafe;
     display: flex;
+    align-items: right;
+    justify-content: right;
+    overflow: hidden;
 }
-.visite-img {
+.event-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     position: absolute;
     filter: brightness(0.7);
 }
-.visite-text {
+.event-text {
     position: relative;
     background: rgba(212,69,27,0.6);
     border-radius: 10px;
-    width: 450px;
+    width: 40%;
     top: 60px;
+    left: 60px;
     font-size: 2.6rem;
     color: #ffffff;
     margin-bottom: 100px;
@@ -34,7 +37,7 @@
     padding: 32px 45px;
 
 }
-.visite-text strong {
+.event-text strong {
     font-weight: bold;
     text-transform: uppercase;
 }

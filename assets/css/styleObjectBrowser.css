@@ -238,20 +238,22 @@
     font-weight: 600;
     margin-bottom: 8px;
 }
-.carte-objet button {
+.carte-objet .btn-reserve{
+    display: block;
     margin-top: auto;
     text-align: center;
     padding: 7px 0;
     width: 100%;
     background: #c24121;
-    color: #fff;
+    color: #fff !important;
     font-weight: bold;
     border: none;
     border-radius: 8px;
     cursor: pointer;
+    text-decoration: none !important;
     transition: background 0.15s;
 }
-.carte-objet button:hover {
+.carte-objet .btn-reserve:hover {
     background: #a83210;
 }
 .aucun-objet {

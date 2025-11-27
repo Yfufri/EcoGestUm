@@ -11,12 +11,12 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
 
-
 $mail = $_POST['mail'] ?? null;
 $password = $_POST['password'] ?? null;
 
+
 if ($mail != null && $password != null) {
-    include "models/gererConnection.php";
+    include "controllers/identification.php";
 }
 
 $action = $_GET['action'] ?? null;
@@ -44,6 +44,27 @@ switch ($action) {
         include "controllers/Statistics.php";
         include "views/footer.php";
         break;
+    case 'ConseilEco':
+        include 'views/header.php';
+        include 'controllers/BlockScroller.php';
+        include 'views/footer.php';
+        break;
+    case 'historique':
+        include 'views/header.php';
+        include 'controllers/BlockScroller.php';
+        include 'views/footer.php';
+        break;
+    case 'addObject':
+        include 'views/header.php';
+        include 'controllers/AddObject.php';
+        include 'views/footer.php';
+        break;
+    case 'chercherObjet':
+    case 'reservation':
+        include 'views/header.php';
+        include 'controllers/ObjectBrowserReservation.php';
+        include 'views/footer.php';
+        break;
     default:
         include "views/header.php";
         include "controllers/Home.php";
@@ -52,4 +73,4 @@ switch ($action) {
 }
 
 $conn->close();
-?>
+?>*/

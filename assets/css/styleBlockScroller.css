@@ -1,0 +1,46 @@
+.blockScroller {
+  padding: 20px;
+  background: url('../backgrounddark2.png') center/cover repeat;
+  display: flex;
+  flex-direction: column;
+  gap : 60px;
+  align-content: center;
+    align-items: center;
+}
+
+.blockScroller h2 {
+  font-family: 'Poppins', 'Montserrat', 'Arial';
+  font-size: 3rem;
+  color: white;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.blockItems {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:  space-around;
+  gap : 40px;
+}
+
+.blockItem {
+  background: white;
+  min-width : 360px;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  font-family: 'Poppins', 'Montserrat', 'Arial';
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.text{
+    margin : 10px;
+    font-weight: normal;
+}
+
+.blockItem img {
+  padding : 30px;
+}
+
