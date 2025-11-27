@@ -76,8 +76,7 @@ function getNouveauPropriétaire($conn, $idObjet)
     return $row;
 }
 
-function getObjetsByDepartement($conn, $idDepartement)
-{
+
 function getObjetsByDepartement($conn, $idDepartement)
 {
     $sql = "SELECT 
