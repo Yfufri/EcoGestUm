@@ -22,6 +22,18 @@ if ($mail != null && $password != null) {
 $action = $_GET['action'] ?? null;
 
 switch ($action) {
+    case "reservation":
+        include 'views/header.php';
+        require_once "controllers/ObjectReservation.php";
+        include 'views/footer.php';
+        break;
+    case 'mesObjets':
+    case 'mesReservations':
+    case "chercherObjet":
+        include 'views/header.php';
+        require_once "controllers/ObjectBrowser.php";
+        include 'views/footer.php';
+        break;
     case 'evenements':
         include "controllers/Evenement.php";
         break;
@@ -57,12 +69,6 @@ switch ($action) {
     case 'addObject':
         include 'views/header.php';
         include 'controllers/AddObject.php';
-        include 'views/footer.php';
-        break;
-    case 'chercherObjet':
-    case 'reservation':
-        include 'views/header.php';
-        include 'controllers/ObjectBrowserReservation.php';
         include 'views/footer.php';
         break;
     default:
