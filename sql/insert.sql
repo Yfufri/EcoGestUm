@@ -85,49 +85,49 @@ INSERT INTO DEPARTEMENT (Nom_departement, Id_composante) VALUES
 
 -- 8. INSERTION DES UTILISATEURS 
 -- Étudiants 
-INSERT INTO UTILISATEUR (Nom_utilisateur, Prenom_utilisateur, Mail_utilisateur, Id_departement, Id_role) VALUES
-('Dupont', 'Marie', 'marie.dupont@etu.univ-lemans.fr', 1, 1),
-('Martin', 'Lucas', 'lucas.martin@etu.univ-lemans.fr', 1, 1),
-('Bernard', 'Sophie', 'sophie.bernard@etu.univ-lemans.fr', 2, 1),
-('Petit', 'Thomas', 'thomas.petit@etu.univ-lemans.fr', 3, 1),
-('Dubois', 'Emma', 'emma.dubois@etu.univ-lemans.fr', 4, 1),
-('Leroy', 'Hugo', 'hugo.leroy@etu.univ-lemans.fr', 1, 1),
-('Garnier', 'Lea', 'lea.garnier@etu.univ-lemans.fr', 5, 1),
-('Rousseau', 'Nathan', 'nathan.rousseau@etu.univ-lemans.fr', 6, 1),
-('Blanc', 'Camille', 'camille.blanc@etu.univ-lemans.fr', 7, 1),
-('Girard', 'Alexandre', 'alexandre.girard@etu.univ-lemans.fr', 8, 1),
-('Faure', 'Julie', 'julie.faure@etu.univ-lemans.fr', 9, 1),
-('Andre', 'Maxime', 'maxime.andre@etu.univ-lemans.fr', 10, 1),
-('Mercier', 'Sarah', 'sarah.mercier@etu.univ-lemans.fr', 11, 1),
-('Lemoine', 'Antoine', 'antoine.lemoine@etu.univ-lemans.fr', 12, 1),
-('Mathieu', 'Clara', 'clara.mathieu@etu.univ-lemans.fr', 13, 1);
+INSERT INTO `utilisateur` (`Id_utilisateur`, `Nom_utilisateur`, `Prenom_utilisateur`, `Mail_utilisateur`, `Password_utilisateur`, `Id_departement`, `Id_role`) VALUES
+(1, 'Dupont', 'Marie', 'marie.dupont@etu.univ-lemans.fr', '$2y$10$JprolcAHXLXFqX/Whp7kpufs6dvX/M6pKafAyzRgCEQj3h.J3n7Za', 1, 1),
+(2, 'Martin', 'Lucas', 'lucas.martin@etu.univ-lemans.fr', '$2y$10$0z82Xg8T8UH1W/bDaxmRduLqDHyNivvQoz9mo1UcbB9FVKJWS7QO.', 1, 1),
+(3, 'Bernard', 'Sophie', 'sophie.bernard@etu.univ-lemans.fr', '$2y$10$eoEN4wXLK9/9mlEARaLBUuOi8jM9sVPKmNGaJxzc2PHJbBHzcn1Jq', 2, 1),
+(4, 'Petit', 'Thomas', 'thomas.petit@etu.univ-lemans.fr', '$2y$10$ViTz3c8ZnF.DaUH/eaXdsurDCPZhg5CLMK96uovT5TP7ziLjjAU2K', 3, 1),
+(5, 'Dubois', 'Emma', 'emma.dubois@etu.univ-lemans.fr', '$2y$10$S78zWJpsgczBQO9GX9KVrO3XBrpBQJ5AgViCNsrZcQZXhyE5LDSq.', 4, 1),
+(6, 'Leroy', 'Hugo', 'hugo.leroy@etu.univ-lemans.fr', '$2y$10$tVphVQMnpO.ucdCWXR2CFOSB/pFDErfmqfxawwK5ywgpsXSCUiDWG', 1, 1),
+(7, 'Garnier', 'Lea', 'lea.garnier@etu.univ-lemans.fr', '$2y$10$a/o8CBJS15/MRi/ub/AlPO3UtHEhEspqOVLQZVLlXtNegrNUOMDnO', 5, 1),
+(8, 'Rousseau', 'Nathan', 'nathan.rousseau@etu.univ-lemans.fr', '$2y$10$WbD.miI1i7cM9D5FffEjUO/e1xVrC67iFdexlKRyauCiVp7EwE6ia', 6, 1),
+(9, 'Blanc', 'Camille', 'camille.blanc@etu.univ-lemans.fr', '$2y$10$u/rjNuDS.W7XNypOXlSa.OovPKMDb.lWMKBwLET30/Di0KaLQ5mpq', 7, 1),
+(10, 'Girard', 'Alexandre', 'alexandre.girard@etu.univ-lemans.fr', '$2y$10$aGBDxwbxCaDqD4hlWgVCNO0kgjHg7FDKAi4d95v7f4WvIDy0Y8S16', 8, 1),
+(11, 'Faure', 'Julie', 'julie.faure@etu.univ-lemans.fr', '$2y$10$tj1ij0asGvfNxZ38sdPBiupDwLk/DO6GlyxX0BcoJWObDsuNcljlS', 9, 1),
+(12, 'Andre', 'Maxime', 'maxime.andre@etu.univ-lemans.fr', '$2y$10$zZZSMLJJUsDb7uH/goSyJeQ6O7ASgymD5jbzXY5kY4Kz9AB/ssaha', 10, 1),
+(13, 'Mercier', 'Sarah', 'sarah.mercier@etu.univ-lemans.fr', '$2y$10$4ajkqgSMdr.oXyF17HeDvOh5TNgbkjj5Ai6YVxLKdWfKhoJAnzTXq', 11, 1),
+(14, 'Lemoine', 'Antoine', 'antoine.lemoine@etu.univ-lemans.fr', '$2y$10$2FN6QC0d7g6bOZ3900F0pex3ngXJTaxyqJsQERg4siFcAkHcnM6NG', 12, 1),
+(15, 'Mathieu', 'Clara', 'clara.mathieu@etu.univ-lemans.fr', '$2y$10$uQ2ed4YeqaAuTvNFCp7BQ.foFYq0xHWRMU5kTVC5LZW2MF2SH6SHG', 13, 1);
+
 
 -- Enseignants 
-INSERT INTO UTILISATEUR (Nom_utilisateur, Prenom_utilisateur, Mail_utilisateur, Id_departement, Id_role) VALUES
-('Moreau', 'Pierre', 'pierre.moreau@univ-lemans.fr', 1, 2),
-('Simon', 'Claire', 'claire.simon@univ-lemans.fr', 2, 2),
-('Laurent', 'Jean', 'jean.laurent@univ-lemans.fr', 3, 2),
-('Lefebvre', 'Anne', 'anne.lefebvre@univ-lemans.fr', 4, 2),
-('Michel', 'Francois', 'francois.michel@univ-lemans.fr', 5, 2),
-('Garcia', 'Isabelle', 'isabelle.garcia@univ-lemans.fr', 6, 2),
-('David', 'Laurent', 'laurent.david@univ-lemans.fr', 1, 2),
-('Bertrand', 'Sophie', 'sophie.bertrand@univ-lemans.fr', 2, 2),
-('Robert', 'Michel', 'michel.robert@univ-lemans.fr', 3, 2),
-('Thomas', 'Marie', 'marie.thomas@univ-lemans.fr', 4, 2);
+INSERT INTO `utilisateur` (`Id_utilisateur`, `Nom_utilisateur`, `Prenom_utilisateur`, `Mail_utilisateur`, `Password_utilisateur`, `Id_departement`, `Id_role`) VALUES
+(16, 'Moreau', 'Pierre', 'pierre.moreau@univ-lemans.fr', '$2y$10$am2R7oCf9Q0RKCL.aRJDHO24dVjGUU8KDb3wITCfC0dWwk7j6iGoq', 1, 2),
+(17, 'Simon', 'Claire', 'claire.simon@univ-lemans.fr', '$2y$10$jQqlZ6SJPgk.wM4AFgbvV.SwPN9HF7xGR3DxpOSiWKw7tb1LtJ88C', 2, 2),
+(18, 'Laurent', 'Jean', 'jean.laurent@univ-lemans.fr', '$2y$10$NNsq9etMdcauZaiKYW47VOkmI.irT2MVi3e0NLv7uzhUIwcBovQLC', 3, 2),
+(19, 'Lefebvre', 'Anne', 'anne.lefebvre@univ-lemans.fr', '$2y$10$0/sDP1.32th0OvNJf899lOyqfk9v1mtj9Kri.4AzgTpD6Xre8Fw9.', 4, 2),
+(20, 'Michel', 'Francois', 'francois.michel@univ-lemans.fr', '$2y$10$o2b/0oWMlogzSK9A3NXxmuc9SvqFG7MO.A.fBgGyQg8mWO0rCYWf.', 5, 2),
+(21, 'Garcia', 'Isabelle', 'isabelle.garcia@univ-lemans.fr', '$2y$10$pM34kEs8KyeE3lv7mXzysui9MpwS2g4t5nrgPEj9WRAT0fMTSC2r6', 6, 2),
+(22, 'David', 'Laurent', 'laurent.david@univ-lemans.fr', '$2y$10$XEslBF5j0e7fAuwdGzvdu.YfzLt/5eri.ZOz3Hygpnp9/EZ5L//5e', 1, 2),
+(23, 'Bertrand', 'Sophie', 'sophie.bertrand@univ-lemans.fr', '$2y$10$KPyiQDzEQYJ6QxHWADTkXOavXpv86ju7LentulIDVbHwRK28C26Fy', 2, 2),
+(24, 'Robert', 'Michel', 'michel.robert@univ-lemans.fr', '$2y$10$0Ry2MKjdQ/s7mBi3Q.Q24.8WSFeVG8ROQfVhofv2rmckbG28isUTu', 3, 2),
+(25, 'Thomas', 'Marie', 'marie.thomas@univ-lemans.fr', '$2y$10$cHbqWqPstsuiD0Nut.yec.z3owSprBdjpZkqHtwsYx89vPqgnz19G', 4, 2);
 
 -- Chefs de département
-INSERT INTO UTILISATEUR (Nom_utilisateur, Prenom_utilisateur, Mail_utilisateur, Id_departement, Id_role) VALUES
-('Roux', 'Philippe', 'philippe.roux@univ-lemans.fr', 1, 3),
-('Fournier', 'Isabelle', 'isabelle.fournier@univ-lemans.fr', 2, 3),
-('Girard', 'Marc', 'marc.girard@univ-lemans.fr', 3, 3),
-('Morel', 'Christine', 'christine.morel@univ-lemans.fr', 4, 3),
-('Fontaine', 'Paul', 'paul.fontaine@univ-lemans.fr', 5, 3),
-('Chevalier', 'Valerie', 'valerie.chevalier@univ-lemans.fr', 6, 3),
-('Gautier', 'Jacques', 'jacques.gautier@univ-lemans.fr', 7, 3),
-('Perrin', 'Sylvie', 'sylvie.perrin@univ-lemans.fr', 8, 3),
-('Robin', 'Daniel', 'daniel.robin@univ-lemans.fr', 9, 3),
-('Clement', 'Nathalie', 'nathalie.clement@univ-lemans.fr', 10, 3);
-
+INSERT INTO `utilisateur` (`Id_utilisateur`, `Nom_utilisateur`, `Prenom_utilisateur`, `Mail_utilisateur`, `Password_utilisateur`, `Id_departement`, `Id_role`) VALUES
+(26, 'Roux', 'Philippe', 'philippe.roux@univ-lemans.fr', '$2y$10$FnJMoTdBfk5bk.7AQ4G2lOhmqh5WtVObGUAKru.lEKF0Ya/nxNrfa', 1, 3),
+(27, 'Fournier', 'Isabelle', 'isabelle.fournier@univ-lemans.fr', '$2y$10$9UG/LO///nxI.BTPoND0ku4VrZskqYSjyFWdjJ63YnirFgSgRwcGy', 2, 3),
+(28, 'Girard', 'Marc', 'marc.girard@univ-lemans.fr', '$2y$10$DSV9udE7xHuBdaHaz8dWL.US07.b0nS8Xyq.FeiAkumNcpAEPQ1U6', 3, 3),
+(29, 'Morel', 'Christine', 'christine.morel@univ-lemans.fr', '$2y$10$/SqftTDo/1qMki6HoK08heHrHsTxSK/JZNOWf087uvfvJj39agfCq', 4, 3),
+(30, 'Fontaine', 'Paul', 'paul.fontaine@univ-lemans.fr', '$2y$10$P5BIRKcRj6LpZjZLFaX/xOmcZBjn9L.wK9/lZ7QSAGPBRBx0c.W6S', 5, 3),
+(31, 'Chevalier', 'Valerie', 'valerie.chevalier@univ-lemans.fr', '$2y$10$irbY9yiwAlVufgoSAV.uGufVm6eBRwxPkS14Xy5.KM2RN.2VusXqa', 6, 3),
+(32, 'Gautier', 'Jacques', 'jacques.gautier@univ-lemans.fr', '$2y$10$bUBQbjuu6KzfzuwxGhFq4.ed.oTsqi7mPfKezra3xmVTevKWbt64C', 7, 3),
+(33, 'Perrin', 'Sylvie', 'sylvie.perrin@univ-lemans.fr', '$2y$10$Zkevu6fknHPUx7Hnjy/rgehVnTWJU5.TBnHhcYNkSX6rJS2uymkOW', 8, 3),
+(34, 'Robin', 'Daniel', 'daniel.robin@univ-lemans.fr', '$2y$10$kwAjXnKtuec5XLGmxfNOEu2Z22RQvrfng3HXbNIzBCWwqTepgtkpW', 9, 3),
+(35, 'Clement', 'Nathalie', 'nathalie.clement@univ-lemans.fr', '$2y$10$0aG42LQclggZ6BBy1RePSe4ZEMmq7KiKEAUuV5b.KZJxGsgkW9weG', 10, 3);
 -- 9. INSERTION DES OBJETS 
 INSERT INTO OBJET (Nom_objet, Desc_objet, Id_utilisateur, Id_categorie_objet, Id_point_collecte, Id_statut, Date_de_publication) VALUES
 ('Livre Java avance', 'Livre de programmation Java en bon etat', 1, 1, 1, 2, '2025-10-15'),
@@ -203,20 +203,19 @@ INSERT INTO SIGNALEMENT (Motif_signalement, Date_signalement, Id_objet, Id_utili
 ('Information manquante', '2025-10-20', 25, 28);
 
 -- 13. INSERTION DES ÉVÉNEMENTS 
-INSERT INTO EVENEMENT 
-(Nom_evenement, Localisation_evenement, Date_evenement, Id_categorie_evenement, Id_utilisateur, Description) VALUES
-('Atelier tri selectif', 'Amphi A', '2025-11-05', 1, 16, 'Atelier sur le tri sélectif et bonnes pratiques éco-responsables.'),
-('Collecte de materiel informatique', 'Hall principal', '2025-11-12', 2, 17, 'Collecte de matériels informatiques usagés pour recyclage.'),
-('Sensibilisation zero dechet', 'Salle B12', '2025-11-20', 3, 18, 'Atelier de sensibilisation à la démarche zéro déchet.'),
-('Journee du recyclage departement Info', 'Batiment A', '2025-11-25', 1, 26, 'Action de recyclage avec le département informatique.'),
-('Grande collecte de livres', 'Bibliotheque', '2025-12-01', 2, 27, 'Collecte de livres pour donner une seconde vie aux ouvrages.'),
-('Conference climat', 'Amphi Central', '2025-11-15', 5, 19, 'Conférence sur les enjeux climatiques actuels.'),
-('Formation compostage', 'Jardin universitaire', '2025-11-18', 4, 20, 'Formation pratique au compostage sur site.'),
-('Visite centre de tri', 'Hors campus', '2025-11-22', 6, 28, 'Visite guidée d’un centre de tri des déchets.'),
-('Competition eco-gestes', 'Campus', '2025-12-05', 7, 21, 'Compétition d’éco-gestes avec remise de prix.'),
-('Exposition recyclage artistique', 'Hall principal', '2025-12-10', 8, 29, 'Exposition d’œuvres réalisées à partir de matériaux recyclés.'),
-('Nettoyage campus', 'Campus entier', '2025-11-28', 9, 22, 'Journée collective de nettoyage de l’ensemble du campus.'),
-('Marche solidaire', 'Parking principal', '2025-12-15', 10, 30, 'Marche solidaire au profit d’une cause environnementale.');
+INSERT INTO `EVENEMENT` (`Id_evenement`, `Nom_evenement`, `Localisation_evenement`, `Date_evenement`, `Id_categorie_evenement`, `Id_utilisateur`, `Description`) VALUES
+(1, 'Atelier tri selectif', 'Amphi A - Le Mans', '2026-11-05', 1, 16, 'Atelier sur le tri sélectif et bonnes pratiques éco-responsables.'),
+(2, 'Collecte de materiel informatique', 'Hall principal - Le Mans', '2026-11-12', 2, 17, 'Collecte de matériels informatiques usagés pour recyclage.'),
+(3, 'Sensibilisation zero dechet', 'Salle B12 - Le Mans', '2026-11-20', 3, 18, 'Atelier de sensibilisation à la démarche zéro déchet.'),
+(4, 'Journee du recyclage departement Info', 'Batiment A - Le Mans', '2026-11-25', 1, 26, 'Action de recyclage avec le département informatique.'),
+(5, 'Grande collecte de livres', 'Bibliotheque - Le Mans', '2026-12-01', 2, 27, 'Collecte de livres pour donner une seconde vie aux ouvrages.'),
+(6, 'Conference climat', 'Amphi Central - Laval', '2026-11-15', 5, 19, 'Conférence sur les enjeux climatiques actuels.'),
+(7, 'Formation compostage', 'Jardin universitaire - Laval', '2026-11-18', 4, 20, 'Formation pratique au compostage sur site.'),
+(8, 'Visite centre de tri', 'Hors campus - Laval', '2026-11-22', 6, 28, 'Visite guidée d’un centre de tri des déchets.'),
+(9, 'Competition eco-gestes', 'Campus - Laval', '2026-12-05', 7, 21, 'Compétition d’éco-gestes avec remise de prix.'),
+(10, 'Exposition recyclage artistique', 'Hall principal - Laval', '2026-12-10', 8, 29, 'Exposition d’œuvres réalisées à partir de matériaux recyclés.'),
+(11, 'Nettoyage campus', 'Campus entier - Le Mans', '2026-11-28', 9, 22, 'Journée collective de nettoyage de l’ensemble du campus.'),
+(12, 'Marche solidaire', 'Parking principal - Laval', '2026-12-15', 10, 30, 'Marche solidaire au profit d’une cause environnementale.');
 
 -- 14. INSERTION DES INSCRIPTIONS AUX ÉVÉNEMENTS
 INSERT INTO INSCRIPTION (Id_utilisateur, Id_evenement) VALUES

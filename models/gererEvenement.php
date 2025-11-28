@@ -63,46 +63,35 @@ function inscrirePersonneEvenement($conn, $nom, $prenom, $email, $id_evenement) 
     }
 }
 
-$evenementsAVenir = [];
-$evenementsPasses = [];
+// Sépare les événements par localisation (Le Mans et Laval)
+$evenementsLeMans = [];
+$evenementsLaval = [];
 
 $today = date('Y-m-d');
 
-// Événements à venir
-$sqlAVenir = "SELECT e.Id_evenement, e.Nom_evenement, e.Description, 
-              e.Localisation_evenement, e.Date_evenement, e.Id_categorie_evenement, 
-              e.Id_utilisateur, 
-              (SELECT Url_image FROM IMAGE_EVENEMENT WHERE Id_evenement = e.Id_evenement LIMIT 1) as Url_image
-              FROM Evenement e 
-              WHERE e.Date_evenement >= ?
-              ORDER BY e.Date_evenement ASC";
-$stmt = $conn->prepare($sqlAVenir);
-$stmt->bind_param("s", $today);
-$stmt->execute();
-$resultAVenir = $stmt->get_result();
-while ($event = $resultAVenir->fetch_assoc()) {
-    $evenementsAVenir[] = $event;
-}
-
-// Événements passés
-$sqlPasses = "SELECT e.Id_evenement, e.Nom_evenement, e.Description, 
-              e.Localisation_evenement, e.Date_evenement, e.Id_categorie_evenement, 
-              e.Id_utilisateur, 
-              (SELECT Url_image FROM IMAGE_EVENEMENT WHERE Id_evenement = e.Id_evenement LIMIT 1) as Url_image
-              FROM Evenement e 
-              WHERE e.Date_evenement < ?
-              ORDER BY e.Date_evenement DESC";
-$stmtP = $conn->prepare($sqlPasses);
-$stmtP->bind_param("s", $today);
-$stmtP->execute();
-$resultP = $stmtP->get_result();
-while ($event = $resultP->fetch_assoc()) {
-    $evenementsPasses[] = $event;
+// Récupère tous les événements avec leur image (LEFT JOIN car certains événements peuvent ne pas avoir d'image)
+$sql = "SELECT e.Id_evenement, e.Nom_evenement, e.Description, 
+        e.Date_evenement, e.Localisation_evenement,
+        e.Id_categorie_evenement,
+        i.Url_image
+        FROM EVENEMENT e
+        LEFT JOIN IMAGE_EVENEMENT i ON e.Id_evenement = i.Id_evenement
+        ORDER BY e.Date_evenement ASC";
+$result = $conn->query($sql);
+// Trie les événements selon leur localisation
+while ($event = $result->fetch_assoc()) {
+    $localisation = strtolower($event['Localisation_evenement']);
+    
+    // Vérifie si l'événement est à Le Mans ou Laval
+    if (strpos($localisation, 'le mans') !== false) {
+        $evenementsLeMans[] = $event;
+    } elseif (strpos($localisation, 'laval') !== false) {
+        $evenementsLaval[] = $event;
+    }
 }
 
 // Page inscription
 if (isset($_GET['id'])) {
-    include_once __DIR__ . '/../models/gererEvenement.php';
     $evenement = getInfoEvent($conn, $_GET['id']);
 }
 ?>

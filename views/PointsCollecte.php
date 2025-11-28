@@ -1,8 +1,9 @@
-
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/css/stylePC.css">
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet-search/dist/leaflet-search.min.css" />
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-search/dist/leaflet-search.min.js"></script>
 
 
 <div class="points-collecte-container">
@@ -19,6 +20,7 @@
 
 
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-search/dist/leaflet-search.min.js"></script>
 
 <script>
     let points = <?php echo json_encode($points); ?>;
@@ -29,14 +31,44 @@
         attribution: '© OpenStreetMap contributors'
     }).addTo(map);
 
+    // Créer un groupe de marqueurs pour la recherche
+    let markersLayer = new L.LayerGroup();
+    map.addLayer(markersLayer);
+
+    // Ajouter les marqueurs avec leurs noms
     points.forEach(p => {
-        L.marker([p.lat, p.lng]).bindPopup(p.nom).addTo(map);
+        let marker = L.marker([p.lat, p.lng], {
+            title: p.nom
+        }).bindPopup(p.nom);
+        markersLayer.addLayer(marker);
     });
 
-    function showMans() {
-        map.setView([48.00, 0.20], 12);  // ou map.flyTo([...], 12);
-    }
-    function showLaval() {
-        map.setView([48.07, -0.77], 12); // ou map.flyTo([...], 12);
-    }
+    // Ajouter le contrôle de recherche
+    let searchControl = new L.Control.Search({
+        layer: markersLayer,
+        propertyName: 'title',
+        marker: false,
+        moveToLocation: function(latlng, title, map) {
+            map.setView(latlng, 18);  // Zoom augmenté de 16 → 18
+        },
+        textPlaceholder: 'Rechercher un point de collecte...',
+        textErr: 'Point non trouvé',
+        textCancel: 'Annuler',
+        initial: false,
+        zoom: 18,  // Zoom de 16 → 18
+        autoCollapse: true,
+        autoType: false,
+        minLength: 2
+    });
+
+    map.addControl(searchControl);
+
+ function showMans() {
+    // Université du Mans
+    map.setView([48.01698, 0.1616], 16); 
+}
+    
+function showLaval() {
+    // Campus universitaire de Laval
+    map.setView([48.0866, -0.75796], 16); 
 </script>
