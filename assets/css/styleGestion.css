@@ -25,6 +25,8 @@
 
 .gestion img{
     border-radius: 2rem;
+    height: 260px;
+    width: auto;
 }
 
 .gestion .btnMesObjets {
