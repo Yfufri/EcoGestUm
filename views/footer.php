@@ -7,7 +7,7 @@
     <div class="acess">
         <p>Accès rapides</p>
         <div class="links">
-            <a href="https://mon-ent-etudiant.univ-lemans.fr/fr/index.html">Site de l'université</a>
+            <a href="https://www.univ-lemans.fr">Site de l'université</a>
             <a href="?action=politique">Notre politique de recyclage</a>
             <a href="?action=evenements">Nos événements</a>
             <?php if (!empty($_SESSION['user'])): ?>

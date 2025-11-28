@@ -73,4 +73,4 @@ switch ($action) {
 }
 
 $conn->close();
-?>*/
+?>  

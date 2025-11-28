@@ -388,4 +388,18 @@ function getObjetReserve($conn, $idUtilisateur){
     return $rows;
 }
 
+function getObjetUtilisateur($conn, $idUtilisateur){
+    $sql = "SELECT objet.Nom_objet,objet.Desc_objet FROM objet
+	WHERE objet.Id_utilisateur= ?
+    ORDER BY objet.Date_de_publication DESC;";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $idUtilisateur);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+
+    return $rows;
+
+}
 ?>
