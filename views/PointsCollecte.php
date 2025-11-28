@@ -63,11 +63,13 @@
 
     map.addControl(searchControl);
 
-    function showMans() {
-        map.setView([48.0061, 0.1996], 16);
-    }
+ function showMans() {
+    // Université du Mans
+    map.setView([48.01698, 0.1616], 16); // zoom plus proche
+}
     
-    function showLaval() {
-        map.setView([47.478975, -0.603438], 16);
-    }
+function showLaval() {
+    // Campus universitaire de Laval
+    map.setView([48.0866, -0.75796], 16); // ajuste le zoom (16–17) selon ce que tu préfères
+}
 </script>
