@@ -7,7 +7,6 @@ function openCon() {
         $_ENV["DB_USER"],
         $_ENV["DB_PASSWORD"], 
         $_ENV["DB_NAME"],
-        (int)$_ENV["DB_PORT"]  // ← AJOUT DU PORT
     );
 
     if ($conn->connect_error) {

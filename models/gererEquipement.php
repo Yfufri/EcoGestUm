@@ -366,6 +366,28 @@ function reserverObjet(mysqli $conn, int $idUtilisateur, int $idObjet): bool
     return true;
 }
 
+function getObjetReserve($conn, $idUtilisateur){
+    $sql = "SELECT objet.Nom_objet,utilisateur.Prenom_utilisateur,utilisateur.Nom_utilisateur,point_de_collecte.Nom_point_de_collecte FROM reservation
+        INNER JOIN objet
+        	ON objet.Id_objet=reservation.Id_objet
+        INNER JOIN utilisateur -- proprietaire
+        	ON objet.Id_utilisateur = utilisateur.Id_utilisateur
+        INNER JOIN point_de_collecte
+        	ON objet.Id_point_collecte=point_de_collecte.Id_point_collecte
+        WHERE reservation.Id_utilisateur= ?
+        ORDER BY reservatio  n.Date_reservation ASC";
+
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $idUtilisateur);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+
+    return $rows;
+}
+
 function getPhotosByObjet(mysqli $conn, int $idObjet): array {
     $sql = "SELECT Url_photo FROM PHOTO WHERE Id_objet = ? ORDER BY Url_photo";
     $stmt = $conn->prepare($sql);
