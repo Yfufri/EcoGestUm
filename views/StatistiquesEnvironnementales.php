@@ -11,12 +11,12 @@
     <!-- Graphiques -->
     <div class="charts-section">
         <div class="chart-card">
-            <h3>Évolution du recyclage par mois - Université du Mans (campus Sud)</h3>
+            <h3>Évolution du recyclage par mois</h3>
             <canvas id="evolutionChart"></canvas>
         </div>
 
         <div class="chart-card">
-            <h3>Répartition par type d'objets recyclés - Université du Mans (Nord)</h3>
+            <h3>Répartition par type d'objets recyclés</h3>
             <canvas id="repartitionChart"></canvas>
         </div>
     </div>

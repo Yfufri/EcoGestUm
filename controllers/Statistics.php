@@ -24,7 +24,7 @@ include "models/voirStatistiques.php";
 $repartitionData = getRepartitionObjets($conn);
 $labels = array_column($repartitionData, 'label');
 $values = array_column($repartitionData, 'valeur');
-$colors = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#FF6384', '#C9CBCF'];
+$colors = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#FF9584', '#C9CBCF'];
 $chartData = [
     'labels' => $labels,
     'values' => $values,
