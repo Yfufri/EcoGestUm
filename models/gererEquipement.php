@@ -329,6 +329,7 @@ function getObjetById(mysqli $conn, $id_objet)
                 Nom_statut,
                 Nom_utilisateur,
                 Prenom_utilisateur,
+                Mail_utilisateur,
                 Url_photo
             FROM OBJET
             INNER JOIN CATEGORIE_OBJET ON OBJET.Id_categorie_objet = CATEGORIE_OBJET.Id_categorie_objet
