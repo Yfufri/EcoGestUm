@@ -2,16 +2,12 @@
     width: 100%;
     margin: auto;
     text-align: center;
-    background: url('../backgrounddark2.png') center/cover repeat;
     padding-bottom: 20px;
     padding-top: 40px;
 }
 
 .points-collecte-container h2 {
-    font-size: 2.4rem;
     margin-bottom: 20px;
-    color: #ffffff;
-    font-weight: 800;
 }
 
 .PCcontent {

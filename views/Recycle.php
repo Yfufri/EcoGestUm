@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/css/styleRecycle.css">
 
-<div class="recycle">
+<section class="recycle">
     <h2>Recycler un Objet</h2>
     <div class="content">
         <img src="assets/accueil/image4.png" alt="Recyclage" class="recyclage-img">
@@ -10,4 +10,4 @@
             <a href="?action=addObject" class="btnRecycler">Recycler un objet</a>
         </div>
     </div>
-</div>
+</section>

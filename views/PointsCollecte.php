@@ -6,7 +6,7 @@
 <script src="https://unpkg.com/leaflet-search/dist/leaflet-search.min.js"></script>
 
 
-<div class="points-collecte-container">
+<section class="points-collecte-container">
     <h2>Tout les Points de Collecte</h2>
     <div class="PCcontent">
 
@@ -16,7 +16,7 @@
         </div>
         <div id="map"></div>
     </div>
-</div>
+</section>
 
 
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
