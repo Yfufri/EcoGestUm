@@ -1,8 +1,9 @@
 <?php
+include "models/voirStatistiques.php";
 
 
 // Données pour le graphique d'évolution
-$evolutionData = [
+/*$evolutionData = [
     ['Jan', 45],
     ['Fév', 52],
     ['Mar', 61],
@@ -15,10 +16,19 @@ $evolutionData = [
     ['Oct', 88],
     ['Nov', 102],
     ['Déc', 110]
-];
+];*/
 
-// Données pour le diagramme circulaire (répartition par type d'objets)
-include "models/voirStatistiques.php";
+$evolutionData = getEvolutionMensuelle($conn);
+
+// Formatage labels lisibles (ex: "2025-11" → "Nov 2025")
+$evolutionLabels = [];
+$evolutionValues = array_column($evolutionData, 'nb_objets');
+foreach(array_column($evolutionData, 'mois') as $mois) {
+    $date = DateTime::createFromFormat('Y-m', $mois);
+    $evolutionLabels[] = $date ? $date->format('M y') : $mois;
+}
+
+
 
 // CAMEMBERT - Données réelles de la BDD
 $repartitionData = getRepartitionObjets($conn);

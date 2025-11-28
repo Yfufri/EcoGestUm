@@ -136,10 +136,10 @@ const evolutionCtx = document.getElementById('evolutionChart').getContext('2d');
 const evolutionChart = new Chart(evolutionCtx, {
     type: 'line',
     data: {
-        labels: <?= json_encode(array_column($evolutionData, 0)) ?>,
+        labels: <?= json_encode($evolutionLabels) ?>,
         datasets: [{
-            label: 'Nombre d\'objets recyclés',
-            data: <?= json_encode(array_column($evolutionData, 1)) ?>,
+            label: 'Objets recyclés',
+            data: <?= json_encode($evolutionValues) ?>,
             borderColor: '#f97316',
             backgroundColor: 'rgba(249, 115, 22, 0.1)',
             tension: 0.4,
@@ -147,18 +147,30 @@ const evolutionChart = new Chart(evolutionCtx, {
             pointBackgroundColor: '#f97316',
             pointBorderColor: '#fff',
             pointBorderWidth: 2,
-            pointRadius: 5
+            pointRadius: 6,
+            pointHoverRadius: 8
         }]
     },
     options: {
         responsive: true,
         maintainAspectRatio: true,
         plugins: {
+            title: {
+                display: true,
+                text: 'Évolution mensuelle des objets publiés',
+                font: { size: 16 }
+            },
             legend: { display: false }
         },
         scales: {
-            y: { beginAtZero: true, grid: { color: '#e2e8f0' } },
-            x: { grid: { display: false } }
+            y: { 
+                beginAtZero: true,
+                grid: { color: '#e2e8f0' },
+                ticks: { stepSize: 1 }
+            },
+            x: { 
+                grid: { display: false }
+            }
         }
     }
 });
