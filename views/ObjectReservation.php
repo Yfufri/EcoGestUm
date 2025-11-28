@@ -35,7 +35,6 @@
 <div class="carte-emplacement">
         <p class="titre-emplacement">Emplacement&nbsp;:</p>
         <div class="bloc-carte">
-            <!--Ici l'intégration (iframe, <img> ou composant JS) de ta carte interactive-->
             <div id="map"></div>
         </div>
 </div>
@@ -44,7 +43,6 @@
 $localisation = $objet['Localisation_point_de_collecte'] ?? '';
 $latitude = $longitude = null;
 
-// Test si la chaîne existe et contient une virgule
 if (!empty($localisation) && strpos($localisation, ',') !== false) {
     list($latitude, $longitude) = explode(',', $localisation);
 }
@@ -52,11 +50,9 @@ if (!empty($localisation) && strpos($localisation, ',') !== false) {
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-    // Valeurs par défaut (Le Mans)
     var mapCenterLat = 48.0086;
     var mapCenterLng = 0.1985;
 
-    // Test si localisation fournie et valide
     var hasCoords = <?php echo ($latitude !== null && $longitude !== null && $latitude !== '' && $longitude !== '') ? 'true' : 'false'; ?>;
     if (hasCoords) {
         mapCenterLat = <?php echo floatval($latitude); ?>;
@@ -70,7 +66,6 @@ document.addEventListener("DOMContentLoaded", function () {
         attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
-    // Ajoute le marqueur SEULEMENT si coordonnées présentes
     if (hasCoords) {
         L.marker([mapCenterLat, mapCenterLng]).addTo(map)
             .bindPopup('Emplacement de l\'objet !');
