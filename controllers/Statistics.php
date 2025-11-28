@@ -18,12 +18,17 @@ $evolutionData = [
 ];
 
 // Données pour le diagramme circulaire (répartition par type d'objets)
-$repartitionData = [
-    ['Livre', 35, '#22c55e'],
-    ['Matériel informatique', 25, '#3b82f6'],
-    ['Mobilier', 20, '#eab308'],
-    ['Fournitures', 12, '#f97316'],
-    ['Autres', 8, '#06b6d4']
+include "models/voirStatistiques.php";
+
+// CAMEMBERT - Données réelles de la BDD
+$repartitionData = getRepartitionObjets($conn);
+$labels = array_column($repartitionData, 'label');
+$values = array_column($repartitionData, 'valeur');
+$colors = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#FF9584', '#C9CBCF'];
+$chartData = [
+    'labels' => $labels,
+    'values' => $values,
+    'colors' => array_slice($colors, 0, count($labels))
 ];
 
 include "views/StatistiquesEnvironnementales.php";
