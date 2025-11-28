@@ -1,4 +1,4 @@
-.recycle{
+.gestion{
     padding: 100px;
     font-size: 24px;
     display: flex;
@@ -6,28 +6,30 @@
     gap:80px;
 }
 
-.recycle h2{
+.gestion h2{
     margin-left : 60px;
 }
 
-.recycle .content{
+.gestion .content{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
 
-.recycle .buttons{
+.gestion .buttons{
     display: flex;
     flex-direction: column;
     font-family: 'Poppins', sans-serif;
     justify-content: space-around;
 }
 
-.recycle img{
+.gestion img{
     border-radius: 2rem;
+    height: 260px;
+    width: auto;
 }
 
-.recycle .btnChercher {
+.gestion .btnMesObjets {
     display: inline-block;
     font-size: 1.6rem;
     padding: 0.7em 2em;
@@ -39,14 +41,15 @@
     margin-top: 1em;
     border: 2px solid #d4451b;
     transition: background-color 0.5s, color 0.5s, border 0.5s;
+    text-align: center;
 }
-.recycle .btnChercher:hover {
+.gestion .btnMesObjets:hover {
     background: #f7cabc;
     color: #2d386d;
     border: 2px solid #f47952;
 }
 
-.recycle .btnRecycler {
+.gestion .btnMesReservations {
     display: inline-block;
     font-size: 1.6rem;
     padding: 0.7em 2em;
@@ -58,8 +61,9 @@
     margin-top: 1em;
     border: 2px solid #ffffff;
     transition: background-color 0.5s, color 0.5s, border 0.5s;
+    text-align: center;
 }
-.recycle .btnRecycler:hover {
+.gestion .btnMesReservations:hover {
     background: #f7cabc;
     color: #2d386d;
     border: 2px solid #f47952;

@@ -101,10 +101,10 @@
     </div>
 </div>
 <div class="carte-emplacement">
-    <p class="titre-emplacement">Emplacement&nbsp;:</p>
-    <div class="bloc-carte">
-        <div id="map"></div>
-    </div>
+        <p class="titre-emplacement">Emplacement&nbsp;:</p>
+        <div class="bloc-carte">
+            <div id="map"></div>
+        </div>
 </div>
 
 
@@ -118,15 +118,15 @@ if (!empty($localisation) && strpos($localisation, ',') !== false) {
 ?>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var mapCenterLat = 48.0086;
-        var mapCenterLng = 0.1985;
+document.addEventListener("DOMContentLoaded", function () {
+    var mapCenterLat = 48.0086;
+    var mapCenterLng = 0.1985;
 
-        var hasCoords = <?php echo ($latitude !== null && $longitude !== null && $latitude !== '' && $longitude !== '') ? 'true' : 'false'; ?>;
-        if (hasCoords) {
-            mapCenterLat = <?php echo floatval($latitude); ?>;
-            mapCenterLng = <?php echo floatval($longitude); ?>;
-        }
+    var hasCoords = <?php echo ($latitude !== null && $longitude !== null && $latitude !== '' && $longitude !== '') ? 'true' : 'false'; ?>;
+    if (hasCoords) {
+        mapCenterLat = <?php echo floatval($latitude); ?>;
+        mapCenterLng = <?php echo floatval($longitude); ?>;
+    }
 
         var map = L.map('map').setView([mapCenterLat, mapCenterLng], 14);
 
@@ -135,12 +135,11 @@ if (!empty($localisation) && strpos($localisation, ',') !== false) {
             attribution: '&copy; OpenStreetMap contributors'
         }).addTo(map);
 
-        // Ajoute le marqueur SEULEMENT si coordonnées présentes
-        if (hasCoords) {
-            L.marker([mapCenterLat, mapCenterLng]).addTo(map)
-                .bindPopup('Emplacement de l\'objet !');
-        }
-    });
+    if (hasCoords) {
+        L.marker([mapCenterLat, mapCenterLng]).addTo(map)
+            .bindPopup('Emplacement de l\'objet !');
+    }
+});
 </script>
 
 <!--Script pour la gestion du bouton Réserver-->

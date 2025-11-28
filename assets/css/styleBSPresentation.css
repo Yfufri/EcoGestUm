@@ -1,5 +1,4 @@
 .sectionPresentation{
-    background: url('../backgroundlight.png') center/cover repeat;
     padding: 100px;
     font-size: 24px;
     display: flex;
@@ -8,9 +7,6 @@
 }
 
 .sectionPresentation h2{
-    font-size: 3rem;
-    font-family: 'Poppins', sans-serif;
-    color : #282F63;
     margin-left : 60px;
 }
 

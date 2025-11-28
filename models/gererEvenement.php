@@ -6,6 +6,13 @@ function getNbPastEvent($conn) {
     return $row['count'];
 }
 
+function getNbEvent($conn) {
+    $sql = 'SELECT COUNT(*) as count FROM Evenement';
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    return $row['count'];
+}
+
 function getAllEventId($conn) {
     $result = $conn->query('SELECT Id_evenement FROM evenement');
     $ids = [];

@@ -1,18 +1,16 @@
 .visite-title {
     text-align: center;
-    background: url('../backgrounddark2.png') center/cover repeat;
-    padding: 2.4rem;
 }
 .visite-title h2{
-    font-family: 'Poppins', 'Montserrat', 'Arial';
-    font-size: 3rem;
-    color: #ffffff;
+    padding: 2.4rem;
 }
 .visites {
     position: relative;
     width: 100%;
-    background: #dbeafe;
     display: flex;
+    align-items: right;
+    justify-content: right;
+    overflow: hidden;
 }
 .visite-img {
     width: 100%;
