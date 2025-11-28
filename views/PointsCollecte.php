@@ -31,11 +31,9 @@
         attribution: '© OpenStreetMap contributors'
     }).addTo(map);
 
-    // Créer un groupe de marqueurs pour la recherche
     let markersLayer = new L.LayerGroup();
     map.addLayer(markersLayer);
 
-    // Ajouter les marqueurs avec leurs noms
     points.forEach(p => {
         let marker = L.marker([p.lat, p.lng], {
             title: p.nom
@@ -43,19 +41,18 @@
         markersLayer.addLayer(marker);
     });
 
-    // Ajouter le contrôle de recherche
     let searchControl = new L.Control.Search({
         layer: markersLayer,
         propertyName: 'title',
         marker: false,
         moveToLocation: function(latlng, title, map) {
-            map.setView(latlng, 18);  // Zoom augmenté de 16 → 18
+            map.setView(latlng, 18);
         },
         textPlaceholder: 'Rechercher un point de collecte...',
         textErr: 'Point non trouvé',
         textCancel: 'Annuler',
         initial: false,
-        zoom: 18,  // Zoom de 16 → 18
+        zoom: 18, 
         autoCollapse: true,
         autoType: false,
         minLength: 2
@@ -64,11 +61,10 @@
     map.addControl(searchControl);
 
  function showMans() {
-    // Université du Mans
     map.setView([48.01698, 0.1616], 16); 
 }
     
 function showLaval() {
-    // Campus universitaire de Laval
     map.setView([48.0866, -0.75796], 16); 
+}
 </script>
