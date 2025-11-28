@@ -366,7 +366,8 @@ function reserverObjet(mysqli $conn, int $idUtilisateur, int $idObjet): bool
     return true;
 }
 
-function getObjetReserve($conn, $idUtilisateur){
+function getObjetReserve($conn, $idUtilisateur)
+{
     $sql = "SELECT objet.Nom_objet,utilisateur.Prenom_utilisateur,utilisateur.Nom_utilisateur,point_de_collecte.Nom_point_de_collecte FROM reservation
         INNER JOIN objet
         	ON objet.Id_objet=reservation.Id_objet
@@ -388,7 +389,8 @@ function getObjetReserve($conn, $idUtilisateur){
     return $rows;
 }
 
-function getPhotosByObjet(mysqli $conn, int $idObjet): array {
+function getPhotosByObjet(mysqli $conn, int $idObjet): array
+{
     $sql = "SELECT Url_photo FROM PHOTO WHERE Id_objet = ? ORDER BY Url_photo";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('i', $idObjet);
@@ -399,5 +401,24 @@ function getPhotosByObjet(mysqli $conn, int $idObjet): array {
     return $photos;
 }
 
+function supprimerObjet(mysqli $conn, int $idObjet): bool
+{
+    $sql = "UPDATE objet SET Id_statut = 4 WHERE Id_objet = ?;";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('i', $idObjet);
+    $success = $stmt->execute();
+    $stmt->close();
+    return $success;
+}
+
+function supprimerReservation(mysqli $conn, int $idObjet): bool
+{
+    $sql = "DELETE FROM RESERVATION WHERE Id_objet = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('i', $idObjet);
+    $success = $stmt->execute();
+    $stmt->close();
+    return $success;
+}
 
 ?>
