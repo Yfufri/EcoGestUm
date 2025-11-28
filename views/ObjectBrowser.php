@@ -92,8 +92,8 @@
                 <div class="carte-objet">
                     <img src="<?php echo $url_photo; ?>" alt="Objet">
                     <div class="objet-nom"><?php echo htmlspecialchars($objet['Nom_objet']); ?></div>
-                    <a href="index.php?action=reservation&id=<?php echo $objet['Id_objet']; ?>" class="btn-reserve">
-                        Réserver
+                <a href="index.php?action=<?php echo $redirection ?> &id=<?php echo $objet['Id_objet']; ?>" class="btn-reserve">
+                        <php echo $nomButton; ?>
                     </a>
                 </div>
             <?php endforeach; ?>
