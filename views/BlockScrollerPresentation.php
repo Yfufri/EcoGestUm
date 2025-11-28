@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/css/styleBSPresentation.css">
 
-<div class="sectionPresentation">
+<section class="sectionPresentation">
     <h2><?= $titre ?></h2>
     <div class="content">
         <div class="blockItem">
@@ -13,4 +13,4 @@
         </div>
         <a href="?action=<?= $type ?>" class="btnBS">Voir plus</a>
     </div>
-</div>
+</section>

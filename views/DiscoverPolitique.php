@@ -17,6 +17,6 @@
                     universitaire aux enjeux écologiques.
                 </p>
             </div>
-            <a href="#" class="policy-btn">Découvrir notre politique</a>
+            <a href="?action=politique" class="policy-btn">Découvrir notre politique</a>
         </div>
     </div>

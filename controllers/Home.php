@@ -17,15 +17,17 @@ function displayStudentTeacherHomePage($conn) {
         include "controllers/welcome.php";
         include "views/Recycle.php";
         include "controllers/HomeStatistics.php";
+        include "views/Gestion.php";
+        include "controllers/AllPointsCollecte.php";
         include "controllers/BlockScrollerPresentation.php";
         setPresentation('ConseilEco',$conn);
-        include "controllers/AllPointsCollecte.php";
 }
 
 function displayChefDepHomePage($conn) {
         include "views/banner.php";
         include "controllers/welcome.php";
         include "views/Recycle.php";
+        include "views/Gestion.php";
         include "controllers/HomeStatistics.php";
         include "controllers/BlockScrollerPresentation.php";
         setPresentation('historique',$conn);
