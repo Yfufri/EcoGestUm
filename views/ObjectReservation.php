@@ -12,11 +12,36 @@
 </div>
 <div class="bloc-objet">
     <div class="bloc-img">
-        <?php
-        $url_photo = !empty($objet['Url_photo']) ? htmlspecialchars('assets/' . $objet['Url_photo']) : 'assets/ObjectBrowser/imageDefautObjectBrowser.png';
+        <?php 
+        // Récupère TOUTES les photos de l'objet
+        $photos = getPhotosByObjet($conn, $id_objet);
+        $nbPhotos = count($photos);
         ?>
-        <img src="<?php echo $url_photo; ?>" alt="<?php echo htmlspecialchars($objet['Nom_objet']); ?>"
-            class="object-img">
+        <?php if ($nbPhotos > 1): ?>
+            <div class="photos-carousel-container">
+                <button class="carousel-arrow left" onclick="scrollPhotos('photos-grid', -1)">‹</button>
+
+                <div class="photos-grid" id="photos-grid">
+                    <?php foreach ($photos as $photo): ?>
+                        <div class="photo-card">
+                            <img src="<?= htmlspecialchars('assets/' . $photo['Url_photo']) ?>"
+                                alt="Photo de <?= htmlspecialchars($objet['Nom_objet']) ?>">
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+
+                <button class="carousel-arrow right" onclick="scrollPhotos('photos-grid', 1)">›</button>
+            </div>
+        <?php elseif ($nbPhotos === 1): ?>
+            <div class="photo-single">
+                <img src="<?= htmlspecialchars('assets/' . $photos[0]['Url_photo']) ?>"
+                    alt="Photo de <?= htmlspecialchars($objet['Nom_objet']) ?>" class="object-img">
+            </div>
+        <?php else: ?>
+            <img src="assets/ObjectBrowser/imageDefautObjectBrowser.png" alt="<?= htmlspecialchars($objet['Nom_objet']) ?>"
+                class="object-img">
+        <?php endif; ?>
+
     </div>
     <div class="object-info">
         <div class="categorie-object">
@@ -31,10 +56,10 @@
             <p><?php echo nl2br(htmlspecialchars($objet['Desc_objet'])); ?></p>
         </div>
         <?php if (!empty($messageReservation)): ?>
-                <div class="message-reservation">
-                    <?= htmlspecialchars($messageReservation) ?>
-                </div>
-            <?php endif; ?>
+            <div class="message-reservation">
+                <?= htmlspecialchars($messageReservation) ?>
+            </div>
+        <?php endif; ?>
         <div class="actions-reservation">
             <form method="POST" action="index.php?action=reservation&id=<?= htmlspecialchars($objet['Id_objet']) ?>"
                 id="form-reserve">
@@ -173,6 +198,17 @@ if (!empty($localisation) && strpos($localisation, ',') !== false) {
             if (e.target === flagModal) {
                 flagModal.classList.remove('active');
             }
+        });
+    }
+</script>
+
+<!--Script pour le carrousel de photos-->
+<script>
+    function scrollPhotos(id, direction) {
+        const grid = document.getElementById(id);
+        grid.scrollBy({
+            left: direction * 300,
+            behavior: 'smooth'
         });
     }
 </script>

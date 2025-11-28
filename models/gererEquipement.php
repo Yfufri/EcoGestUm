@@ -366,4 +366,16 @@ function reserverObjet(mysqli $conn, int $idUtilisateur, int $idObjet): bool
     return true;
 }
 
+function getPhotosByObjet(mysqli $conn, int $idObjet): array {
+    $sql = "SELECT Url_photo FROM PHOTO WHERE Id_objet = ? ORDER BY Url_photo";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('i', $idObjet);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $photos = $result->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+    return $photos;
+}
+
+
 ?>
