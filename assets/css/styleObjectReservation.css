@@ -100,6 +100,7 @@ h1 {
     font-family: 'Luciole', 'Montserrat', 'Arial';
     font-size: 1.5em;
     color: #282F63;
+    margin-bottom: 40px;
 }
 
 .actions-reservation {
@@ -116,6 +117,15 @@ h1 {
     padding: 12px 150px;          /* largeur contrôlée par le padding */
     width: auto;                 /* important */
     display: inline-block;
+}
+
+.message-reservation {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
 }
 
 .btn-reserve {

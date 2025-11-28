@@ -53,3 +53,28 @@
     overflow: hidden;
     box-shadow: 0px 4px 10px rgba(0,0,0,0.15);
 }
+
+/* Barre de recherche Leaflet */
+.leaflet-control-search {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.leaflet-control-search .search-input {
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 2px solid #ddd;
+}
+
+.leaflet-control-search .search-input:focus {
+    border-color: #2d386d;
+    outline: none;
+}
+
+.leaflet-control-search .search-button {
+    background: #2d386d;
+    color: white;
+    border-radius: 6px;
+}

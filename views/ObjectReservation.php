@@ -30,6 +30,11 @@
         <div class="description">
             <p><?php echo nl2br(htmlspecialchars($objet['Desc_objet'])); ?></p>
         </div>
+        <?php if (!empty($messageReservation)): ?>
+                <div class="message-reservation">
+                    <?= htmlspecialchars($messageReservation) ?>
+                </div>
+            <?php endif; ?>
         <div class="actions-reservation">
             <form method="POST" action="index.php?action=reservation&id=<?= htmlspecialchars($objet['Id_objet']) ?>"
                 id="form-reserve">
@@ -54,9 +59,9 @@
                 <h2>Motif de signalement</h2>
                 <p>Explique pourquoi tu signales cet objet :</p>
 
-                <form method="POST"
-                    action="index.php?action=signalerObjet&id=<?= htmlspecialchars($objet['Id_objet']) ?>"
+                <form method="POST" action="index.php?action=reservation&id=<?= htmlspecialchars($objet['Id_objet']) ?>"
                     id="flag-form">
+                    <input type="hidden" name="type_form" value="signalement">
                     <textarea name="message" rows="8"
                         placeholder="Exemple : objet non conforme, description erronée, etc."></textarea>
 
@@ -145,29 +150,29 @@ if (!empty($localisation) && strpos($localisation, ',') !== false) {
         btn.disabled = true;          // Désactive le bouton pour empêcher double clic
         btn.classList.add('clicked');  // Change la couleur en vert immédiatement
         btn.textContent = 'Réservé';  // Change le texte du bouton immédiatement
-        });
+    });
 </script>
 
 <!--Script pour la gestion du bouton Signaler-->
 <script>
-const flagModal  = document.getElementById('flag-modal');
-const btnFlag    = document.getElementById('btn-flag');
-const flagCancel = document.getElementById('flag-cancel');
+    const flagModal = document.getElementById('flag-modal');
+    const btnFlag = document.getElementById('btn-flag');
+    const flagCancel = document.getElementById('flag-cancel');
 
-if (btnFlag && flagModal && flagCancel) {
-    btnFlag.addEventListener('click', function () {
-        flagModal.classList.add('active');
-    });
+    if (btnFlag && flagModal && flagCancel) {
+        btnFlag.addEventListener('click', function () {
+            flagModal.classList.add('active');
+        });
 
-    flagCancel.addEventListener('click', function () {
-        flagModal.classList.remove('active');
-    });
-
-    // Fermer en cliquant en dehors du bloc blanc
-    flagModal.addEventListener('click', function (e) {
-        if (e.target === flagModal) {
+        flagCancel.addEventListener('click', function () {
             flagModal.classList.remove('active');
-        }
-    });
-}
+        });
+
+        // Fermer en cliquant en dehors du bloc blanc
+        flagModal.addEventListener('click', function (e) {
+            if (e.target === flagModal) {
+                flagModal.classList.remove('active');
+            }
+        });
+    }
 </script>
