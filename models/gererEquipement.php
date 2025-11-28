@@ -56,6 +56,7 @@ function addObject($conn, $nom_objet, $desc_objet, $id_categorie_objet, $id_poin
         return false;
     }
 }
+
 function getNouveauPropriétaire($conn, $idObjet)
 {
     $sql = "SELECT Date_reservation,reservation.id_utilisateur,Nom_utilisateur,Prenom_utilisateur,Mail_utilisateur FROM objet 
@@ -74,6 +75,7 @@ function getNouveauPropriétaire($conn, $idObjet)
 
     return $row;
 }
+
 
 function getObjetsByDepartement($conn, $idDepartement)
 {
@@ -327,6 +329,7 @@ function getObjetById(mysqli $conn, $id_objet)
                 Nom_statut,
                 Nom_utilisateur,
                 Prenom_utilisateur,
+                Mail_utilisateur,
                 Url_photo
             FROM OBJET
             INNER JOIN CATEGORIE_OBJET ON OBJET.Id_categorie_objet = CATEGORIE_OBJET.Id_categorie_objet
