@@ -88,12 +88,16 @@
             </div>
         <?php else: ?>
             <?php foreach ($objets as $objet): ?>
-                <?php $url_photo = !empty($objet['Url_photo']) ? htmlspecialchars("assets/".$objet['Url_photo']) : 'assets/ObjectBrowser/imageDefautObjectBrowser.png'; ?>
+                <?php $url_photo = !empty($objet['Url_photo']) ? htmlspecialchars("assets/" . $objet['Url_photo']) : 'assets/ObjectBrowser/imageDefautObjectBrowser.png'; ?>
                 <div class="carte-objet">
                     <img src="<?php echo $url_photo; ?>" alt="Objet">
-                    <div class="objet-nom"><?php echo htmlspecialchars($objet['Nom_objet']); ?></div>
-                <a href="index.php?action=<?php echo $redirection ?> &id=<?php echo $objet['Id_objet']; ?>" class="btn-reserve">
-                        <php echo $nomButton; ?>
+                    <div class="objet-nom">
+                        <?= htmlspecialchars($objet['Nom_objet']) ?>
+                        <?= $objet['Id_statut'] == 2 ? "<br>en cours de validation" : "" ?>
+                    </div>
+                    <a href="<?php echo $objet['Id_objet'] == 2 ? '#' : 'index.php?action=' . $redirection . '&id=' . $objet['Id_objet']; ?>"
+                        class="btn-reserve <?php echo $objet['Id_objet'] == 2 ? 'disabled' : ''; ?>" <?php echo $objet['Id_objet'] == 2 ? 'style="pointer-events:none;opacity:0.5;"' : ''; ?>>
+                        <?php echo $objet['Id_objet'] == 2 ? 'Reservé' : $nomButton; ?>
                     </a>
                 </div>
             <?php endforeach; ?>

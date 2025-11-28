@@ -160,13 +160,90 @@ INNER JOIN POINT_DE_COLLECTE p ON o.Id_point_collecte = p.Id_point_collecte
 INNER JOIN STATUT s ON o.Id_statut = s.Id_statut
 INNER JOIN UTILISATEUR u ON o.Id_utilisateur = u.Id_utilisateur
 LEFT JOIN PHOTO ph ON ph.Id_objet = o.Id_objet
-WHERE s.Nom_statut = 'Disponible'" /*AND u.Id_utilisateur<>?*/ ;
+WHERE s.Nom_statut = 'Disponible'";
 
     $params = [];
     $types = '';
 
     if ($idUtilisateurConnecte !== null) {
         $sql .= " AND o.Id_utilisateur <> ?";
+        $params[] = $idUtilisateurConnecte;
+        $types .= 'i'; // entier
+    }
+
+    // On ajoute dynamiquement les filtres sous forme d'AND (si renseignés)
+    if (!empty($mot_clef)) {
+        $sql .= " AND (o.Nom_objet LIKE ? OR o.Desc_objet LIKE ?)";
+        $mot_clef_param = "%$mot_clef%";
+        $params[] = $mot_clef_param;
+        $params[] = $mot_clef_param;
+        $types .= 'ss';
+    }
+    if (!empty($categorie)) {
+        $sql .= " AND c.Nom_categorie_objet LIKE ?";
+        $params[] = "%$categorie%";
+        $types .= 's';
+    }
+    if (!empty($point_collecte)) {
+        $sql .= " AND p.Nom_point_de_collecte LIKE ?";
+        $params[] = "%$point_collecte%";
+        $types .= 's';
+    }
+
+    // Ajoute GROUP BY et ORDER BY à la fin (jamais avant les filtres)
+    $sql .= " GROUP BY o.Id_objet, o.Nom_objet, o.Desc_objet, c.Nom_categorie_objet, p.Nom_point_de_collecte, s.Nom_statut, u.Nom_utilisateur";
+    $sql .= " ORDER BY o.Id_objet ASC";
+
+    $stmt = $conn->prepare($sql);
+    if (!$stmt) {
+        die("Erreur de préparation : " . $conn->error);
+    }
+
+    if (!empty($params)) {
+        $bind_names = [];
+        $bind_names[] = $types;
+        foreach ($params as $i => $value) {
+            $bind_name = 'bind' . $i;
+            $$bind_name = $value;
+            $bind_names[] = &$$bind_name;
+        }
+        call_user_func_array([$stmt, 'bind_param'], $bind_names);
+    }
+
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+
+    return $rows;
+}
+
+function   consulterMesObjets(mysqli $conn, $mot_clef = null, $categorie = null, $point_collecte = null, $idUtilisateurConnecte)
+{
+    $sql = "SELECT 
+    o.Id_objet,
+    o.Nom_objet,
+    o.Desc_objet,
+    c.Nom_categorie_objet,
+    p.Nom_point_de_collecte,
+    s.Nom_statut,
+    u.Nom_utilisateur,
+    o.Date_de_publication,
+    MIN(ph.Url_photo) AS Url_photo
+FROM OBJET o
+INNER JOIN CATEGORIE_OBJET c ON o.Id_categorie_objet = c.Id_categorie_objet
+INNER JOIN POINT_DE_COLLECTE p ON o.Id_point_collecte = p.Id_point_collecte
+INNER JOIN STATUT s ON o.Id_statut = s.Id_statut
+INNER JOIN UTILISATEUR u ON o.Id_utilisateur = u.Id_utilisateur
+LEFT JOIN PHOTO ph ON ph.Id_objet = o.Id_objet
+WHERE s.Id_statut IN (1, 2, 3)
+";
+
+    $params = [];
+    $types = '';
+
+    if ($idUtilisateurConnecte !== null) {
+        $sql .= " AND o.Id_utilisateur = ?";
         $params[] = $idUtilisateurConnecte;
         $types .= 'i'; // entier
     }
@@ -411,9 +488,10 @@ function supprimerObjet(mysqli $conn, int $idObjet): bool
 
 function supprimerReservation(mysqli $conn, int $idObjet): bool
 {
-    $sql = "DELETE FROM RESERVATION WHERE Id_objet = ?";
+    $sql = "DELETE FROM RESERVATION WHERE Id_objet = ?;
+    UPDATE objet SET Id_statut = 1 WHERE Id_objet = ?;";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param('i', $idObjet);
+    $stmt->bind_param('ii', $idObjet, $idObjet);
     $success = $stmt->execute();
     $stmt->close();
     return $success;

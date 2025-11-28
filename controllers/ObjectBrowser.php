@@ -14,20 +14,20 @@ $points_collecte = getAllPointsCollecte($conn);
 
 switch ($_GET['action']) { // marche pas (renvoie tjrs vers default)
     case 'mesObjets':
-        $nomButton = null;
-        $redirection = null;
-        $objets = null;
+        $nomButton = 'Supprimer';
+        $redirection = 'mesObjets';
+        $objets = consulterMesObjets($conn, $mot_clef, $categorie, $point_collecte, $idUtilisateurConnecte);
         include 'views/ObjectBrowser.php'; 
         break;
     case 'mesReservations':
-        $nomButton = null;
-        $redirection = null;
+        $nomButton = 'Supprimer la réservation';
+        $redirection = 'mesReservations';
         $objets = null;
         include 'views/ObjectBrowser.php'; 
         break;
     case 'chercherObjet':
-        $nomButton = null;  
-        $redirection = null;
+        $nomButton = "Réserver";  
+        $redirection = "reservation";
         $objets = consulterObjets($conn, $mot_clef, $categorie, $point_collecte, $idUtilisateurConnecte);
         include 'views/ObjectBrowser.php'; 
         break;
