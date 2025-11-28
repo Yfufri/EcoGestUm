@@ -32,12 +32,10 @@ function getNbObjectRecycled($conn)
 
 function getNbObjectDisponible($conn)
 {
-    $sql = "SELECT COUNT(*) AS total_disponibles
-            FROM `vue_objets_disponibles`
-            WHERE Nom_Statut LIKE 'Disponible';";
+    $sql = "SELECT COUNT(*) FROM objet where objet.Id_statut =1;";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
-    return $row['total_disponibles'];
+    return $row['COUNT(*)'];
 }
 
 function addObject($conn, $nom_objet, $desc_objet, $id_categorie_objet, $id_point_de_collecte, $id_utilisateur, $id_statut)
@@ -143,7 +141,7 @@ ORDER BY o.Date_de_publication DESC;";
     return $rows;
 }
 
-function consulterObjets(mysqli $conn, $mot_clef = null, $categorie = null, $point_collecte = null, $idUtilisateurConnecte = null)
+function   consulterObjets(mysqli $conn, $mot_clef = null, $categorie = null, $point_collecte = null, $idUtilisateurConnecte = null)
 {
     // Requête de base, avec WHERE statique
     $sql = "SELECT 
@@ -366,7 +364,8 @@ function reserverObjet(mysqli $conn, int $idUtilisateur, int $idObjet): bool
     return true;
 }
 
-function getObjetReserve($conn, $idUtilisateur){
+function getObjetReserve($conn, $idUtilisateur)
+{
     $sql = "SELECT objet.Nom_objet,utilisateur.Prenom_utilisateur,utilisateur.Nom_utilisateur,point_de_collecte.Nom_point_de_collecte FROM reservation
         INNER JOIN objet
         	ON objet.Id_objet=reservation.Id_objet
@@ -388,7 +387,8 @@ function getObjetReserve($conn, $idUtilisateur){
     return $rows;
 }
 
-function getPhotosByObjet(mysqli $conn, int $idObjet): array {
+function getPhotosByObjet(mysqli $conn, int $idObjet): array
+{
     $sql = "SELECT Url_photo FROM PHOTO WHERE Id_objet = ? ORDER BY Url_photo";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('i', $idObjet);
@@ -399,5 +399,24 @@ function getPhotosByObjet(mysqli $conn, int $idObjet): array {
     return $photos;
 }
 
+function supprimerObjet(mysqli $conn, int $idObjet): bool
+{
+    $sql = "UPDATE objet SET Id_statut = 4 WHERE Id_objet = ?;";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('i', $idObjet);
+    $success = $stmt->execute();
+    $stmt->close();
+    return $success;
+}
+
+function supprimerReservation(mysqli $conn, int $idObjet): bool
+{
+    $sql = "DELETE FROM RESERVATION WHERE Id_objet = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('i', $idObjet);
+    $success = $stmt->execute();
+    $stmt->close();
+    return $success;
+}
 
 ?>
