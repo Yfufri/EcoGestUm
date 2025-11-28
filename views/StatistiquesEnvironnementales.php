@@ -53,7 +53,7 @@
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!--<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 // Graphique d'évolution
 const evolutionCtx = document.getElementById('evolutionChart').getContext('2d');
@@ -123,6 +123,72 @@ const repartitionChart = new Chart(repartitionCtx, {
                         size: 13
                     }
                 }
+            }
+        }
+    }
+});
+</script>-->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+// Graphique d'évolution (données statiques pour l'instant)
+const evolutionCtx = document.getElementById('evolutionChart').getContext('2d');
+const evolutionChart = new Chart(evolutionCtx, {
+    type: 'line',
+    data: {
+        labels: <?= json_encode(array_column($evolutionData, 0)) ?>,
+        datasets: [{
+            label: 'Nombre d\'objets recyclés',
+            data: <?= json_encode(array_column($evolutionData, 1)) ?>,
+            borderColor: '#f97316',
+            backgroundColor: 'rgba(249, 115, 22, 0.1)',
+            tension: 0.4,
+            fill: true,
+            pointBackgroundColor: '#f97316',
+            pointBorderColor: '#fff',
+            pointBorderWidth: 2,
+            pointRadius: 5
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+            legend: { display: false }
+        },
+        scales: {
+            y: { beginAtZero: true, grid: { color: '#e2e8f0' } },
+            x: { grid: { display: false } }
+        }
+    }
+});
+
+// Graphique circulaire - DONNÉES RÉELLES DE LA BDD
+const repartitionCtx = document.getElementById('repartitionChart').getContext('2d');
+const repartitionChart = new Chart(repartitionCtx, {
+    type: 'doughnut',
+    data: {
+        labels: <?= json_encode($chartData['labels']) ?>,
+        datasets: [{
+            data: <?= json_encode($chartData['values']) ?>,
+            backgroundColor: <?= json_encode($chartData['colors']) ?>,
+            borderWidth: 3,
+            borderColor: '#fff',
+            hoverOffset: 4
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+            title: {
+                display: true,
+                text: 'Répartition des objets par catégorie (<?= array_sum($chartData['values']) ?> objets)',
+                font: { size: 16 }
+            },
+            legend: {
+                position: 'right',
+                labels: { padding: 20, font: { size: 13 } }
             }
         }
     }
