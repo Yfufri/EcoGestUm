@@ -120,6 +120,7 @@ function consulterAllObjets(mysqli $conn)
     o.Desc_objet,
     c.Nom_categorie_objet,
     p.Nom_point_de_collecte,
+    s.Id_statut,
     s.Nom_statut,
     u.Nom_utilisateur,
     u.Id_departement,
@@ -151,6 +152,7 @@ function   consulterObjets(mysqli $conn, $mot_clef = null, $categorie = null, $p
     c.Nom_categorie_objet,
     p.Nom_point_de_collecte,
     s.Nom_statut,
+    s.Id_statut,
     u.Nom_utilisateur,
     o.Date_de_publication,
     MIN(ph.Url_photo) AS Url_photo
@@ -227,6 +229,7 @@ function   consulterMesObjets(mysqli $conn, $mot_clef = null, $categorie = null,
     c.Nom_categorie_objet,
     p.Nom_point_de_collecte,
     s.Nom_statut,
+    s.Id_statut,
     u.Nom_utilisateur,
     o.Date_de_publication,
     MIN(ph.Url_photo) AS Url_photo
@@ -288,6 +291,106 @@ WHERE s.Id_statut IN (1, 2, 3)
     }
 
     $stmt->execute();
+    $result = $stmt->get_result();
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+
+    return $rows;
+}
+
+function consulterMesReservations(
+    mysqli $conn, 
+    $mot_clef = null, 
+    $categorie = null, 
+    $point_collecte = null, 
+    $idUtilisateurConnecte
+) {
+    // Validation de l'ID utilisateur
+    if (empty($idUtilisateurConnecte) || !is_numeric($idUtilisateurConnecte)) {
+        return [];
+    }
+
+    $sql = "SELECT 
+        o.Id_objet,
+        o.Nom_objet,
+        o.Desc_objet,
+        o.Date_de_publication,
+        c.Nom_categorie_objet,
+        p.Nom_point_de_collecte,
+        s.Nom_statut,
+        s.Id_statut,
+        r.Id_utilisateur as Id_reservateur,
+        u.Nom_utilisateur as Nom_donateur,
+        MIN(ph.Url_photo) AS Url_photo
+    FROM RESERVATION r
+    INNER JOIN OBJET o ON r.Id_objet = o.Id_objet
+    INNER JOIN CATEGORIE_OBJET c ON o.Id_categorie_objet = c.Id_categorie_objet
+    INNER JOIN POINT_DE_COLLECTE p ON o.Id_point_collecte = p.Id_point_collecte
+    INNER JOIN STATUT s ON o.Id_statut = s.Id_statut
+    INNER JOIN UTILISATEUR u ON o.Id_utilisateur = u.Id_utilisateur
+    LEFT JOIN PHOTO ph ON ph.Id_objet = o.Id_objet
+    WHERE r.Id_utilisateur = ?
+      AND s.Id_statut IN (1, 2, 3)";
+
+    $params = [$idUtilisateurConnecte];
+    $types = 'i';
+
+    // Filtres optionnels
+    if (!empty($mot_clef)) {
+        $sql .= " AND (o.Nom_objet LIKE ? OR o.Desc_objet LIKE ?)";
+        $mot_clef_param = "%$mot_clef%";
+        $params[] = $mot_clef_param;
+        $params[] = $mot_clef_param;
+        $types .= 'ss';
+    }
+    
+    if (!empty($categorie)) {
+        $sql .= " AND c.Nom_categorie_objet LIKE ?";
+        $params[] = "%$categorie%";
+        $types .= 's';
+    }
+    
+    if (!empty($point_collecte)) {
+        $sql .= " AND p.Nom_point_de_collecte LIKE ?";
+        $params[] = "%$point_collecte%";
+        $types .= 's';
+    }
+
+    // GROUP BY complet
+    $sql .= " GROUP BY 
+        o.Id_objet,
+        o.Nom_objet,
+        o.Desc_objet,
+        o.Date_de_publication,
+        c.Nom_categorie_objet,
+        p.Nom_point_de_collecte,
+        s.Nom_statut,
+        s.Id_statut,
+        r.Id_utilisateur,
+        u.Nom_utilisateur
+    ORDER BY o.Date_de_publication DESC";
+
+    $stmt = $conn->prepare($sql);
+    if (!$stmt) {
+        error_log("Erreur de préparation SQL : " . $conn->error);
+        return [];
+    }
+
+    // Binding dynamique des paramètres
+    $bind_names = [$types];
+    foreach ($params as $i => $value) {
+        $bind_name = 'bind' . $i;
+        $$bind_name = $value;
+        $bind_names[] = &$$bind_name;
+    }
+    call_user_func_array([$stmt, 'bind_param'], $bind_names);
+
+    if (!$stmt->execute()) {
+        error_log("Erreur d'exécution SQL : " . $stmt->error);
+        $stmt->close();
+        return [];
+    }
+
     $result = $stmt->get_result();
     $rows = $result->fetch_all(MYSQLI_ASSOC);
     $stmt->close();
@@ -425,20 +528,68 @@ function getObjetById(mysqli $conn, $id_objet)
     return $objet;
 }
 
-function reserverObjet(mysqli $conn, int $idUtilisateur, int $idObjet): bool
+function reserverObjet(mysqli $conn, int $idObjet, int $idUtilisateur): bool
 {
-    // Appel de la procédure stockée pour réservation et mise à jour statut
-    $stmt = $conn->prepare("CALL ReserverObjetAvecVue(?, ?)");
-    if (!$stmt) {
+    if (empty($idObjet) || empty($idUtilisateur)) {
+        error_log("Paramètres invalides pour la réservation");
         return false;
     }
-    $stmt->bind_param('ii', $idUtilisateur, $idObjet);
-    $stmt->execute();
-    $stmt->close();
 
-    // La requête ayant changé les données, il vaut mieux reconnecter pour poursuivre les requêtes simples après procédure
-    $conn->next_result();
-    return true;
+    $conn->begin_transaction();
+    try {
+        $sqlCheck = "SELECT Id_statut FROM OBJET WHERE Id_objet = ? AND Id_statut = 1";
+        $stmtCheck = $conn->prepare($sqlCheck);
+        
+        if (!$stmtCheck) {
+            throw new Exception("Erreur de préparation de la vérification : " . $conn->error);
+        }
+        
+        $stmtCheck->bind_param('i', $idObjet);
+        $stmtCheck->execute();
+        $resultCheck = $stmtCheck->get_result();
+        
+        if ($resultCheck->num_rows === 0) {
+            $stmtCheck->close();
+            throw new Exception("L'objet n'existe pas ou n'est plus disponible");
+        }
+        $stmtCheck->close();
+
+        $sqlInsert = "INSERT INTO RESERVATION (Date_reservation, Id_utilisateur, Id_objet) 
+                      VALUES (NOW(), ?, ?)";
+        $stmtInsert = $conn->prepare($sqlInsert);
+        
+        if (!$stmtInsert) {
+            throw new Exception("Erreur de préparation de l'insertion : " . $conn->error);
+        }
+        
+        $stmtInsert->bind_param('ii', $idUtilisateur, $idObjet);
+        
+        if (!$stmtInsert->execute()) {
+            throw new Exception("Erreur lors de l'insertion de la réservation : " . $stmtInsert->error);
+        }
+        $stmtInsert->close();
+
+        $sqlUpdate = "UPDATE OBJET SET Id_statut = 2 WHERE Id_objet = ?";
+        $stmtUpdate = $conn->prepare($sqlUpdate);
+        
+        if (!$stmtUpdate) {
+            throw new Exception("Erreur de préparation de la mise à jour : " . $conn->error);
+        }
+        
+        $stmtUpdate->bind_param('i', $idObjet);
+        
+        if (!$stmtUpdate->execute()) {
+            throw new Exception("Erreur lors de la mise à jour du statut : " . $stmtUpdate->error);
+        }
+        $stmtUpdate->close();
+        $conn->commit();
+        return true;
+
+    } catch (Exception $e) {
+        $conn->rollback();
+        error_log("Erreur lors de la réservation : " . $e->getMessage());
+        return false;
+    }
 }
 
 function getObjetReserve($conn, $idUtilisateur)

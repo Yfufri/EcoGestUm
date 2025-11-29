@@ -12,17 +12,23 @@ $categories = getAllCategories($conn);
 $points_collecte = getAllPointsCollecte($conn);
 
 
-switch ($_GET['action']) { // marche pas (renvoie tjrs vers default)
+switch ($_GET['action']) {
     case 'mesObjets':
+        if (isset($_GET['id'])){
+            supprimerObjet($conn,$_GET['id']);
+        }
         $nomButton = 'Supprimer';
         $redirection = 'mesObjets';
         $objets = consulterMesObjets($conn, $mot_clef, $categorie, $point_collecte, $idUtilisateurConnecte);
         include 'views/ObjectBrowser.php'; 
         break;
     case 'mesReservations':
+        if (isset($_GET['id'])){
+            supprimerReservation($conn,$_GET['id']);
+        }
         $nomButton = 'Supprimer la réservation';
         $redirection = 'mesReservations';
-        $objets = null;
+        $objets = consulterMesReservations($conn,$mot_clef,$categorie, $point_collecte, $idUtilisateurConnecte);
         include 'views/ObjectBrowser.php'; 
         break;
     case 'chercherObjet':
