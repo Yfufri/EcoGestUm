@@ -639,13 +639,39 @@ function supprimerObjet(mysqli $conn, int $idObjet): bool
 
 function supprimerReservation(mysqli $conn, int $idObjet): bool
 {
-    $sql = "DELETE FROM RESERVATION WHERE Id_objet = ?;
-    UPDATE objet SET Id_statut = 1 WHERE Id_objet = ?;";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param('ii', $idObjet, $idObjet);
-    $success = $stmt->execute();
-    $stmt->close();
-    return $success;
+    $conn->begin_transaction();
+
+    try {
+        $sqlDelete = "DELETE FROM RESERVATION WHERE Id_objet = ?";
+        $stmtDelete = $conn->prepare($sqlDelete);
+        if (!$stmtDelete) {
+            throw new Exception("Erreur préparation DELETE : " . $conn->error);
+        }
+        $stmtDelete->bind_param('i', $idObjet);
+        if (!$stmtDelete->execute()) {
+            throw new Exception("Erreur exécution DELETE : " . $stmtDelete->error);
+        }
+        $stmtDelete->close();
+        $sqlUpdate = "UPDATE objet SET Id_statut = 1 WHERE Id_objet = ?";
+        $stmtUpdate = $conn->prepare($sqlUpdate);
+        if (!$stmtUpdate) {
+            throw new Exception("Erreur préparation UPDATE : " . $conn->error);
+        }
+        $stmtUpdate->bind_param('i', $idObjet);
+        if (!$stmtUpdate->execute()) {
+            throw new Exception("Erreur exécution UPDATE : " . $stmtUpdate->error);
+        }
+        $stmtUpdate->close();
+
+        $conn->commit();
+        return true;
+
+    } catch (Exception $e) {
+        $conn->rollback();
+        error_log("Erreur lors de la suppression de réservation : " . $e->getMessage());
+        return false;
+    }
 }
+
 
 ?>

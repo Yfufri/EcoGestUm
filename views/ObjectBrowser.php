@@ -93,12 +93,17 @@
                     <img src="<?php echo $url_photo; ?>" alt="Objet">
                     <div class="objet-nom">
                         <?= htmlspecialchars($objet['Nom_objet']) ?>
-                        <?= $objet['Id_statut'] == 2 ? "<br>en cours de validation" : "" ?>
+                        <?= $objet['Id_statut'] == 3 ? "<br>en cours de validation" : "" ?>
                     </div>
-                    <a href="<?php echo $objet['Id_objet'] == 2 ? '#' : 'index.php?action=' . $redirection . '&id=' . $objet['Id_objet']; ?>"
-                        class="btn-reserve <?php echo $objet['Id_objet'] == 2 ? 'disabled' : ''; ?>" <?php echo $objet['Id_objet'] == 2 ? 'style="pointer-events:none;opacity:0.5;"' : ''; ?>>
-                        <?php echo $objet['Id_objet'] == 2 ? 'Reservé' : $nomButton; ?>
+                    <?php
+                    $estDesactive = ($objet['Id_statut'] == 2 && isset($_GET['action']) && $_GET['action'] == 'mesObjets');
+                    ?>
+                    <a href="<?php echo $estDesactive ? '#' : 'index.php?action=' . $redirection . '&id=' . $objet['Id_objet']; ?>"
+                        class="btn-reserve <?php echo $estDesactive ? 'disabled' : ''; ?>" <?php echo $estDesactive ? 'style="pointer-events:none;opacity:0.5;"' : ''; ?>>
+
+                        <?php echo $estDesactive ? 'Réservé' : $nomButton; ?>
                     </a>
+
                 </div>
             <?php endforeach; ?>
         <?php endif; ?>
