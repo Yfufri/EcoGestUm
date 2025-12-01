@@ -28,6 +28,7 @@ switch ($_GET['action']) {
         }
         $nomButton = 'Supprimer la réservation';
         $redirection = 'mesReservations';
+        $estUneRecuperation = true;
         $objets = consulterMesReservations($conn,$mot_clef,$categorie, $point_collecte, $idUtilisateurConnecte);
         include 'views/ObjectBrowser.php'; 
         break;

@@ -22,6 +22,9 @@ if ($mail != null && $password != null) {
 $action = $_GET['action'] ?? null;
 
 switch ($action) {
+    case 'récupération':
+        require_once "controllers/récupération.php";
+        break;
     case "reservation":
         include 'views/header.php';
         require_once "controllers/ObjectReservation.php";

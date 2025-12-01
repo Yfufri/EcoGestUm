@@ -2,8 +2,6 @@
 <link rel="stylesheet" href="assets/css/stylePC.css">
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet-search/dist/leaflet-search.min.css" />
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<script src="https://unpkg.com/leaflet-search/dist/leaflet-search.min.js"></script>
 
 
 <section class="points-collecte-container">

@@ -103,7 +103,12 @@
 
                         <?php echo $estDesactive ? 'Réservé' : $nomButton; ?>
                     </a>
-
+                    
+                    <?php if (!empty($estUneRecuperation)): ?>
+                        <a href='index.php?action=récupération&id=' <?php echo $objet['Id_objet'] ?> class="btn-reserve ">
+                            Confirmer la récupération
+                        </a>
+                    <?php endif; ?>
                 </div>
             <?php endforeach; ?>
         <?php endif; ?>
