@@ -6,26 +6,15 @@
 <div class="page-add-object">
     <section class="add-object-container">
 
-        <?php var_dump($_POST, $_FILES);
-        if (isset($_POST['titre']) and isset($_POST['categorie']) and isset($_POST['Point_de_collecte']) and isset($_POST['description'])) { 
-
-            
-
+        <?php if (isset($_POST['titre']) and isset($_POST['categorie']) and isset($_POST['Point_de_collecte']) and isset($_POST['description'])) {
             $max_size = 5 * 1024 * 1024;
             $target_dir = $_SERVER["DOCUMENT_ROOT"] . "/assets/img/products/";
-
-
-
             ?>
 
             <div class="success-message">
-                Objet "<?php echo htmlspecialchars($_POST['titre']); ?>" ajouté avec succès !
+                Objet "<?php echo htmlspecialchars($_POST['titre']); ?>" ajouté avec succès ! <br>
+                <a href="index.php">Retourner à l'accueil</a>
             </div>
-            <a href="index.php">Accueil</a>
-
-
-
-
 
 
         <?php } else { ?>
@@ -49,15 +38,25 @@
                     <?php endforeach; ?>
                 </select>
                 <textarea name="description" placeholder="Description :" required></textarea>
-                <input class="file-input" type="file" name="images[]" multiple id="fileInput">
+                <input class="file-input" type="file" name="images[]" multiple id="fileInput" accept=".png,.jpeg,.jpg,.webp">
                 <div id="fileList" class="file-list"></div>
 
                 <script>
                     let selectedFiles = [];
+                    const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg', 'image/webp'];
 
                     document.getElementById('fileInput').addEventListener('change', function (e) {
                         const newFiles = Array.from(e.target.files);
-                        selectedFiles = [...selectedFiles, ...newFiles];
+                        const validFiles = newFiles.filter(file => {
+                            if (allowedTypes.includes(file.type)) {
+                                return true;
+                            } else {
+                                alert(`Le fichier "${file.name}" n'est pas un format autorisé. Formats acceptés : PNG, JPEG, JPG, WEBP`);
+                                return false;
+                            }
+                        });
+
+                        selectedFiles = [...selectedFiles, ...validFiles];
                         displayFiles();
                     });
                 </script>

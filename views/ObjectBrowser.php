@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/css/styleObjectBrowser.css">
 
-<div class="titre-objets">OBJETS DISPONIBLES</div>
+<div class="titre-objets"><?= isset($titre) ? $titre : 'OBJETS' ?></div>
 <div class="container-objets">
     <div class="barre-recherche">
         <form method="get" action="" class="search-form">
@@ -103,9 +103,9 @@
 
                         <?php echo $estDesactive ? 'Réservé' : $nomButton; ?>
                     </a>
-                    
+
                     <?php if (!empty($estUneRecuperation)): ?>
-                        <a href='index.php?action=récupération&id=' <?php echo $objet['Id_objet'] ?> class="btn-reserve ">
+                        <a href="?action=récupération&id=<?php echo $objet['Id_objet']; ?>" class="btn-reserve">
                             Confirmer la récupération
                         </a>
                     <?php endif; ?>

@@ -59,12 +59,8 @@ switch ($action) {
         include "controllers/Statistics.php";
         include "views/footer.php";
         break;
-    case 'ConseilEco':
-        include 'views/header.php';
-        include 'controllers/BlockScroller.php';
-        include 'views/footer.php';
-        break;
     case 'historique':
+    case 'ConseilEco':
         include 'views/header.php';
         include 'controllers/BlockScroller.php';
         include 'views/footer.php';

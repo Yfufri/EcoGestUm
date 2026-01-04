@@ -82,7 +82,6 @@ function handle_a_upload($file_info, $max_size, $target_dir, $idObjet, $i)
 if (isset($_POST['titre']) and isset($_POST['categorie']) and isset($_POST['Point_de_collecte']) and isset($_POST['description'])) {
     $idObjet = ajouterObjet($conn, $_POST['titre'], $_POST['description'], $_SESSION['user']['Id_utilisateur'], $_POST['categorie'], $_POST['Point_de_collecte']);
     $files = $_FILES['images'];
-    var_dump($files);
     if (!empty($files['name'][0])) {
         for ($i = 0; $i < count($files['name']); $i++) {
             $file_info = [

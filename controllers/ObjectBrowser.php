@@ -17,6 +17,7 @@ switch ($_GET['action']) {
         if (isset($_GET['id'])){
             supprimerObjet($conn,$_GET['id']);
         }
+        $titre = 'MES OBJETS';
         $nomButton = 'Supprimer';
         $redirection = 'mesObjets';
         $objets = consulterMesObjets($conn, $mot_clef, $categorie, $point_collecte, $idUtilisateurConnecte);
@@ -26,6 +27,7 @@ switch ($_GET['action']) {
         if (isset($_GET['id'])){
             supprimerReservation($conn,$_GET['id']);
         }
+        $titre = 'MES RESERVATIONS';
         $nomButton = 'Supprimer la réservation';
         $redirection = 'mesReservations';
         $estUneRecuperation = true;
@@ -33,6 +35,7 @@ switch ($_GET['action']) {
         include 'views/ObjectBrowser.php'; 
         break;
     case 'chercherObjet':
+        $titre = 'OBJETS DISPONIBLES';
         $nomButton = "Réserver";  
         $redirection = "reservation";
         $objets = consulterObjets($conn, $mot_clef, $categorie, $point_collecte, $idUtilisateurConnecte);

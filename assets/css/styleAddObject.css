@@ -6,7 +6,7 @@
 .add-object-container {
     background: #cde4e4;
     max-width: 550px;
-    margin: 0em auto;
+    margin: 0 auto;
     border-radius: 15px;
     box-shadow: 0 8px 32px rgba(34, 36, 91, 0.08);
     padding: 2em;
@@ -16,10 +16,39 @@ h2 {
     background: url('../backgroundlight.png') center/cover repeat;
     text-align: center;
     color: #23245b;
-    margin-bottom: 0em;
+    margin-bottom: 0;
     font-size: 2em;
     letter-spacing: 2px;
     padding: 1em;
+}
+
+.success-message{
+    background: white;
+    text-align: center;
+    color: #23245b;
+    font-size: 1.4em;
+    margin : 10%;
+    padding: 10%;
+    border-radius: 10px;
+}
+
+.success-message a{
+    display: inline-block;
+    font-size: 1.2rem;
+    padding: 1em;
+    background-color: #d4451b;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 22px;
+    border: 2px solid #d4451b;
+    transition: background-color 0.5s, color 0.5s, border 0.5s;
+    text-align: center;
+    margin-top: 10px;
+}
+.success-message a:hover{
+    background: #f7cabc;
+    color: #2d386d;
+    border: 2px solid #f47952;
 }
 
 .add-object-form input,

@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="assets/css/styleBlockScroller.css">
 
 <div class="blockScroller">
-    <h2><?= $titre ?? 'titre' ?></h2>
+    <h2><?= isset($titre) ? $titre : 'titre' ?></h2>
     <div class="blockItems">
         <?php foreach ($elements as $element): ?>
             <div class="blockItem">
