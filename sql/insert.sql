@@ -85,7 +85,7 @@ INSERT INTO DEPARTEMENT (Nom_departement, Id_composante) VALUES
 
 -- 8. INSERTION DES UTILISATEURS 
 -- Étudiants 
-INSERT INTO `utilisateur` (`Id_utilisateur`, `Nom_utilisateur`, `Prenom_utilisateur`, `Mail_utilisateur`, `Password_utilisateur`, `Id_departement`, `Id_role`) VALUES
+INSERT INTO UTILISATEUR (`Id_utilisateur`, `Nom_utilisateur`, `Prenom_utilisateur`, `Mail_utilisateur`, `Password_utilisateur`, `Id_departement`, `Id_role`) VALUES
 (1, 'Dupont', 'Marie', 'marie.dupont@etu.univ-lemans.fr', '$2y$10$JprolcAHXLXFqX/Whp7kpufs6dvX/M6pKafAyzRgCEQj3h.J3n7Za', 1, 1),
 (2, 'Martin', 'Lucas', 'lucas.martin@etu.univ-lemans.fr', '$2y$10$0z82Xg8T8UH1W/bDaxmRduLqDHyNivvQoz9mo1UcbB9FVKJWS7QO.', 1, 1),
 (3, 'Bernard', 'Sophie', 'sophie.bernard@etu.univ-lemans.fr', '$2y$10$eoEN4wXLK9/9mlEARaLBUuOi8jM9sVPKmNGaJxzc2PHJbBHzcn1Jq', 2, 1),
@@ -104,7 +104,7 @@ INSERT INTO `utilisateur` (`Id_utilisateur`, `Nom_utilisateur`, `Prenom_utilisat
 
 
 -- Enseignants 
-INSERT INTO `utilisateur` (`Id_utilisateur`, `Nom_utilisateur`, `Prenom_utilisateur`, `Mail_utilisateur`, `Password_utilisateur`, `Id_departement`, `Id_role`) VALUES
+INSERT INTO UTILISATEUR (`Id_utilisateur`, `Nom_utilisateur`, `Prenom_utilisateur`, `Mail_utilisateur`, `Password_utilisateur`, `Id_departement`, `Id_role`) VALUES
 (16, 'Moreau', 'Pierre', 'pierre.moreau@univ-lemans.fr', '$2y$10$am2R7oCf9Q0RKCL.aRJDHO24dVjGUU8KDb3wITCfC0dWwk7j6iGoq', 1, 2),
 (17, 'Simon', 'Claire', 'claire.simon@univ-lemans.fr', '$2y$10$jQqlZ6SJPgk.wM4AFgbvV.SwPN9HF7xGR3DxpOSiWKw7tb1LtJ88C', 2, 2),
 (18, 'Laurent', 'Jean', 'jean.laurent@univ-lemans.fr', '$2y$10$NNsq9etMdcauZaiKYW47VOkmI.irT2MVi3e0NLv7uzhUIwcBovQLC', 3, 2),
@@ -117,7 +117,7 @@ INSERT INTO `utilisateur` (`Id_utilisateur`, `Nom_utilisateur`, `Prenom_utilisat
 (25, 'Thomas', 'Marie', 'marie.thomas@univ-lemans.fr', '$2y$10$cHbqWqPstsuiD0Nut.yec.z3owSprBdjpZkqHtwsYx89vPqgnz19G', 4, 2);
 
 -- Chefs de département
-INSERT INTO `utilisateur` (`Id_utilisateur`, `Nom_utilisateur`, `Prenom_utilisateur`, `Mail_utilisateur`, `Password_utilisateur`, `Id_departement`, `Id_role`) VALUES
+INSERT INTO UTILISATEUR (`Id_utilisateur`, `Nom_utilisateur`, `Prenom_utilisateur`, `Mail_utilisateur`, `Password_utilisateur`, `Id_departement`, `Id_role`) VALUES
 (26, 'Roux', 'Philippe', 'philippe.roux@univ-lemans.fr', '$2y$10$FnJMoTdBfk5bk.7AQ4G2lOhmqh5WtVObGUAKru.lEKF0Ya/nxNrfa', 1, 3),
 (27, 'Fournier', 'Isabelle', 'isabelle.fournier@univ-lemans.fr', '$2y$10$9UG/LO///nxI.BTPoND0ku4VrZskqYSjyFWdjJ63YnirFgSgRwcGy', 2, 3),
 (28, 'Girard', 'Marc', 'marc.girard@univ-lemans.fr', '$2y$10$DSV9udE7xHuBdaHaz8dWL.US07.b0nS8Xyq.FeiAkumNcpAEPQ1U6', 3, 3),
@@ -242,7 +242,7 @@ INSERT INTO INSCRIPTION (Id_utilisateur, Id_evenement) VALUES
 
 -- modif web
 
-INSERT INTO `Image_Evenement` (`Id_Image`, `Url_image`, `Id_evenement`) VALUES
+INSERT INTO IMAGE_EVENEMENT (`Id_Image`, `Url_image`, `Id_evenement`) VALUES
 (1, 'assets/images/events/atelier-tri.jpg', 1),
 (2, 'assets/images/events/collecte-info.jpg', 2),
 (3, 'assets/images/events/zero-dechet.jpg', 3),
@@ -255,6 +255,3 @@ INSERT INTO `Image_Evenement` (`Id_Image`, `Url_image`, `Id_evenement`) VALUES
 (10, 'assets/images/events/exposition.jpg', 10),
 (11, 'assets/images/events/nettoyage-campus.jpg', 11),
 (12, 'assets/images/events/marche-solidaire.jpg', 12);  
-
-
-
